@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Plan 90 Días · Inglés (A1→A2) · Ernesto</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.65);
+      --accent:#60a5fa;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --r:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(96,165,250,.18), transparent 60%),
+        radial-gradient(1200px 700px at 85% 0%, rgba(52,211,153,.12), transparent 55%),
+        radial-gradient(900px 700px at 85% 90%, rgba(245,158,11,.10), transparent 55%),
+        var(--bg);
+      min-height:100vh;
+    }
+    .wrap{max-width:1180px; margin:0 auto; padding:18px 14px 40px}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      padding:12px 12px 10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+    }
+    .flags{display:flex; gap:8px; align-items:center; font-size:16px}
+    .knot{width:10px;height:10px;border-radius:50%;background:linear-gradient(45deg,#ffd166,#60a5fa);box-shadow:0 0 0 2px rgba(255,255,255,.08)}
+    .title h1{margin:0; font-size:18px; font-weight:900}
+    .title .sub{margin-top:4px; font-size:12px; color:var(--muted)}
+    .nav{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--stroke);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:12px;
+      cursor:pointer;
+      transition:.15s;
+      font-weight:800;
+    }
+    .chip:hover{transform: translateY(-1px); border-color: rgba(96,165,250,.35)}
+    .chip.active{background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.45)}
+    .grid{display:grid; grid-template-columns: 360px 1fr; gap:14px; align-items:start; margin-top:10px}
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hd{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .hd .h{font-weight:900}
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .bd{padding:14px}
+    .note{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.35;
+      margin-bottom:12px;
+    }
+    .hr{height:1px; background: var(--stroke); margin:12px 0}
+    .btn{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:.15s;
+      font-weight:900;
+      font-size:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.16)}
+    .btn.primary{background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.45)}
+    .btn.good{background: rgba(52,211,153,.14); border-color: rgba(52,211,153,.35)}
+    .btn.warn{background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.35)}
+    .btn svg{width:18px;height:18px; display:block}
+
+    textarea{
+      width:100%;
+      min-height:130px;
+      resize:vertical;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+      font-size:12px;
+      line-height:1.4;
+    }
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .iconGrid{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .bigTitle{font-weight:900; font-size:16px; margin:0 0 6px}
+    .mini{font-size:11px; color:var(--muted); margin-top:8px}
+
+    .toast{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background: rgba(0,0,0,.70);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.92);
+      padding:10px 12px;
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      opacity:0; pointer-events:none;
+      transition:.2s;
+      font-size:12px;
+      max-width: 92vw;
+      z-index:9999;
+    }
+    .toast.show{opacity:1}
+
+    /* Secciones */
+    #sectionInv{display:none}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="flags" title="Venezuela + USA (amistad)">
+        <span>🇻🇪</span><span class="knot"></span><span>🇺🇸</span>
+      </div>
+      <div class="title">
+        <h1>Plan 90 Días · Inglés (A1→A2)</h1>
+        <div class="sub">Versión v3 · Modo local (gratis) · sin login · progreso por dispositivo</div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="chip active" id="tabPlan">Plan</button>
+      <button class="chip" id="tabInv">Invitaciones</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- IZQUIERDA -->
+    <div class="panel">
+      <div class="hd">
+        <div class="h">Estado</div>
+        <span class="tag">Modo: <b>Local</b> (sin login)</span>
+      </div>
+      <div class="bd">
+        <div class="note">
+          ✅ No necesitas correo ni contraseña para invitar.<br>
+          Cada persona guarda su avance en su propio navegador (teléfono/PC).
+        </div>
+
+        <div class="note">
+          <b>Tu link actual de invitación:</b><br>
+          <span id="inviteLinkText" class="tag" style="display:inline-block; margin-top:8px;"></span>
+        </div>
+
+        <div class="row">
+          <button class="btn" id="btnNewCode">🔁 Nuevo código</button>
+          <button class="btn good" id="btnCopy">📋 Copiar invitación</button>
+        </div>
+
+        <div class="hr"></div>
+        <div class="mini">Si no ves iconos/botones, es porque Netlify aún no está sirviendo este archivo. Abre con <b>?v=3</b> y haz refresh fuerte.</div>
+      </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="panel">
+      <div class="hd">
+        <div class="h" id="rightTitle">Plan</div>
+        <span class="tag">v3</span>
+      </div>
+      <div class="bd">
+
+        <!-- PLAN -->
+        <div id="sectionPlan">
+          <div class="bigTitle">Plan (demo)</div>
+          <div class="note">
+            Esta versión está enfocada en que las <b>Invitaciones funcionen</b> con iconos y botones.
+            Si quieres, luego te reintegro el plan completo día por día en esta misma base.
+          </div>
+          <div class="note">
+            ✅ Ahora entra en la pestaña <b>Invitaciones</b> para ver los iconos de WhatsApp/Telegram/X.
+          </div>
+        </div>
+
+        <!-- INVITACIONES -->
+        <div id="sectionInv">
+          <div class="bigTitle">Invitaciones (con iconos)</div>
+          <div class="note">
+            1) Escribe tu mensaje.<br>
+            2) Pulsa un icono (WhatsApp/Telegram/X/Facebook/Email) y se abre directo.<br>
+            3) O usa “Copiar invitación”.
+          </div>
+
+          <div class="bigTitle">Mensaje</div>
+          <textarea id="inviteMsg"></textarea>
+
+          <div class="hr"></div>
+
+          <div class="bigTitle">Enviar por</div>
+          <div class="iconGrid">
+            <a class="btn good" id="shareWhats" target="_blank" rel="noopener">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M19.1 17.7c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-0.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8 0 1.6 1.2 3.2 1.4 3.4.2.2 2.3 3.6 5.7 5 3.4 1.4 3.4.9 4 .8.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4 0-.1-.3-.2-.6-.4z"/><path d="M26.8 5.2C24 2.4 20.2.8 16.1.8 7.7.8.9 7.6.9 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2.1c2.2 1.2 4.7 1.9 7.4 1.9 8.4 0 15.2-6.8 15.2-15.2 0-4.1-1.6-7.9-4.4-10.6zm-10.7 23c-2.3 0-4.6-.6-6.6-1.8l-.5-.3-4.6 1.2 1.2-4.5-.3-.5c-1.3-2.1-2-4.5-2-6.9C3.3 8.8 9 3.1 16.1 3.1c3.4 0 6.6 1.3 9 3.7 2.4 2.4 3.7 5.6 3.7 9 0 7-5.7 12.4-12.7 12.4z"/></svg>
+              WhatsApp
+            </a>
+
+            <a class="btn good" id="shareTg" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 15.6 9.2 19c.4 0 .6-.2.9-.4l2.2-2.1 4.5 3.3c.8.4 1.3.2 1.5-.7l2.7-12.7c.3-1.1-.4-1.6-1.2-1.3L2.9 10.3c-1.1.4-1.1 1.1-.2 1.4l4.3 1.3L17.7 6.8c.5-.3 1-.1.6.2L9.4 15.6z"/></svg>
+              Telegram
+            </a>
+
+            <a class="btn" id="shareX" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.7l-5.2-6.7L5.2 22H2l7.3-8.4L1 2h6.9l4.7 6.1L18.9 2zm-1.2 18h1.7L7.2 3.9H5.4L17.7 20z"/></svg>
+              X
+            </a>
+
+            <a class="btn" id="shareFb" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+              Facebook
+            </a>
+
+            <a class="btn" id="shareMail">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+              Email
+            </a>
+          </div>
+
+          <div class="mini">Si el navegador bloquea la ventana al compartir, usa “Copiar invitación” y pega en WhatsApp.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ======= CONFIG =======
+  var PUBLIC_BASE_URL = "https://proyecto-ernesto-ingles-2026.netlify.app";
+  var INVITE_KEY = "plan90_invite_code_v3";
+  var INVMSG_KEY = "plan90_invite_msg_v3";
+
+  function $(id){ return document.getElementById(id); }
+
+  function toast(msg){
+    var el = $("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function(){ el.classList.remove("show"); }, 2400);
+  }
+
+  function genCode(){
+    var chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    var out="";
+    for(var i=0;i<8;i++) out += chars[Math.floor(Math.random()*chars.length)];
+    return out;
+  }
+  function getInviteCode(){
+    var code = localStorage.getItem(INVITE_KEY);
+    if(!code){ code = genCode(); localStorage.setItem(INVITE_KEY, code); }
+    return code;
+  }
+  function setInviteCode(code){ localStorage.setItem(INVITE_KEY, code); }
+
+  function defaultInviteMsg(){
+    return "Hola 👋 Soy Ernesto 🇻🇪🇺🇸\n"+
+      "Te invito a mi página “Plan 90 Días de Inglés (A1→A2)”.\n"+
+      "✅ Es gratis y puedes avanzar a tu ritmo.\n\n"+
+      "Abre el enlace aquí:\n{LINK}\n\n"+
+      "(Sitio oficial en Netlify)";
+  }
+  function getInviteMsg(){
+    var msg = localStorage.getItem(INVMSG_KEY);
+    if(!msg){ msg = defaultInviteMsg(); localStorage.setItem(INVMSG_KEY, msg); }
+    return msg;
+  }
+  function setInviteMsg(msg){ localStorage.setItem(INVMSG_KEY, msg); }
+
+  function buildInviteLink(code){
+    return PUBLIC_BASE_URL + "/?invite=" + encodeURIComponent(code);
+  }
+
+  function substituteLink(msg, link){
+    // reemplaza {LINK} sin usar replaceAll (compatibilidad)
+    return msg.split("{LINK}").join(link);
+  }
+
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject){
+      try{
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        resolve();
+      }catch(e){ reject(e); }
+    });
+  }
+
+  function updateLinks(){
+    var code = getInviteCode();
+    var link = buildInviteLink(code);
+    $("inviteLinkText").textContent = link;
+
+    var msg = $("inviteMsg").value || getInviteMsg();
+    setInviteMsg(msg);
+
+    var full = substituteLink(msg, link);
+    var encMsg = encodeURIComponent(full);
+    var encLink = encodeURIComponent(link);
+
+    $("shareWhats").href = "https://wa.me/?text=" + encMsg;
+    $("shareTg").href = "https://t.me/share/url?url=" + encLink + "&text=" + encMsg;
+    $("shareX").href = "https://twitter.com/intent/tweet?text=" + encMsg;
+    $("shareFb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encLink;
+
+    var subject = encodeURIComponent("Invitación: Plan 90 Días de Inglés (A1→A2)");
+    $("shareMail").href = "mailto:?subject=" + subject + "&body=" + encMsg;
+  }
+
+  function setTab(tab){
+    $("tabPlan").classList.toggle("active", tab==="plan");
+    $("tabInv").classList.toggle("active", tab==="inv");
+    $("sectionPlan").style.display = (tab==="plan") ? "block" : "none";
+    $("sectionInv").style.display = (tab==="inv") ? "block" : "none";
+    $("rightTitle").textContent = (tab==="plan") ? "Plan" : "Invitaciones";
+    if(tab==="inv") updateLinks();
+  }
+
+  // ===== INIT =====
+  (function init(){
+    $("inviteMsg").value = getInviteMsg();
+
+    $("tabPlan").addEventListener("click", function(){ setTab("plan"); });
+    $("tabInv").addEventListener("click", function(){ setTab("inv"); });
+
+    $("inviteMsg").addEventListener("input", function(){ updateLinks(); });
+
+    $("btnNewCode").addEventListener("click", function(){
+      var c = genCode();
+      setInviteCode(c);
+      updateLinks();
+      toast("Nuevo código creado.");
+    });
+
+    $("btnCopy").addEventListener("click", function(){
+      var code = getInviteCode();
+      var link = buildInviteLink(code);
+      var msg = $("inviteMsg").value || getInviteMsg();
+      var full = substituteLink(msg, link);
+      copyText(full).then(function(){ toast("Invitación copiada."); })
+        .catch(function(){ toast("No pude copiar. Copia manualmente."); });
+    });
+
+    // por defecto
+    setTab("plan");
+
+    // si viene con invite en URL, lo mostramos en invitaciones
+    var params = new URLSearchParams(location.search);
+    if(params.get("invite")){
+      setTab("inv");
+      toast("Invitación detectada: " + params.get("invite"));
+    }
+
+    updateLinks();
+  })();
+</script>
+</body>
+</html>
