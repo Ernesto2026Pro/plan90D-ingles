@@ -1,418 +1,966 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Plan 90 Días · Inglés (A1→A2) · Ernesto</title>
-  <style>
-    :root{
-      --bg:#0b1220;
-      --stroke:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.65);
-      --accent:#60a5fa;
-      --shadow:0 18px 60px rgba(0,0,0,.35);
-      --r:16px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 15% 10%, rgba(96,165,250,.18), transparent 60%),
-        radial-gradient(1200px 700px at 85% 0%, rgba(52,211,153,.12), transparent 55%),
-        radial-gradient(900px 700px at 85% 90%, rgba(245,158,11,.10), transparent 55%),
-        var(--bg);
-      min-height:100vh;
-    }
-    .wrap{max-width:1180px; margin:0 auto; padding:18px 14px 40px}
-    .top{
-      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      padding:12px 12px 10px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      padding:10px 14px;
-      border-radius:999px;
-      background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px solid var(--stroke);
-      box-shadow: var(--shadow);
-    }
-    .flags{display:flex; gap:8px; align-items:center; font-size:16px}
-    .knot{width:10px;height:10px;border-radius:50%;background:linear-gradient(45deg,#ffd166,#60a5fa);box-shadow:0 0 0 2px rgba(255,255,255,.08)}
-    .title h1{margin:0; font-size:18px; font-weight:900}
-    .title .sub{margin-top:4px; font-size:12px; color:var(--muted)}
-    .nav{display:flex; gap:8px; flex-wrap:wrap}
-    .chip{
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--stroke);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:999px;
-      font-size:12px;
-      cursor:pointer;
-      transition:.15s;
-      font-weight:800;
-    }
-    .chip:hover{transform: translateY(-1px); border-color: rgba(96,165,250,.35)}
-    .chip.active{background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.45)}
-    .grid{display:grid; grid-template-columns: 360px 1fr; gap:14px; align-items:start; margin-top:10px}
-    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
-
-    .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--stroke);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hd{
-      padding:14px 14px 10px;
-      border-bottom:1px solid var(--stroke);
-      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .hd .h{font-weight:900}
-    .tag{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      max-width:100%;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-    .bd{padding:14px}
-    .note{
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,.18);
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.35;
-      margin-bottom:12px;
-    }
-    .hr{height:1px; background: var(--stroke); margin:12px 0}
-    .btn{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      transition:.15s;
-      font-weight:900;
-      font-size:12px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      text-decoration:none;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.16)}
-    .btn.primary{background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.45)}
-    .btn.good{background: rgba(52,211,153,.14); border-color: rgba(52,211,153,.35)}
-    .btn.warn{background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.35)}
-    .btn svg{width:18px;height:18px; display:block}
-
-    textarea{
-      width:100%;
-      min-height:130px;
-      resize:vertical;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,.22);
-      color: var(--text);
-      outline:none;
-      font-size:12px;
-      line-height:1.4;
-    }
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .iconGrid{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .bigTitle{font-weight:900; font-size:16px; margin:0 0 6px}
-    .mini{font-size:11px; color:var(--muted); margin-top:8px}
-
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background: rgba(0,0,0,.70);
-      border:1px solid rgba(255,255,255,.12);
-      color:rgba(255,255,255,.92);
-      padding:10px 12px;
-      border-radius:14px;
-      box-shadow: var(--shadow);
-      opacity:0; pointer-events:none;
-      transition:.2s;
-      font-size:12px;
-      max-width: 92vw;
-      z-index:9999;
-    }
-    .toast.show{opacity:1}
-
-    /* Secciones */
-    #sectionInv{display:none}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Plan 90 Días · Inglés (A1 → A2) · Ernesto</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121a33; --text:#e9ecf7; --muted:#aab3d6;
+    --line:rgba(255,255,255,.10); --accent:#66c2ff; --ok:#3ddc97; --bad:#ff6b6b;
+    --shadow: 0 12px 28px rgba(0,0,0,.35); --radius: 18px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:radial-gradient(1200px 700px at 25% 10%, #1a2a6a 0%, rgba(26,42,106,0) 55%),
+               radial-gradient(900px 700px at 80% 50%, #11324a 0%, rgba(17,50,74,0) 55%),
+               var(--bg);
+    color:var(--text);
+    font: 15px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .wrap{max-width:1150px; margin:0 auto; padding:18px 16px 30px}
+  .top{
+    display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
+    padding:14px; border:1px solid var(--line); border-radius: var(--radius);
+    background:rgba(18,26,51,.72); box-shadow:var(--shadow);
+  }
+  .brand{display:flex; flex-direction:column; gap:6px}
+  .brand .t{font-weight:900; font-size:18px}
+  .brand .s{color:var(--muted); font-size:13px}
+  .nav{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .chip{
+    border:1px solid var(--line); background:rgba(27,37,80,.55); color:var(--text);
+    padding:7px 10px; border-radius:999px; cursor:pointer; user-select:none; font-weight:750;
+  }
+  .chip.active{background:rgba(102,194,255,.18); border-color:rgba(102,194,255,.45)}
+  .tag{border:1px solid var(--line); border-radius:999px; padding:7px 10px; color:var(--muted); background:rgba(0,0,0,.15); font-weight:750;}
+  .grid{display:grid; grid-template-columns: 380px 1fr; gap:14px; margin-top:14px}
+  @media(max-width: 980px){ .grid{grid-template-columns:1fr} }
+  .panel{
+    border:1px solid var(--line); background:rgba(18,26,51,.70); border-radius: var(--radius);
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .hd{display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border-bottom:1px solid var(--line)}
+  .hd .h{font-weight:900}
+  .bd{padding:14px}
+  .note{background:rgba(0,0,0,.18); border:1px solid var(--line); padding:10px 12px; border-radius:14px; color:var(--muted);}
+  .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .btn{
+    border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--text);
+    padding:10px 12px; border-radius:14px; cursor:pointer; font-weight:850;
+  }
+  .btn.primary{background:rgba(102,194,255,.18); border-color:rgba(102,194,255,.45)}
+  .btn.ok{background:rgba(61,220,151,.14); border-color:rgba(61,220,151,.40)}
+  .btn.bad{background:rgba(255,107,107,.14); border-color:rgba(255,107,107,.40)}
+  .btn:disabled{opacity:.5; cursor:not-allowed}
+  .input, textarea{
+    width:100%; border:1px solid var(--line); background:rgba(0,0,0,.18); color:var(--text);
+    padding:10px 12px; border-radius:14px; outline:none;
+  }
+  textarea{min-height:110px; resize:vertical}
+  .k{color:var(--muted); font-size:12px; margin:10px 0 6px}
+  .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
+  .stat{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius:14px; padding:10px 12px}
+  .stat .k{margin:0; font-size:11px}
+  .stat .v{font-weight:950; font-size:18px; margin-top:6px}
+  .hr{height:1px; background:var(--line); margin:14px 0}
+  .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0}
+  .pill{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius:999px; padding:7px 10px; color:var(--muted); font-weight:800; font-size:12px;}
+  .card{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius: var(--radius); padding:12px; margin-top:10px;}
+  .card h3{margin:0 0 6px; font-size:14px}
+  .mini ul{margin:8px 0 0 20px; color:var(--muted)}
+  .checklist{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+  .task{border:1px solid var(--line); background:rgba(0,0,0,.10); border-radius:16px; padding:10px; display:flex; gap:10px; align-items:flex-start}
+  .task input{margin-top:4px; transform:scale(1.2)}
+  .task .tt{font-weight:950}
+  .task .dd{color:var(--muted); margin-top:2px}
+  .toast{
+    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+    background:rgba(0,0,0,.80); color:var(--text); border:1px solid rgba(255,255,255,.15);
+    padding:10px 12px; border-radius:14px; box-shadow:var(--shadow);
+    max-width:min(640px, calc(100vw - 30px));
+    opacity:0; pointer-events:none; transition:opacity .18s ease; font-weight:800;
+  }
+  .toast.show{opacity:1}
+  .sharegrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px}
+  @media(max-width:560px){ .sharegrid{grid-template-columns:1fr} }
+  .sharebtn{
+    display:flex; align-items:center; gap:10px; border:1px solid var(--line);
+    background:rgba(255,255,255,.06); padding:10px 12px; border-radius:16px; cursor:pointer; font-weight:900;
+  }
+  .sharebtn svg{width:20px; height:20px; flex:0 0 20px}
+  .small{font-size:12px; color:var(--muted)}
+  .warn{color:#ffd27a}
+  .good{color:var(--ok)}
+  .badtxt{color:var(--bad)}
+</style>
 </head>
 
 <body>
 <div class="wrap">
   <div class="top">
     <div class="brand">
-      <div class="flags" title="Venezuela + USA (amistad)">
-        <span>🇻🇪</span><span class="knot"></span><span>🇺🇸</span>
-      </div>
-      <div class="title">
-        <h1>Plan 90 Días · Inglés (A1→A2)</h1>
-        <div class="sub">Versión v3 · Modo local (gratis) · sin login · progreso por dispositivo</div>
-      </div>
+      <div class="t">Plan 90 Días · Inglés (A1 → A2)</div>
+      <div class="s">Modo PRO: login + invitación 1-uso + puerta de entrada + progreso en nube · Donaciones voluntarias</div>
     </div>
-
     <div class="nav">
-      <button class="chip active" id="tabPlan">Plan</button>
-      <button class="chip" id="tabInv">Invitaciones</button>
+      <span class="tag"><strong>Modo</strong>: <span id="modeText">Cargando…</span></span>
+      <button class="chip active" id="tabPlan" onclick="setTab('plan')">Plan</button>
+      <button class="chip" id="tabInv" onclick="setTab('inv')">Invitaciones</button>
+      <button class="chip" id="tabHelp" onclick="setTab('help')">Ayuda</button>
     </div>
   </div>
 
   <div class="grid">
-    <!-- IZQUIERDA -->
     <div class="panel">
-      <div class="hd">
-        <div class="h">Estado</div>
-        <span class="tag">Modo: <b>Local</b> (sin login)</span>
-      </div>
-      <div class="bd">
-        <div class="note">
-          ✅ No necesitas correo ni contraseña para invitar.<br>
-          Cada persona guarda su avance en su propio navegador (teléfono/PC).
-        </div>
-
-        <div class="note">
-          <b>Tu link actual de invitación:</b><br>
-          <span id="inviteLinkText" class="tag" style="display:inline-block; margin-top:8px;"></span>
-        </div>
-
-        <div class="row">
-          <button class="btn" id="btnNewCode">🔁 Nuevo código</button>
-          <button class="btn good" id="btnCopy">📋 Copiar invitación</button>
-        </div>
-
-        <div class="hr"></div>
-        <div class="mini">Si no ves iconos/botones, es porque Netlify aún no está sirviendo este archivo. Abre con <b>?v=3</b> y haz refresh fuerte.</div>
-      </div>
+      <div class="hd"><div class="h">Cuenta y progreso</div><div class="small" id="buildTag">beta</div></div>
+      <div class="bd" id="leftBody"></div>
     </div>
 
-    <!-- DERECHA -->
     <div class="panel">
       <div class="hd">
-        <div class="h" id="rightTitle">Plan</div>
-        <span class="tag">v3</span>
+        <div class="h" id="rightHeader">Cargando…</div>
+        <div class="small" id="rightSub"></div>
       </div>
-      <div class="bd">
-
-        <!-- PLAN -->
-        <div id="sectionPlan">
-          <div class="bigTitle">Plan (demo)</div>
-          <div class="note">
-            Esta versión está enfocada en que las <b>Invitaciones funcionen</b> con iconos y botones.
-            Si quieres, luego te reintegro el plan completo día por día en esta misma base.
-          </div>
-          <div class="note">
-            ✅ Ahora entra en la pestaña <b>Invitaciones</b> para ver los iconos de WhatsApp/Telegram/X.
-          </div>
-        </div>
-
-        <!-- INVITACIONES -->
-        <div id="sectionInv">
-          <div class="bigTitle">Invitaciones (con iconos)</div>
-          <div class="note">
-            1) Escribe tu mensaje.<br>
-            2) Pulsa un icono (WhatsApp/Telegram/X/Facebook/Email) y se abre directo.<br>
-            3) O usa “Copiar invitación”.
-          </div>
-
-          <div class="bigTitle">Mensaje</div>
-          <textarea id="inviteMsg"></textarea>
-
-          <div class="hr"></div>
-
-          <div class="bigTitle">Enviar por</div>
-          <div class="iconGrid">
-            <a class="btn good" id="shareWhats" target="_blank" rel="noopener">
-              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M19.1 17.7c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-0.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.8 0 1.6 1.2 3.2 1.4 3.4.2.2 2.3 3.6 5.7 5 3.4 1.4 3.4.9 4 .8.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4 0-.1-.3-.2-.6-.4z"/><path d="M26.8 5.2C24 2.4 20.2.8 16.1.8 7.7.8.9 7.6.9 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2.1c2.2 1.2 4.7 1.9 7.4 1.9 8.4 0 15.2-6.8 15.2-15.2 0-4.1-1.6-7.9-4.4-10.6zm-10.7 23c-2.3 0-4.6-.6-6.6-1.8l-.5-.3-4.6 1.2 1.2-4.5-.3-.5c-1.3-2.1-2-4.5-2-6.9C3.3 8.8 9 3.1 16.1 3.1c3.4 0 6.6 1.3 9 3.7 2.4 2.4 3.7 5.6 3.7 9 0 7-5.7 12.4-12.7 12.4z"/></svg>
-              WhatsApp
-            </a>
-
-            <a class="btn good" id="shareTg" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 15.6 9.2 19c.4 0 .6-.2.9-.4l2.2-2.1 4.5 3.3c.8.4 1.3.2 1.5-.7l2.7-12.7c.3-1.1-.4-1.6-1.2-1.3L2.9 10.3c-1.1.4-1.1 1.1-.2 1.4l4.3 1.3L17.7 6.8c.5-.3 1-.1.6.2L9.4 15.6z"/></svg>
-              Telegram
-            </a>
-
-            <a class="btn" id="shareX" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.7l-5.2-6.7L5.2 22H2l7.3-8.4L1 2h6.9l4.7 6.1L18.9 2zm-1.2 18h1.7L7.2 3.9H5.4L17.7 20z"/></svg>
-              X
-            </a>
-
-            <a class="btn" id="shareFb" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
-              Facebook
-            </a>
-
-            <a class="btn" id="shareMail">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-              Email
-            </a>
-          </div>
-
-          <div class="mini">Si el navegador bloquea la ventana al compartir, usa “Copiar invitación” y pega en WhatsApp.</div>
-        </div>
-
-      </div>
+      <div class="bd" id="rightBody"></div>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<script>
-  // ======= CONFIG =======
-  var PUBLIC_BASE_URL = "https://proyecto-ernesto-ingles-2026.netlify.app";
-  var INVITE_KEY = "plan90_invite_code_v3";
-  var INVMSG_KEY = "plan90_invite_msg_v3";
+<script type="module">
+/* ============================================================
+   ✅ 1) PEGA AQUÍ TU firebaseConfig (desde Firebase > App Web)
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  // apiKey: "…",
+  // authDomain: "…",
+  // projectId: "…",
+  // storageBucket: "…",
+  // messagingSenderId: "…",
+  // appId: "…",
+};
 
-  function $(id){ return document.getElementById(id); }
+/* ============================================================
+   ✅ 2) PEGA AQUÍ TUS DONATION LINKS (Stripe Payment Links)
+   ============================================================ */
+const DONATE_10_URL = ""; // Ej: "https://buy.stripe.com/xxxxx"
+const DONATE_15_URL = "";
+const DONATE_20_URL = "";
 
-  function toast(msg){
-    var el = $("toast");
-    el.textContent = msg;
-    el.classList.add("show");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(function(){ el.classList.remove("show"); }, 2400);
+/* ============================================================
+   ✅ 3) MENSAJE POR DEFECTO PARA INVITAR (WhatsApp/Telegram/X/Email)
+   ============================================================ */
+const INVITE_MESSAGE_DEFAULT = `Hola 👋 Soy Ernesto 🇻🇪🇺🇸
+Te invito a mi página “Plan 90 Días de Inglés (A1→A2)”.
+✅ Es gratis y puedes avanzar a tu ritmo.
+
+Para entrar necesitas este enlace de invitación:
+{LINK}
+`;
+
+/* ------------------------- APP CORE ------------------------- */
+const PLAN_DAYS = 90;
+const TASK_POINTS = 10;
+const APP_NAME = "plan90_pro_cloud";
+const LS_KEY = APP_NAME + ":local_backup";
+const SCHEMA_VERSION = 1;
+
+const WEEK_THEMES = [
+  {week:1,  title:"Presentación + TH", focus:"Pronunciación TH (think/this) + presentarse"},
+  {week:2,  title:"Rutina diaria",      focus:"Present simple + adverbios de frecuencia"},
+  {week:3,  title:"Familia y amigos",   focus:"'to be' + posesivos (my/your/his/her)"},
+  {week:4,  title:"En la ciudad",       focus:"There is/are + preposiciones (in/on/at)"},
+  {week:5,  title:"Compras y comida",   focus:"Countable/uncountable + some/any"},
+  {week:6,  title:"Tiempo y clima",     focus:"Preguntas (Wh-) + short answers"},
+  {week:7,  title:"Salud y hábitos",    focus:"Can/can't + consejos (should)"},
+  {week:8,  title:"Trabajo y metas",    focus:"Future 'going to' + planes"},
+  {week:9,  title:"Viajes",             focus:"Past simple (regular) + viajes"},
+  {week:10, title:"Historias",          focus:"Past simple (irregular) + conectores"},
+  {week:11, title:"Opiniones",          focus:"Comparatives/superlatives"},
+  {week:12, title:"Tecnología",         focus:"Present continuous + acciones ahora"},
+  {week:13, title:"Repaso A1→A2",       focus:"Repaso + mini-proyectos (hablar 2–3 min)"},
+];
+
+const state = {
+  schemaVersion: SCHEMA_VERSION,
+  day: 1,
+  progress: {},     // map: "d1_t0": true/false
+  points: 0,
+  lastSavedAt: 0,
+};
+
+function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+function weekOfDay(day){ return Math.floor((day-1)/7)+1; }
+function keyFor(day, idx){ return `d${day}_t${idx}`; }
+
+function toast(msg, isErr=false){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  el.style.borderColor = isErr ? "rgba(255,107,107,.55)" : "rgba(255,255,255,.15)";
+  setTimeout(()=>el.classList.remove("show"), 2300);
+}
+
+function hasFirebaseConfig(cfg){
+  return cfg && typeof cfg === "object" && !!cfg.apiKey && !!cfg.authDomain && !!cfg.projectId;
+}
+
+function getBaseUrl(){
+  const u = new URL(window.location.href);
+  u.hash = ""; u.search = "";
+  let p = u.pathname.replace(/index\.html$/i,"");
+  if(!p.endsWith("/")) p += "/";
+  return u.origin + p;
+}
+
+/* ------------------------- UI TABS -------------------------- */
+function setTab(which){
+  document.getElementById("tabPlan").classList.toggle("active", which==="plan");
+  document.getElementById("tabInv").classList.toggle("active", which==="inv");
+  document.getElementById("tabHelp").classList.toggle("active", which==="help");
+  if(which==="plan") renderPlan();
+  if(which==="inv") renderInvitations();
+  if(which==="help") renderHelp();
+}
+window.setTab = setTab;
+
+/* --------------------- LOCAL BACKUP ------------------------- */
+function saveLocalBackup(){
+  localStorage.setItem(LS_KEY, JSON.stringify(state));
+}
+function loadLocalBackup(){
+  const raw = localStorage.getItem(LS_KEY);
+  if(!raw) return;
+  try{
+    const o = JSON.parse(raw);
+    state.schemaVersion = o.schemaVersion || SCHEMA_VERSION;
+    state.day = clamp(parseInt(o.day||1,10),1,PLAN_DAYS);
+    state.progress = o.progress || {};
+    state.points = o.points || 0;
+  }catch(e){}
+}
+
+/* --------------------- STATS/CONTENT ------------------------ */
+function computeStats(){
+  const totalTasks = PLAN_DAYS * 5;
+  let doneTasks = 0;
+  for(const k in state.progress) if(state.progress[k]) doneTasks++;
+  const allPct = totalTasks ? (doneTasks/totalTasks) : 0;
+
+  const w = weekOfDay(state.day);
+  const weekStart = (w-1)*7 + 1;
+  const weekEnd = Math.min(w*7, PLAN_DAYS);
+  const weekTasks = (weekEnd-weekStart+1)*5;
+  let weekDone = 0;
+  for(let d=weekStart; d<=weekEnd; d++) for(let i=0;i<5;i++) if(state.progress[keyFor(d,i)]) weekDone++;
+  const weekPct = weekTasks ? (weekDone/weekTasks) : 0;
+
+  let daysDone = 0;
+  for(let d=1; d<=PLAN_DAYS; d++){
+    let ok=0; for(let i=0;i<5;i++) if(state.progress[keyFor(d,i)]) ok++;
+    if(ok===5) daysDone++;
+  }
+  state.points = doneTasks * TASK_POINTS;
+  return {w, weekPct, allPct, daysDone, doneTasks, totalTasks};
+}
+
+function getDayContent(day){
+  const w = weekOfDay(day);
+  const theme = WEEK_THEMES[clamp(w,1,13)-1];
+  const mini = [
+    `Tema: ${theme.title}`,
+    `Enfoque: ${theme.focus}`,
+    `Objetivo: hablar 30–60s sobre el tema (sin traducir palabra por palabra).`,
+    `Tip: frases cortas + repite en voz alta (shadowing).`
+  ];
+  const tasks = [
+    {title:"Pronunciación (10 repeticiones)", desc:`Practica el sonido clave. Haz 10 repeticiones: 1) lento 2) normal 3) shadowing.`},
+    {title:"Vocabulario (12 palabras)", desc:`Aprende 12 palabras de “${theme.title}” y úsalas en 4 frases.`},
+    {title:"Gramática (10 min)", desc:`Regla del día: ${theme.focus} + 6 ejemplos (hablados y escritos).`},
+    {title:"Speaking (5 min)", desc:`Responde 10 preguntas cortas sobre “${theme.title}” en voz alta.`},
+    {title:"Listening/Reading", desc:`Lee un texto corto del tema y repite 6 frases como eco (shadowing).`},
+  ];
+  const prompts = [
+    `1) Di tu frase #1 sobre ${theme.title}.`,
+    `2) Di 2 frases usando la regla (${theme.focus}).`,
+    `3) Haz 2 preguntas y respóndelas.`,
+    `4) Cuenta un mini-ejemplo (15–20s).`,
+    `5) Repite 3 frases como shadowing.`,
+  ];
+  return {w, theme, mini, tasks, prompts};
+}
+
+/* --------------------- SIMPLE SVG ICONS --------------------- */
+function svg(letter){
+  return `<svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="12" y="16" text-anchor="middle" font-size="12" font-family="system-ui,Segoe UI,Arial" fill="currentColor">${letter}</text>
+  </svg>`;
+}
+function enc(s){ return encodeURIComponent(s); }
+
+/* ======================= FIREBASE =========================== */
+let firebaseReady = false;
+let auth, db;
+let currentUser = null;
+let currentUserProfile = null; // users/{uid}
+let isAdmin = false;
+let inviteParam = null;
+
+// Firebase modules (loaded only if config exists)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, updateDoc,
+  serverTimestamp, collection, runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+function readInviteFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  inviteParam = params.get("invite");
+  if(inviteParam){
+    sessionStorage.setItem(APP_NAME + ":inviteParam", inviteParam);
+  } else {
+    inviteParam = sessionStorage.getItem(APP_NAME + ":inviteParam");
+  }
+}
+
+async function initFirebaseIfPossible(){
+  readInviteFromUrl();
+
+  if(!hasFirebaseConfig(FIREBASE_CONFIG)){
+    document.getElementById("modeText").textContent = "Local (sin Firebase)";
+    toast("Falta pegar firebaseConfig. Por ahora no hay login.", true);
+    renderAllLocalOnly();
+    return;
   }
 
-  function genCode(){
-    var chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    var out="";
-    for(var i=0;i<8;i++) out += chars[Math.floor(Math.random()*chars.length)];
-    return out;
-  }
-  function getInviteCode(){
-    var code = localStorage.getItem(INVITE_KEY);
-    if(!code){ code = genCode(); localStorage.setItem(INVITE_KEY, code); }
-    return code;
-  }
-  function setInviteCode(code){ localStorage.setItem(INVITE_KEY, code); }
+  const app = initializeApp(FIREBASE_CONFIG);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  firebaseReady = true;
+  document.getElementById("modeText").textContent = "PRO (Firebase)";
 
-  function defaultInviteMsg(){
-    return "Hola 👋 Soy Ernesto 🇻🇪🇺🇸\n"+
-      "Te invito a mi página “Plan 90 Días de Inglés (A1→A2)”.\n"+
-      "✅ Es gratis y puedes avanzar a tu ritmo.\n\n"+
-      "Abre el enlace aquí:\n{LINK}\n\n"+
-      "(Sitio oficial en Netlify)";
-  }
-  function getInviteMsg(){
-    var msg = localStorage.getItem(INVMSG_KEY);
-    if(!msg){ msg = defaultInviteMsg(); localStorage.setItem(INVMSG_KEY, msg); }
-    return msg;
-  }
-  function setInviteMsg(msg){ localStorage.setItem(INVMSG_KEY, msg); }
+  onAuthStateChanged(auth, async (user) => {
+    currentUser = user || null;
+    isAdmin = false;
+    currentUserProfile = null;
 
-  function buildInviteLink(code){
-    return PUBLIC_BASE_URL + "/?invite=" + encodeURIComponent(code);
-  }
-
-  function substituteLink(msg, link){
-    // reemplaza {LINK} sin usar replaceAll (compatibilidad)
-    return msg.split("{LINK}").join(link);
-  }
-
-  function copyText(text){
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      return navigator.clipboard.writeText(text);
+    if(!currentUser){
+      renderAuthGate();
+      return;
     }
-    return new Promise(function(resolve, reject){
-      try{
-        var ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        resolve();
-      }catch(e){ reject(e); }
-    });
-  }
 
-  function updateLinks(){
-    var code = getInviteCode();
-    var link = buildInviteLink(code);
-    $("inviteLinkText").textContent = link;
+    // Load user profile
+    const uref = doc(db, "users", currentUser.uid);
+    const usnap = await getDoc(uref);
+    if(usnap.exists()) currentUserProfile = usnap.data();
 
-    var msg = $("inviteMsg").value || getInviteMsg();
-    setInviteMsg(msg);
+    // Determine admin
+    const aref = doc(db, "config", "admins");
+    const asnap = await getDoc(aref);
+    const adminUids = (asnap.exists() && Array.isArray(asnap.data().uids)) ? asnap.data().uids : [];
+    isAdmin = adminUids.includes(currentUser.uid);
 
-    var full = substituteLink(msg, link);
-    var encMsg = encodeURIComponent(full);
-    var encLink = encodeURIComponent(link);
-
-    $("shareWhats").href = "https://wa.me/?text=" + encMsg;
-    $("shareTg").href = "https://t.me/share/url?url=" + encLink + "&text=" + encMsg;
-    $("shareX").href = "https://twitter.com/intent/tweet?text=" + encMsg;
-    $("shareFb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encLink;
-
-    var subject = encodeURIComponent("Invitación: Plan 90 Días de Inglés (A1→A2)");
-    $("shareMail").href = "mailto:?subject=" + subject + "&body=" + encMsg;
-  }
-
-  function setTab(tab){
-    $("tabPlan").classList.toggle("active", tab==="plan");
-    $("tabInv").classList.toggle("active", tab==="inv");
-    $("sectionPlan").style.display = (tab==="plan") ? "block" : "none";
-    $("sectionInv").style.display = (tab==="inv") ? "block" : "none";
-    $("rightTitle").textContent = (tab==="plan") ? "Plan" : "Invitaciones";
-    if(tab==="inv") updateLinks();
-  }
-
-  // ===== INIT =====
-  (function init(){
-    $("inviteMsg").value = getInviteMsg();
-
-    $("tabPlan").addEventListener("click", function(){ setTab("plan"); });
-    $("tabInv").addEventListener("click", function(){ setTab("inv"); });
-
-    $("inviteMsg").addEventListener("input", function(){ updateLinks(); });
-
-    $("btnNewCode").addEventListener("click", function(){
-      var c = genCode();
-      setInviteCode(c);
-      updateLinks();
-      toast("Nuevo código creado.");
-    });
-
-    $("btnCopy").addEventListener("click", function(){
-      var code = getInviteCode();
-      var link = buildInviteLink(code);
-      var msg = $("inviteMsg").value || getInviteMsg();
-      var full = substituteLink(msg, link);
-      copyText(full).then(function(){ toast("Invitación copiada."); })
-        .catch(function(){ toast("No pude copiar. Copia manualmente."); });
-    });
-
-    // por defecto
-    setTab("plan");
-
-    // si viene con invite en URL, lo mostramos en invitaciones
-    var params = new URLSearchParams(location.search);
-    if(params.get("invite")){
-      setTab("inv");
-      toast("Invitación detectada: " + params.get("invite"));
+    // If user has not activated invite, force invite gate
+    if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){
+      renderInviteGate();
+      return;
     }
 
-    updateLinks();
-  })();
-</script>
-</body>
-</html>
+    // Load progress from cloud (merge with local backup)
+    await loadCloudProgress();
+    renderPlan();
+  });
+
+  // initial render
+  renderAuthGate();
+}
+
+/* ----------------- AUTH / INVITE GATES ---------------------- */
+function renderAuthGate(){
+  const left = document.getElementById("leftBody");
+  const right = document.getElementById("rightBody");
+  document.getElementById("rightHeader").textContent = "Acceso";
+  document.getElementById("rightSub").textContent = "";
+
+  left.innerHTML = `
+    <div class="note">
+      <div><strong>Acceso requerido</strong></div>
+      <div class="small">Para entrar al curso necesitas iniciar sesión (gratis) y un código de invitación.</div>
+      <div class="small">Tu sitio: <span class="good">${getBaseUrl()}</span></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card">
+      <h3>Iniciar sesión</h3>
+      <div class="k">Correo</div>
+      <input class="input" id="loginEmail" type="email" placeholder="tuemail@gmail.com">
+      <div class="k">Contraseña</div>
+      <input class="input" id="loginPass" type="password" placeholder="••••••••">
+      <div class="row" style="margin-top:10px">
+        <button class="btn primary" id="btnLogin">Entrar</button>
+      </div>
+      <div class="small" style="margin-top:10px">Si es tu primera vez, usa “Crear cuenta”.</div>
+    </div>
+
+    <div class="card">
+      <h3>Crear cuenta</h3>
+      <div class="k">Correo</div>
+      <input class="input" id="regEmail" type="email" placeholder="tuemail@gmail.com">
+      <div class="k">Contraseña (mín. 6)</div>
+      <input class="input" id="regPass" type="password" placeholder="••••••••">
+      <div class="row" style="margin-top:10px">
+        <button class="btn ok" id="btnRegister">Crear cuenta</button>
+      </div>
+      <div class="small" style="margin-top:10px">Luego te pedirá tu código de invitación.</div>
+    </div>
+
+    <div class="hr"></div>
+    <div class="card">
+      <h3>Donaciones voluntarias</h3>
+      <div class="small">Si deseas apoyar el proyecto (no es obligatorio):</div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="d10">Apoyar $10</button>
+        <button class="btn" id="d15">Apoyar $15</button>
+        <button class="btn" id="d20">Apoyar $20</button>
+      </div>
+      <div class="small" style="margin-top:10px">Si no has configurado Stripe aún, estos botones no harán nada.</div>
+    </div>
+  `;
+
+  right.innerHTML = `
+    <div class="card">
+      <h3>¿Por qué login?</h3>
+      <ul class="mini">
+        <li>Para que tu progreso se guarde en la nube.</li>
+        <li>Para que el acceso sea por invitación (1 uso).</li>
+        <li>Para que solo el admin cree invitaciones.</li>
+      </ul>
+      <div class="note" style="margin-top:10px">
+        <div class="warn"><strong>Importante:</strong> Si te dice “dominio no autorizado”, vuelve a Firebase → Authentication → Dominios autorizados y agrega <strong>ernesto2026pro.github.io</strong>.</div>
+      </div>
+    </div>
+  `;
+
+  // Bind
+  document.getElementById("btnLogin").onclick = async () => {
+    try{
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPass").value;
+      await signInWithEmailAndPassword(auth, email, pass);
+      toast("Sesión iniciada ✅");
+    }catch(e){
+      toast("No se pudo iniciar sesión", true);
+    }
+  };
+  document.getElementById("btnRegister").onclick = async () => {
+    try{
+      const email = document.getElementById("regEmail").value.trim();
+      const pass = document.getElementById("regPass").value;
+      await createUserWithEmailAndPassword(auth, email, pass);
+      toast("Cuenta creada ✅");
+    }catch(e){
+      toast("No se pudo crear cuenta", true);
+    }
+  };
+
+  // Donations
+  const go = (url) => {
+    if(!url){ toast("Aún no configuraste el link de Stripe", true); return; }
+    window.open(url, "_blank");
+  };
+  document.getElementById("d10").onclick = ()=>go(DONATE_10_URL);
+  document.getElementById("d15").onclick = ()=>go(DONATE_15_URL);
+  document.getElementById("d20").onclick = ()=>go(DONATE_20_URL);
+}
+
+function renderInviteGate(){
+  const left = document.getElementById("leftBody");
+  const right = document.getElementById("rightBody");
+  document.getElementById("rightHeader").textContent = "Activar invitación";
+  document.getElementById("rightSub").textContent = "Código requerido (1 uso)";
+
+  const prefill = (inviteParam || "").trim();
+
+  left.innerHTML = `
+    <div class="note">
+      <div><strong>Hola, ${currentUser?.email || ""}</strong></div>
+      <div class="small">Para entrar al curso, activa tu código de invitación (1 solo uso).</div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card">
+      <h3>Código de invitación</h3>
+      <div class="k">Pega el código (o abre el enlace de invitación)</div>
+      <input class="input" id="inviteCodeInput" placeholder="Ej: CPSZDKBU" value="${prefill}">
+      <div class="row" style="margin-top:10px">
+        <button class="btn primary" id="btnActivate">Activar</button>
+        <button class="btn" id="btnLogout">Salir</button>
+      </div>
+      <div class="small" style="margin-top:10px">Si el código ya fue usado, no funcionará.</div>
+    </div>
+  `;
+
+  right.innerHTML = `
+    <div class="card">
+      <h3>¿Qué hace esto?</h3>
+      <ul class="mini">
+        <li>Evita que el curso se divulgue sin control.</li>
+        <li>Cada invitación sirve una sola vez.</li>
+        <li>Tu progreso quedará asociado a tu cuenta.</li>
+      </ul>
+    </div>
+  `;
+
+  document.getElementById("btnLogout").onclick = async () => {
+    await signOut(auth);
+  };
+
+  document.getElementById("btnActivate").onclick = async () => {
+    const code = document.getElementById("inviteCodeInput").value.trim().toUpperCase();
+    if(!code){ toast("Escribe el código", true); return; }
+    try{
+      await consumeInviteCode(code);
+      toast("Invitación activada ✅");
+      // reload profile & progress
+      const uref = doc(db, "users", currentUser.uid);
+      const usnap = await getDoc(uref);
+      currentUserProfile = usnap.exists() ? usnap.data() : null;
+
+      await loadCloudProgress();
+      renderPlan();
+    }catch(e){
+      toast(e?.message || "No se pudo activar", true);
+    }
+  };
+}
+
+async function consumeInviteCode(code){
+  const inviteRef = doc(db, "invites", code);
+  const userRef = doc(db, "users", currentUser.uid);
+
+  await runTransaction(db, async (tx) => {
+    const invSnap = await tx.get(inviteRef);
+    if(!invSnap.exists()) throw new Error("Código inválido");
+    const inv = invSnap.data();
+
+    if(inv.active !== true) throw new Error("Invitación inactiva");
+    if((inv.usesLeft ?? 0) < 1) throw new Error("Invitación ya fue usada");
+
+    const uSnap = await tx.get(userRef);
+    if(uSnap.exists() && uSnap.data().inviteCodeUsed){
+      throw new Error("Tu cuenta ya tiene invitación activada");
+    }
+
+    // consume invite (1-use)
+    tx.update(inviteRef, {
+      usesLeft: (inv.usesLeft ?? 1) - 1,
+      usedBy: currentUser.uid,
+      usedAt: serverTimestamp(),
+      active: false,
+    });
+
+    // create/update user profile
+    tx.set(userRef, {
+      email: currentUser.email || "",
+      role: "student",
+      inviteCodeUsed: code,
+      createdAt: serverTimestamp(),
+      lastLoginAt: serverTimestamp(),
+    }, { merge: true });
+  });
+}
+
+/* ------------------ CLOUD PROGRESS -------------------------- */
+let cloudSaveTimer = null;
+
+async function loadCloudProgress(){
+  // read cloud state
+  const pref = doc(db, "progress", currentUser.uid);
+  const psnap = await getDoc(pref);
+
+  loadLocalBackup(); // merge in case cloud empty
+
+  if(psnap.exists()){
+    const data = psnap.data();
+    if(data && data.progress && typeof data.progress === "object"){
+      state.progress = {...state.progress, ...data.progress};
+    }
+    if(data.day) state.day = clamp(parseInt(data.day,10),1,PLAN_DAYS);
+  }
+
+  saveLocalBackup();
+}
+
+function scheduleCloudSave(){
+  if(!firebaseReady || !currentUser) return;
+  if(cloudSaveTimer) clearTimeout(cloudSaveTimer);
+  cloudSaveTimer = setTimeout(async () => {
+    try{
+      const pref = doc(db, "progress", currentUser.uid);
+      await setDoc(pref, {
+        schemaVersion: SCHEMA_VERSION,
+        day: state.day,
+        progress: state.progress,
+        updatedAt: serverTimestamp(),
+      }, { merge: true });
+      state.lastSavedAt = Date.now();
+      saveLocalBackup();
+    }catch(e){
+      // fallback: local only
+      saveLocalBackup();
+    }
+  }, 650); // debounce to reduce writes
+}
+
+/* ------------------------- PLAN UI -------------------------- */
+function prevDay(){ state.day = clamp(state.day-1,1,PLAN_DAYS); scheduleCloudSave(); renderPlan(); }
+function nextDay(){ state.day = clamp(state.day+1,1,PLAN_DAYS); scheduleCloudSave(); renderPlan(); }
+function goToDay(){
+  const v = parseInt(document.getElementById("gotoDay").value||"1",10);
+  state.day = clamp(v,1,PLAN_DAYS);
+  scheduleCloudSave();
+  renderPlan();
+}
+window.prevDay = prevDay;
+window.nextDay = nextDay;
+window.goToDay = goToDay;
+
+function toggleTask(i, checked){
+  state.progress[keyFor(state.day,i)] = checked;
+  scheduleCloudSave();
+  renderPlan();
+}
+window.toggleTask = toggleTask;
+
+function exportLocal(){
+  const blob = new Blob([JSON.stringify(state,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "plan90_progreso_respaldo.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("Respaldo exportado ✅");
+}
+
+function renderLeftPanel(){
+  const s = computeStats();
+
+  const cloudInfo = firebaseReady && currentUser
+    ? `<span class="good">En nube ✅</span>`
+    : `<span class="warn">Local ⚠️</span>`;
+
+  const adminInfo = isAdmin ? `<span class="good">Admin ✅</span>` : `<span class="small">Estudiante</span>`;
+
+  document.getElementById("leftBody").innerHTML = `
+    <div class="note">
+      <div><strong>${currentUser?.email || "Sin sesión"}</strong></div>
+      <div class="small">Estado: ${cloudInfo} · ${adminInfo}</div>
+      <div class="small">Sitio: <span class="good">${getBaseUrl()}</span></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="statgrid">
+      <div class="stat"><div class="k">Semana</div><div class="v">${s.w}</div></div>
+      <div class="stat"><div class="k">Día</div><div class="v">${state.day}</div></div>
+    </div>
+
+    <div class="statgrid" style="margin-top:10px">
+      <div class="stat"><div class="k">% Semana</div><div class="v">${Math.round(s.weekPct*100)}%</div></div>
+      <div class="stat"><div class="k">% General</div><div class="v">${Math.round(s.allPct*100)}%</div></div>
+    </div>
+
+    <div class="statgrid" style="margin-top:10px">
+      <div class="stat"><div class="k">Puntos</div><div class="v">${state.points}</div></div>
+      <div class="stat"><div class="k">Días completados</div><div class="v">${s.daysDone}</div></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="row">
+      <button class="btn" onclick="prevDay()">◀ Día anterior</button>
+      <button class="btn primary" onclick="nextDay()">Día siguiente ▶</button>
+    </div>
+
+    <div class="k" style="margin-top:12px">Ir a día (1–90)</div>
+    <div class="row">
+      <input class="input" id="gotoDay" type="number" min="1" max="90" value="${state.day}" style="max-width:130px">
+      <button class="btn" onclick="goToDay()">Ir</button>
+    </div>
+
+    <div class="hr"></div>
+    <div class="row">
+      <button class="btn" id="btnExport">Exportar respaldo</button>
+      <button class="btn" id="btnLogout">Cerrar sesión</button>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card">
+      <h3>Donaciones (opcional)</h3>
+      <div class="small">Si deseas apoyar este proyecto:</div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="d10">Apoyar $10</button>
+        <button class="btn" id="d15">Apoyar $15</button>
+        <button class="btn" id="d20">Apoyar $20</button>
+      </div>
+      <div class="small" style="margin-top:10px">No es obligatorio. Gracias 🙏</div>
+    </div>
+  `;
+
+  document.getElementById("btnExport").onclick = exportLocal;
+  document.getElementById("btnLogout").onclick = async ()=>{ await signOut(auth); };
+
+  const go = (url) => { if(!url){ toast("Aún no configuraste Stripe", true); return; } window.open(url, "_blank"); };
+  document.getElementById("d10").onclick = ()=>go(DONATE_10_URL);
+  document.getElementById("d15").onclick = ()=>go(DONATE_15_URL);
+  document.getElementById("d20").onclick = ()=>go(DONATE_20_URL);
+}
+
+function renderPlan(){
+  if(!firebaseReady){ renderAllLocalOnly(); return; }
+  if(!currentUser){ renderAuthGate(); return; }
+  if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){ renderInviteGate(); return; }
+
+  renderLeftPanel();
+
+  const s = computeStats();
+  document.getElementById("rightHeader").textContent = `Lección · Día ${state.day}`;
+  document.getElementById("rightSub").textContent = `Semana ${s.w} · Guardado nube`;
+
+  const body = document.getElementById("rightBody");
+  const c = getDayContent(state.day);
+  const tasksHtml = c.tasks.map((t,i)=>{
+    const k = keyFor(state.day,i);
+    const checked = !!state.progress[k];
+    return `
+      <label class="task">
+        <input type="checkbox" ${checked?"checked":""} onchange="toggleTask(${i}, this.checked)">
+        <div>
+          <div class="tt">${t.title}</div>
+          <div class="dd">${t.desc}</div>
+        </div>
+      </label>
+    `;
+  }).join("");
+
+  body.innerHTML = `
+    <div class="pillrow">
+      <span class="pill">📌 ${c.theme.title}</span>
+      <span class="pill">🎯 ${c.theme.focus}</span>
+      <span class="pill">⏱️ 45–60 min</span>
+      <span class="pill">💾 Auto-guardado</span>
+    </div>
+
+    <div class="card mini">
+      <h3>Mini-lección</h3>
+      <ul>${c.mini.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+
+    <div class="card">
+      <h3>Checklist <span class="small">· marca al terminar</span></h3>
+      <div class="checklist">${tasksHtml}</div>
+    </div>
+
+    <div class="card">
+      <h3>Speaking prompts</h3>
+      <ul style="margin:8px 0 0 20px; color:var(--muted)">
+        ${c.prompts.map(x=>`<li>${x}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+/* --------------------- INVITATIONS (ADMIN) ------------------ */
+function generateInviteCode(len=8){
+  const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  let out=""; for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  return out;
+}
+
+async function createInviteOneUse(){
+  if(!isAdmin) throw new Error("Solo el admin puede crear invitaciones");
+  const code = generateInviteCode();
+  const ref = doc(db, "invites", code);
+  await setDoc(ref, {
+    active: true,
+    usesLeft: 1,
+    createdBy: currentUser.uid,
+    createdAt: serverTimestamp(),
+    usedBy: null,
+    usedAt: null,
+  });
+  return code;
+}
+
+function renderInvitations(){
+  if(!firebaseReady){ renderAllLocalOnly(); return; }
+  if(!currentUser){ renderAuthGate(); return; }
+  if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){ renderInviteGate(); return; }
+
+  renderLeftPanel();
+  document.getElementById("rightHeader").textContent = "Invitaciones";
+  document.getElementById("rightSub").textContent = isAdmin ? "Panel Admin" : "Solo Admin puede invitar";
+
+  const body = document.getElementById("rightBody");
+
+  if(!isAdmin){
+    body.innerHTML = `
+      <div class="card">
+        <h3>No autorizado</h3>
+        <div class="note">Solo el administrador puede generar códigos de invitación.</div>
+      </div>
+    `;
+    return;
+  }
+
+  body.innerHTML = `
+    <div class="card">
+      <h3>Crear invitación (1 uso)</h3>
+      <div class="small">Genera un enlace único. Cuando un usuario lo active, queda inutilizado.</div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn ok" id="btnNewInvite">Crear nueva invitación</button>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="k">Código</div>
+      <input class="input" id="newCode" readonly placeholder="Aquí saldrá el código…">
+
+      <div class="k">Enlace</div>
+      <input class="input" id="newLink" readonly placeholder="Aquí saldrá el enlace…">
+
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="btnCopyLink">Copiar enlace</button>
+        <button class="btn primary" id="btnCopyMsg">Copiar mensaje</button>
+      </div>
+
+      <div class="sharegrid">
+        <div class="sharebtn" id="wa">${svg("W")}<div>WhatsApp<br><span class="small">Enviar con tu mensaje</span></div></div>
+        <div class="sharebtn" id="tg">${svg("T")}<div>Telegram<br><span class="small">Enviar con tu mensaje</span></div></div>
+        <div class="sharebtn" id="xx">${svg("X")}<div>X (Twitter)<br><span class="small">Publicar</span></div></div>
+        <div class="sharebtn" id="em">${svg("@")}<div>Email<br><span class="small">Correo listo</span></div></div>
+      </div>
+
+      <div class="note" style="margin-top:12px">
+        <div><strong>Tip:</strong> si el enlace llega “como texto”, igual funciona al tocarlo desde WhatsApp/Telegram. Aquí lo abrimos directo con los botones.</div>
+      </div>
+    </div>
+  `;
+
+  const btnNew = document.getElementById("btnNewInvite");
+  const codeEl = document.getElementById("newCode");
+  const linkEl = document.getElementById("newLink");
+
+  let lastLink = "";
+  let lastMsg = "";
+
+  function buildMsg(link){
+    return INVITE_MESSAGE_DEFAULT.replace("{LINK}", link);
+  }
+
+  btnNew.onclick = async () => {
+    btnNew.disabled = true;
+    try{
+      const code = await createInviteOneUse();
+      const link = `${getBaseUrl()}?invite=${encodeURIComponent(code)}`;
+      lastLink = link;
+      lastMsg = buildMsg(link);
+
+      codeEl.value = code;
+      linkEl.value = link;
+      toast("Invitación creada ✅");
+    }catch(e){
+      toast(e?.message || "No se pudo crear", true);
+    }finally{
+      btnNew.disabled = false;
+    }
+  };
+
+  document.getElementById("btnCopyLink").onclick = async () => {
+    if(!lastLink){ toast("Primero crea una invitación", true); return; }
+    await navigator.clipboard.writeText(lastLink);
+    toast("Enlace copiado ✅");
+  };
+
+  document.getElementById("btnCopyMsg").onclick = async () => {
+    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
+    await navigator.clipboard.writeText(lastMsg);
+    toast("Mensaje copiado ✅");
+  };
+
+  document.getElementById("wa").onclick = () => {
+    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
+    window.open("https://wa.me/?text=" + enc(lastMsg), "_blank");
+  };
+  document.getElementById("tg").onclick = () => {
+    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
+    window.open("https://t.me/share/url?url=&text=" + enc(lastMsg), "_blank");
+  };
+  document.getElementById("xx").onclick = () => {
+    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
+    window.open("https://twitter.com/intent/tweet?text=" + enc(lastMsg), "_blank");
+  };
+  document.getElementById("em").onclick = () => {
+    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
+    const subject = "Invitación · Plan 90 Días de Inglés (A1→A2)";
+    window.location.href = "mailto:?subject=" + enc(subject) + "&body=" + enc(lastMsg);
+  };
+}
+
+/* ---------------------------- HELP -------------------------- */
+function renderHelp(){
+  const left = document.getElementById("leftBody");
+  const right = document.getElementById("rightBody");
+  document.getElementById("rightHeader").textContent = "Ayuda rápida";
+  document.getElementById("rightSub").textContent = "Soluciones comunes";
+
+  left.innerHTML = `
+    <div class="note">
+      <div><strong>Ayuda</strong></div>
+      <div class="small">Si algo no funciona, revisa estos puntos.</div>
+    </div>
+    <div class="hr"></div>
+    <div class="card">
+      <h3>Checklist</h3>
+      <ul class="mini">
+        <li>GitHub Pages activado (Settings → Pages).</li>
+        <li>El archivo se llama <strong>index.html</strong>.</li>
+        <li>En Firebase Auth agregaste: <strong>ernesto2026pro.github.io</strong> en Dominios autorizados.</li>
+        <li>Pegaste el <strong>firebaseConfig</strong> correcto.</li>
+        <li>Firestore creado.</li>
+      </ul>
+    </div>
+  `;
+
+  right.innerHTML = `
+    <div class="card">
+      <h3>Mensajes típicos</h3>
+      <ul class="mini">
+        <li><strong>“domain not authorized”</strong>: falta autorizar dominio en Firebase Auth.</li>
+        <li><strong>No crea invitaciones</strong>: tu cuenta no está marcada como Admin.</li>
+        <li><strong>Invitación inválida</strong>: el código no existe o ya se usó.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cómo hacerte Admin</h3>
+      <div class="note">
+        1) Inicia sesión con tu correo (admin).<br/>
+        2) En Firebase → Authentication → Users copia tu <strong>UID</strong>.<br/>
+        3) En Firestore crea: <strong>config/admins</strong> con campo <strong>uids</strong> (array) y pega tu UID allí.
+      </div>
+    </div>
+  `;
+}
+
+/* ----------------------- LOCAL ONLY FALLBACK ----------------*
