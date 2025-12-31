@@ -1,966 +1,921 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Plan 90 Días · Inglés (A1 → A2) · Ernesto</title>
-<style>
-  :root{
-    --bg:#0b1020; --panel:#121a33; --text:#e9ecf7; --muted:#aab3d6;
-    --line:rgba(255,255,255,.10); --accent:#66c2ff; --ok:#3ddc97; --bad:#ff6b6b;
-    --shadow: 0 12px 28px rgba(0,0,0,.35); --radius: 18px;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    background:radial-gradient(1200px 700px at 25% 10%, #1a2a6a 0%, rgba(26,42,106,0) 55%),
-               radial-gradient(900px 700px at 80% 50%, #11324a 0%, rgba(17,50,74,0) 55%),
-               var(--bg);
-    color:var(--text);
-    font: 15px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-  .wrap{max-width:1150px; margin:0 auto; padding:18px 16px 30px}
-  .top{
-    display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
-    padding:14px; border:1px solid var(--line); border-radius: var(--radius);
-    background:rgba(18,26,51,.72); box-shadow:var(--shadow);
-  }
-  .brand{display:flex; flex-direction:column; gap:6px}
-  .brand .t{font-weight:900; font-size:18px}
-  .brand .s{color:var(--muted); font-size:13px}
-  .nav{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-  .chip{
-    border:1px solid var(--line); background:rgba(27,37,80,.55); color:var(--text);
-    padding:7px 10px; border-radius:999px; cursor:pointer; user-select:none; font-weight:750;
-  }
-  .chip.active{background:rgba(102,194,255,.18); border-color:rgba(102,194,255,.45)}
-  .tag{border:1px solid var(--line); border-radius:999px; padding:7px 10px; color:var(--muted); background:rgba(0,0,0,.15); font-weight:750;}
-  .grid{display:grid; grid-template-columns: 380px 1fr; gap:14px; margin-top:14px}
-  @media(max-width: 980px){ .grid{grid-template-columns:1fr} }
-  .panel{
-    border:1px solid var(--line); background:rgba(18,26,51,.70); border-radius: var(--radius);
-    box-shadow:var(--shadow); overflow:hidden;
-  }
-  .hd{display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border-bottom:1px solid var(--line)}
-  .hd .h{font-weight:900}
-  .bd{padding:14px}
-  .note{background:rgba(0,0,0,.18); border:1px solid var(--line); padding:10px 12px; border-radius:14px; color:var(--muted);}
-  .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-  .btn{
-    border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--text);
-    padding:10px 12px; border-radius:14px; cursor:pointer; font-weight:850;
-  }
-  .btn.primary{background:rgba(102,194,255,.18); border-color:rgba(102,194,255,.45)}
-  .btn.ok{background:rgba(61,220,151,.14); border-color:rgba(61,220,151,.40)}
-  .btn.bad{background:rgba(255,107,107,.14); border-color:rgba(255,107,107,.40)}
-  .btn:disabled{opacity:.5; cursor:not-allowed}
-  .input, textarea{
-    width:100%; border:1px solid var(--line); background:rgba(0,0,0,.18); color:var(--text);
-    padding:10px 12px; border-radius:14px; outline:none;
-  }
-  textarea{min-height:110px; resize:vertical}
-  .k{color:var(--muted); font-size:12px; margin:10px 0 6px}
-  .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
-  .stat{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius:14px; padding:10px 12px}
-  .stat .k{margin:0; font-size:11px}
-  .stat .v{font-weight:950; font-size:18px; margin-top:6px}
-  .hr{height:1px; background:var(--line); margin:14px 0}
-  .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0}
-  .pill{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius:999px; padding:7px 10px; color:var(--muted); font-weight:800; font-size:12px;}
-  .card{border:1px solid var(--line); background:rgba(0,0,0,.14); border-radius: var(--radius); padding:12px; margin-top:10px;}
-  .card h3{margin:0 0 6px; font-size:14px}
-  .mini ul{margin:8px 0 0 20px; color:var(--muted)}
-  .checklist{display:flex; flex-direction:column; gap:10px; margin-top:10px}
-  .task{border:1px solid var(--line); background:rgba(0,0,0,.10); border-radius:16px; padding:10px; display:flex; gap:10px; align-items:flex-start}
-  .task input{margin-top:4px; transform:scale(1.2)}
-  .task .tt{font-weight:950}
-  .task .dd{color:var(--muted); margin-top:2px}
-  .toast{
-    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-    background:rgba(0,0,0,.80); color:var(--text); border:1px solid rgba(255,255,255,.15);
-    padding:10px 12px; border-radius:14px; box-shadow:var(--shadow);
-    max-width:min(640px, calc(100vw - 30px));
-    opacity:0; pointer-events:none; transition:opacity .18s ease; font-weight:800;
-  }
-  .toast.show{opacity:1}
-  .sharegrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px}
-  @media(max-width:560px){ .sharegrid{grid-template-columns:1fr} }
-  .sharebtn{
-    display:flex; align-items:center; gap:10px; border:1px solid var(--line);
-    background:rgba(255,255,255,.06); padding:10px 12px; border-radius:16px; cursor:pointer; font-weight:900;
-  }
-  .sharebtn svg{width:20px; height:20px; flex:0 0 20px}
-  .small{font-size:12px; color:var(--muted)}
-  .warn{color:#ffd27a}
-  .good{color:var(--ok)}
-  .badtxt{color:var(--bad)}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plan 90 Días · Inglés (A1→A2)</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#101a33; --panel2:#0f1730; --card:#121f3f;
+      --text:#e8edf8; --muted:#aab7d6; --muted2:#7f8db4;
+      --line:rgba(255,255,255,.08);
+      --accent:#64b5ff; --accent2:#7df7c8; --warn:#ffd166; --danger:#ff6b6b;
+      --shadow:0 18px 45px rgba(0,0,0,.35);
+      --radius:18px;
+      --btn:#1a2a55;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:radial-gradient(1100px 600px at 30% -10%, #1c2a64 0%, rgba(28,42,100,0) 60%),
+                 radial-gradient(800px 500px at 90% 0%, #0f6b6b 0%, rgba(15,107,107,0) 55%),
+                 linear-gradient(180deg,var(--bg),#070a14);
+      color:var(--text);
+    }
+    a{color:var(--accent); text-decoration:none}
+    .wrap{max-width:1180px;margin:22px auto;padding:0 14px}
+    .top{
+      display:flex; align-items:flex-start; gap:14px; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .title{
+      display:flex; gap:12px; align-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      padding:14px 16px; border-radius:var(--radius); box-shadow:var(--shadow);
+      min-width:min(720px, 100%);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .flag{font-size:16px}
+    .h1{font-weight:800; letter-spacing:.2px}
+    .sub{color:var(--muted); font-size:13px; margin-top:2px}
+    .nav{
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+      padding:10px 12px; border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:650;
+      font-size:13px;
+    }
+    .chip.active{
+      background:rgba(100,181,255,.16);
+      color:var(--text);
+      border-color:rgba(100,181,255,.35);
+    }
+
+    .grid{display:grid; grid-template-columns:360px 1fr; gap:14px}
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} .title{min-width:100%} }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hd{
+      padding:14px 14px 10px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      border-bottom:1px solid var(--line);
+    }
+    .hd .h{font-weight:800}
+    .tag{
+      font-size:12px; color:var(--muted);
+      padding:6px 9px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .bd{padding:12px 14px 14px}
+    .note{
+      padding:10px 12px; border-radius:14px;
+      background:rgba(125,247,200,.10);
+      border:1px solid rgba(125,247,200,.25);
+      color:var(--text);
+      font-size:13px;
+    }
+    .note b{color:var(--accent2)}
+    .hr{height:1px;background:var(--line); margin:12px 0}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .input{
+      width:100%;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color:var(--text);
+      border-radius:14px;
+      padding:11px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    .btn{
+      cursor:pointer;
+      border-radius:14px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:var(--btn);
+      color:var(--text);
+      font-weight:750;
+      font-size:13px;
+    }
+    .btn.primary{background:rgba(100,181,255,.18); border-color:rgba(100,181,255,.35)}
+    .btn.good{background:rgba(125,247,200,.18); border-color:rgba(125,247,200,.35)}
+    .btn.bad{background:rgba(255,107,107,.14); border-color:rgba(255,107,107,.30)}
+    .btn:active{transform:translateY(1px)}
+    .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .stat{
+      padding:10px 12px; border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .stat .k{font-size:12px; color:var(--muted)}
+    .stat .v{font-size:18px; font-weight:900; margin-top:4px}
+    .bar{
+      height:10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .bar>div{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); width:0%}
+    .small{font-size:12px;color:var(--muted)}
+    .rightTitle{font-weight:900;font-size:16px}
+    .card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
+      margin-top:10px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      font-size:12px; color:var(--muted);
+    }
+    .badge b{color:var(--text)}
+    .checkitem{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .checkitem input{margin-top:4px; transform:scale(1.1)}
+    .checkitem .t{font-weight:850}
+    .checkitem .d{color:var(--muted); font-size:13px; margin-top:2px}
+    .navDay{display:flex; gap:10px; justify-content:space-between; margin-top:12px}
+    .navDay .btn{flex:1}
+    .voiceBox{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .seg{
+      display:flex; gap:8px; flex-wrap:wrap;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .seg .label{font-size:12px;color:var(--muted); width:100%}
+    .seg .opt{
+      cursor:pointer;
+      border-radius:999px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:750;
+      font-size:12px;
+    }
+    .seg .opt.active{background:rgba(100,181,255,.18); border-color:rgba(100,181,255,.35); color:var(--text)}
+    .phrase{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      margin-top:8px;
+    }
+    .phrase .en{font-weight:850}
+    .phrase .es{color:var(--muted); font-size:12px; margin-top:2px}
+    .iconbtn{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:14px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .icon{
+      width:18px;height:18px;display:inline-block;
+    }
+    .toast{
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:20px; z-index:9999;
+      background:rgba(16,26,51,.95);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      box-shadow:0 18px 55px rgba(0,0,0,.45);
+      max-width:min(560px, 92vw);
+      display:none;
+      font-weight:700;
+    }
+    .muted{color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+  </style>
 </head>
 
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="brand">
-      <div class="t">Plan 90 Días · Inglés (A1 → A2)</div>
-      <div class="s">Modo PRO: login + invitación 1-uso + puerta de entrada + progreso en nube · Donaciones voluntarias</div>
-    </div>
-    <div class="nav">
-      <span class="tag"><strong>Modo</strong>: <span id="modeText">Cargando…</span></span>
-      <button class="chip active" id="tabPlan" onclick="setTab('plan')">Plan</button>
-      <button class="chip" id="tabInv" onclick="setTab('inv')">Invitaciones</button>
-      <button class="chip" id="tabHelp" onclick="setTab('help')">Ayuda</button>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="panel">
-      <div class="hd"><div class="h">Cuenta y progreso</div><div class="small" id="buildTag">beta</div></div>
-      <div class="bd" id="leftBody"></div>
-    </div>
-
-    <div class="panel">
-      <div class="hd">
-        <div class="h" id="rightHeader">Cargando…</div>
-        <div class="small" id="rightSub"></div>
+  <div class="wrap">
+    <div class="top">
+      <div class="title">
+        <div class="pill"><span class="flag">🇺🇸</span><span class="flag">🇻🇪</span> Venezuela + USA (amistad)</div>
+        <div>
+          <div class="h1">Plan 90 Días · Inglés (A1 → A2)</div>
+          <div class="sub">Checklist · % Semana · % General · Puntos · Voz (TTS) · Invitaciones</div>
+        </div>
       </div>
-      <div class="bd" id="rightBody"></div>
+
+      <div class="nav">
+        <button class="chip active" id="tabPlan" onclick="setTab('plan')">Plan</button>
+        <button class="chip" id="tabInv" onclick="setTab('inv')">Invitaciones</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="panel">
+        <div class="hd">
+          <div class="h">Acceso y progreso</div>
+          <div class="tag"><b>Modo</b> <span id="modeText">Local</span></div>
+        </div>
+        <div class="bd">
+          <div class="note" id="modeNote"><b>Modo local:</b> progreso guardado en este navegador (sin nube). No hay login.</div>
+
+          <div class="hr"></div>
+
+          <div class="small">Tu nombre (opcional, solo para mostrar en pantalla):</div>
+          <input class="input" id="name" placeholder="Ej: Ernesto" />
+
+          <div class="hr"></div>
+
+          <div class="statgrid">
+            <div class="stat">
+              <div class="k">Semana actual</div>
+              <div class="v" id="statWeek">1</div>
+            </div>
+            <div class="stat">
+              <div class="k">Día actual</div>
+              <div class="v" id="statDay">1</div>
+            </div>
+            <div class="stat">
+              <div class="k">% Semana</div>
+              <div class="v" id="statWeekPct">0%</div>
+              <div class="bar"><div id="barWeek"></div></div>
+            </div>
+            <div class="stat">
+              <div class="k">% General</div>
+              <div class="v" id="statAllPct">0%</div>
+              <div class="bar"><div id="barAll"></div></div>
+            </div>
+            <div class="stat">
+              <div class="k">Puntos</div>
+              <div class="v" id="statPoints">0</div>
+              <div class="small muted">+10 por tarea completada</div>
+            </div>
+            <div class="stat">
+              <div class="k">“Cash”</div>
+              <div class="v" id="statCash">0</div>
+              <div class="small muted">+1 por tarea completada</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row">
+            <button class="btn" onclick="goDay(-1)">◀ Día anterior</button>
+            <button class="btn primary" onclick="goDay(1)">Día siguiente ▶</button>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row">
+            <button class="btn" onclick="exportProgress()">Exportar progreso</button>
+            <button class="btn" onclick="importProgress()">Importar</button>
+            <button class="btn bad" onclick="resetProgress()">Reiniciar</button>
+          </div>
+
+          <div class="small muted" style="margin-top:8px">
+            * En modo local, cada persona guarda su progreso en su propio dispositivo.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="panel">
+        <div class="hd">
+          <div>
+            <div class="rightTitle" id="rightTitle">Lección · Día 1</div>
+            <div class="sub" id="rightSub">Semana 1 · Presentación + Sonido TH</div>
+          </div>
+          <div class="tag">v4 · local</div>
+        </div>
+
+        <div class="bd" id="rightBody">
+          <!-- filled by JS -->
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="toast" id="toast"></div>
+  <div class="toast" id="toast"></div>
 
-<script type="module">
-/* ============================================================
-   ✅ 1) PEGA AQUÍ TU firebaseConfig (desde Firebase > App Web)
-   ============================================================ */
-const FIREBASE_CONFIG = {
-  // apiKey: "…",
-  // authDomain: "…",
-  // projectId: "…",
-  // storageBucket: "…",
-  // messagingSenderId: "…",
-  // appId: "…",
-};
-
-/* ============================================================
-   ✅ 2) PEGA AQUÍ TUS DONATION LINKS (Stripe Payment Links)
-   ============================================================ */
-const DONATE_10_URL = ""; // Ej: "https://buy.stripe.com/xxxxx"
-const DONATE_15_URL = "";
-const DONATE_20_URL = "";
-
-/* ============================================================
-   ✅ 3) MENSAJE POR DEFECTO PARA INVITAR (WhatsApp/Telegram/X/Email)
-   ============================================================ */
-const INVITE_MESSAGE_DEFAULT = `Hola 👋 Soy Ernesto 🇻🇪🇺🇸
+<script>
+/*** ========= CONFIG (solo edita aquí 2 cosas) ========= ***/
+const OWNER_NAME = "Ernesto"; // <- cambia si quieres
+const INVITE_MESSAGE_DEFAULT =
+`Hola 👋 Soy Ernesto 🇺🇸🇻🇪
 Te invito a mi página “Plan 90 Días de Inglés (A1→A2)”.
 ✅ Es gratis y puedes avanzar a tu ritmo.
 
-Para entrar necesitas este enlace de invitación:
+Abre el enlace aquí:
 {LINK}
-`;
 
-/* ------------------------- APP CORE ------------------------- */
+(Sitio oficial)`;
+
+/*** ========= APP STATE ========= ***/
+const LS_KEY = "plan90_pro_local_v4";
 const PLAN_DAYS = 90;
 const TASK_POINTS = 10;
-const APP_NAME = "plan90_pro_cloud";
-const LS_KEY = APP_NAME + ":local_backup";
-const SCHEMA_VERSION = 1;
+const TASK_CASH = 1;
 
-const WEEK_THEMES = [
-  {week:1,  title:"Presentación + TH", focus:"Pronunciación TH (think/this) + presentarse"},
-  {week:2,  title:"Rutina diaria",      focus:"Present simple + adverbios de frecuencia"},
-  {week:3,  title:"Familia y amigos",   focus:"'to be' + posesivos (my/your/his/her)"},
-  {week:4,  title:"En la ciudad",       focus:"There is/are + preposiciones (in/on/at)"},
-  {week:5,  title:"Compras y comida",   focus:"Countable/uncountable + some/any"},
-  {week:6,  title:"Tiempo y clima",     focus:"Preguntas (Wh-) + short answers"},
-  {week:7,  title:"Salud y hábitos",    focus:"Can/can't + consejos (should)"},
-  {week:8,  title:"Trabajo y metas",    focus:"Future 'going to' + planes"},
-  {week:9,  title:"Viajes",             focus:"Past simple (regular) + viajes"},
-  {week:10, title:"Historias",          focus:"Past simple (irregular) + conectores"},
-  {week:11, title:"Opiniones",          focus:"Comparatives/superlatives"},
-  {week:12, title:"Tecnología",         focus:"Present continuous + acciones ahora"},
-  {week:13, title:"Repaso A1→A2",       focus:"Repaso + mini-proyectos (hablar 2–3 min)"},
-];
+const FALLBACK_BASE_URL = "https://proyecto-ernesto-ingles-2026.netlify.app"; // si estás offline (file://)
+function getBaseUrl(){
+  return (location.origin && location.origin.startsWith("http")) ? location.origin : FALLBACK_BASE_URL;
+}
 
 const state = {
-  schemaVersion: SCHEMA_VERSION,
   day: 1,
-  progress: {},     // map: "d1_t0": true/false
+  name: OWNER_NAME,
+  voiceMode: "auto", // auto | female | male
+  rateMode: "normal", // lenta | normal | fluido
+  progress: {}, // key: "d{day}:{taskId}" -> true
   points: 0,
-  lastSavedAt: 0,
+  cash: 0,
+  inviteCode: "",
 };
 
-function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
-function weekOfDay(day){ return Math.floor((day-1)/7)+1; }
-function keyFor(day, idx){ return `d${day}_t${idx}`; }
-
-function toast(msg, isErr=false){
+function toast(msg){
   const el = document.getElementById("toast");
   el.textContent = msg;
-  el.classList.add("show");
-  el.style.borderColor = isErr ? "rgba(255,107,107,.55)" : "rgba(255,255,255,.15)";
-  setTimeout(()=>el.classList.remove("show"), 2300);
+  el.style.display = "block";
+  clearTimeout(el._t);
+  el._t = setTimeout(()=> el.style.display="none", 2600);
 }
 
-function hasFirebaseConfig(cfg){
-  return cfg && typeof cfg === "object" && !!cfg.apiKey && !!cfg.authDomain && !!cfg.projectId;
+/*** ========= CURRÍCULO (auto-generado, 90 días) ========= ***/
+const weeks = [
+  { theme:"Presentación + TH", sound:"TH (think/this)", grammar:"Pronombres + verbo 'to be' (I am / You are...)", vocab:["name","from","country","city","friend","nice","meet","today","English","Spanish","here","there"] },
+  { theme:"Números + horas", sound:"V/W (very / water)", grammar:"There is / There are", vocab:["one","two","three","four","five","six","seven","eight","nine","ten","time","clock"] },
+  { theme:"Rutina diaria", sound:"ED (worked)", grammar:"Presente simple (I work / I study)", vocab:["wake","work","study","eat","drink","drive","walk","sleep","morning","afternoon","night","always"] },
+  { theme:"Compras", sound:"SH/CH", grammar:"Can / Can't (habilidad)", vocab:["store","price","cheap","expensive","cash","card","receipt","bag","need","want","buy","sell"] },
+  { theme:"Direcciones", sound:"R/L", grammar:"Preposiciones (in/on/at)", vocab:["left","right","straight","near","far","street","road","corner","map","between","next","behind"] },
+  { theme:"Comida", sound:"B/P", grammar:"Contables e incontables (some/any)", vocab:["bread","milk","water","rice","chicken","fish","fruit","vegetables","salt","sugar","hungry","thirsty"] },
+  { theme:"Salud", sound:"S/Z", grammar:"Should (consejo)", vocab:["doctor","pain","headache","medicine","rest","sleep","exercise","healthy","sick","better","worse","strong"] },
+  { theme:"Trabajo", sound:"T/D", grammar:"Pasado simple (did / went)", vocab:["job","boss","team","schedule","tools","safety","quality","report","meeting","project","problem","solution"] },
+  { theme:"Viajes", sound:"Y/J", grammar:"Futuro con going to", vocab:["trip","airport","ticket","hotel","passport","luggage","plane","train","reservation","visit","tour","travel"] },
+  { theme:"Familia", sound:"N/NG", grammar:"Have/Has got", vocab:["family","mother","father","brother","sister","son","daughter","married","single","kids","home","love"] },
+  { theme:"Clima", sound:"K/G", grammar:"Comparativos (bigger, colder)", vocab:["weather","cold","hot","rain","snow","wind","cloudy","sunny","storm","forecast","coat","boots"] },
+  { theme:"Conversación real", sound:"F/H", grammar:"Preguntas WH (what/where/when/why/how)", vocab:["what","where","when","why","how","who","which","because","maybe","sure","again","repeat"] },
+  { theme:"Repaso + Fluidez", sound:"Mixed", grammar:"Repaso general A1→A2", vocab:["review","practice","improve","focus","repeat","shadowing","progress","goal","plan","daily","simple","solid"] },
+];
+
+const tasksTemplate = [
+  { id:"pron", title:"Pronunciación (10 repeticiones)", desc:"Practica el sonido foco del día. Haz 3 rondas: 1) lento 2) normal 3) shadowing." },
+  { id:"vocab", title:"Vocabulario (12 palabras)", desc:"Aprende 12 palabras del tema y úsalas en 4 frases." },
+  { id:"gram", title:"Gramática (10 min)", desc:"Regla del tema + 6 ejemplos (hablados y escritos)." },
+  { id:"speak", title:"Speaking (5 min)", desc:"Responde 10 preguntas cortas en voz alta (sin leer al final)." },
+  { id:"read", title:"Listening/Reading", desc:"Lee un texto corto y repite 6 frases como eco (shadowing)." },
+];
+
+function dayInfo(day){
+  const w = Math.floor((day-1)/7)+1;
+  const week = weeks[Math.min(w-1, weeks.length-1)];
+  const dayInWeek = ((day-1)%7)+1;
+
+  // mini-variación por día
+  const focus = (dayInWeek<=2) ? "básico" : (dayInWeek<=5 ? "práctica" : "repaso");
+  const phraseSet = makePhrases(week, dayInWeek);
+
+  return {
+    day, week: w,
+    title: `Día ${day} · Semana ${w}: ${week.theme}`,
+    sub: `Pronunciación: ${week.sound} · Gramática: ${week.grammar}`,
+    weekTheme: week.theme,
+    sound: week.sound,
+    grammar: week.grammar,
+    vocab: week.vocab,
+    focus,
+    phrases: phraseSet
+  };
 }
 
-function getBaseUrl(){
-  const u = new URL(window.location.href);
-  u.hash = ""; u.search = "";
-  let p = u.pathname.replace(/index\.html$/i,"");
-  if(!p.endsWith("/")) p += "/";
-  return u.origin + p;
+function makePhrases(week, dayInWeek){
+  // 6 frases por día (EN + ES)
+  const base = [
+    ["Hi, my name is Ernesto.", "Hola, mi nombre es Ernesto."],
+    ["I am from Venezuela and I live in the USA.", "Soy de Venezuela y vivo en EE.UU."],
+    ["Nice to meet you.", "Mucho gusto."],
+    ["I am learning English every day.", "Estoy aprendiendo inglés todos los días."],
+    ["Can you repeat, please?", "¿Puedes repetir, por favor?"],
+    ["Thank you! See you tomorrow.", "¡Gracias! Te veo mañana."],
+  ];
+
+  // Ajuste por tema (cambia algunas frases para que se sienta distinto)
+  const t = week.theme.toLowerCase();
+  if(t.includes("compras")){
+    return [
+      ["How much is this?", "¿Cuánto cuesta esto?"],
+      ["I want to buy this, please.", "Quiero comprar esto, por favor."],
+      ["Do you accept card?", "¿Aceptan tarjeta?"],
+      ["That is too expensive.", "Eso está muy caro."],
+      ["I need a receipt, please.", "Necesito un recibo, por favor."],
+      ["Thank you. Have a nice day!", "Gracias. ¡Que tengas buen día!"],
+    ];
+  }
+  if(t.includes("direcciones")){
+    return [
+      ["Excuse me, where is the street?", "Disculpa, ¿dónde está la calle?"],
+      ["Go straight and turn left.", "Sigue derecho y gira a la izquierda."],
+      ["It is next to the bank.", "Está al lado del banco."],
+      ["Is it far from here?", "¿Está lejos de aquí?"],
+      ["I am using the map.", "Estoy usando el mapa."],
+      ["Thank you for your help!", "¡Gracias por tu ayuda!"],
+    ];
+  }
+  if(t.includes("salud")){
+    return [
+      ["I have a headache.", "Tengo dolor de cabeza."],
+      ["I need some rest.", "Necesito descansar."],
+      ["You should drink water.", "Deberías tomar agua."],
+      ["I feel better today.", "Me siento mejor hoy."],
+      ["This medicine helps me.", "Esta medicina me ayuda."],
+      ["Thank you, doctor.", "Gracias, doctor."],
+    ];
+  }
+  if(t.includes("viajes")){
+    return [
+      ["I am going to travel next week.", "Voy a viajar la próxima semana."],
+      ["I have a ticket and a passport.", "Tengo un boleto y un pasaporte."],
+      ["Where is the airport?", "¿Dónde está el aeropuerto?"],
+      ["I need a hotel reservation.", "Necesito una reserva de hotel."],
+      ["My luggage is heavy.", "Mi equipaje está pesado."],
+      ["I am excited for the trip!", "¡Estoy emocionado por el viaje!"],
+    ];
+  }
+  // ligera rotación
+  if(dayInWeek>=6){
+    return base.slice().reverse();
+  }
+  return base;
 }
 
-/* ------------------------- UI TABS -------------------------- */
-function setTab(which){
-  document.getElementById("tabPlan").classList.toggle("active", which==="plan");
-  document.getElementById("tabInv").classList.toggle("active", which==="inv");
-  document.getElementById("tabHelp").classList.toggle("active", which==="help");
-  if(which==="plan") renderPlan();
-  if(which==="inv") renderInvitations();
-  if(which==="help") renderHelp();
-}
-window.setTab = setTab;
-
-/* --------------------- LOCAL BACKUP ------------------------- */
-function saveLocalBackup(){
+/*** ========= STORAGE ========= ***/
+function save(){
   localStorage.setItem(LS_KEY, JSON.stringify(state));
 }
-function loadLocalBackup(){
+function load(){
   const raw = localStorage.getItem(LS_KEY);
   if(!raw) return;
   try{
     const o = JSON.parse(raw);
-    state.schemaVersion = o.schemaVersion || SCHEMA_VERSION;
-    state.day = clamp(parseInt(o.day||1,10),1,PLAN_DAYS);
-    state.progress = o.progress || {};
-    state.points = o.points || 0;
+    if(o && typeof o === "object"){
+      Object.assign(state, o);
+      state.day = clamp(parseInt(state.day||1,10),1,PLAN_DAYS);
+      state.progress = state.progress || {};
+      state.points = state.points || 0;
+      state.cash = state.cash || 0;
+      state.voiceMode = state.voiceMode || "auto";
+      state.rateMode = state.rateMode || "normal";
+      state.inviteCode = state.inviteCode || "";
+      state.name = state.name || OWNER_NAME;
+    }
   }catch(e){}
 }
 
-/* --------------------- STATS/CONTENT ------------------------ */
+function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
+
+/*** ========= UI ========= ***/
+function setTab(tab){
+  document.getElementById("tabPlan").classList.toggle("active", tab==="plan");
+  document.getElementById("tabInv").classList.toggle("active", tab==="inv");
+  if(tab==="plan") renderPlan();
+  else renderInvitations();
+}
+
+function goDay(delta){
+  state.day = clamp(state.day + delta, 1, PLAN_DAYS);
+  save();
+  renderPlan();
+}
+
+function taskKey(day, taskId){ return `d${day}:${taskId}`; }
+
+function toggleTask(day, taskId, checked){
+  const k = taskKey(day, taskId);
+  const prev = !!state.progress[k];
+  state.progress[k] = !!checked;
+
+  if(!prev && checked){
+    state.points += TASK_POINTS;
+    state.cash += TASK_CASH;
+  }
+  if(prev && !checked){
+    state.points = Math.max(0, state.points - TASK_POINTS);
+    state.cash = Math.max(0, state.cash - TASK_CASH);
+  }
+  save();
+  updateStats();
+}
+
 function computeStats(){
-  const totalTasks = PLAN_DAYS * 5;
-  let doneTasks = 0;
-  for(const k in state.progress) if(state.progress[k]) doneTasks++;
-  const allPct = totalTasks ? (doneTasks/totalTasks) : 0;
+  const totalTasks = PLAN_DAYS * tasksTemplate.length;
+  let done = 0;
 
-  const w = weekOfDay(state.day);
-  const weekStart = (w-1)*7 + 1;
-  const weekEnd = Math.min(w*7, PLAN_DAYS);
-  const weekTasks = (weekEnd-weekStart+1)*5;
+  const info = dayInfo(state.day);
+  const weekStart = (info.week-1)*7 + 1;
+  const weekEnd = Math.min(PLAN_DAYS, weekStart + 6);
+  let weekTotal = (weekEnd - weekStart + 1) * tasksTemplate.length;
   let weekDone = 0;
-  for(let d=weekStart; d<=weekEnd; d++) for(let i=0;i<5;i++) if(state.progress[keyFor(d,i)]) weekDone++;
-  const weekPct = weekTasks ? (weekDone/weekTasks) : 0;
 
-  let daysDone = 0;
-  for(let d=1; d<=PLAN_DAYS; d++){
-    let ok=0; for(let i=0;i<5;i++) if(state.progress[keyFor(d,i)]) ok++;
-    if(ok===5) daysDone++;
-  }
-  state.points = doneTasks * TASK_POINTS;
-  return {w, weekPct, allPct, daysDone, doneTasks, totalTasks};
-}
-
-function getDayContent(day){
-  const w = weekOfDay(day);
-  const theme = WEEK_THEMES[clamp(w,1,13)-1];
-  const mini = [
-    `Tema: ${theme.title}`,
-    `Enfoque: ${theme.focus}`,
-    `Objetivo: hablar 30–60s sobre el tema (sin traducir palabra por palabra).`,
-    `Tip: frases cortas + repite en voz alta (shadowing).`
-  ];
-  const tasks = [
-    {title:"Pronunciación (10 repeticiones)", desc:`Practica el sonido clave. Haz 10 repeticiones: 1) lento 2) normal 3) shadowing.`},
-    {title:"Vocabulario (12 palabras)", desc:`Aprende 12 palabras de “${theme.title}” y úsalas en 4 frases.`},
-    {title:"Gramática (10 min)", desc:`Regla del día: ${theme.focus} + 6 ejemplos (hablados y escritos).`},
-    {title:"Speaking (5 min)", desc:`Responde 10 preguntas cortas sobre “${theme.title}” en voz alta.`},
-    {title:"Listening/Reading", desc:`Lee un texto corto del tema y repite 6 frases como eco (shadowing).`},
-  ];
-  const prompts = [
-    `1) Di tu frase #1 sobre ${theme.title}.`,
-    `2) Di 2 frases usando la regla (${theme.focus}).`,
-    `3) Haz 2 preguntas y respóndelas.`,
-    `4) Cuenta un mini-ejemplo (15–20s).`,
-    `5) Repite 3 frases como shadowing.`,
-  ];
-  return {w, theme, mini, tasks, prompts};
-}
-
-/* --------------------- SIMPLE SVG ICONS --------------------- */
-function svg(letter){
-  return `<svg viewBox="0 0 24 24" aria-hidden="true">
-    <rect x="2.5" y="2.5" width="19" height="19" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
-    <text x="12" y="16" text-anchor="middle" font-size="12" font-family="system-ui,Segoe UI,Arial" fill="currentColor">${letter}</text>
-  </svg>`;
-}
-function enc(s){ return encodeURIComponent(s); }
-
-/* ======================= FIREBASE =========================== */
-let firebaseReady = false;
-let auth, db;
-let currentUser = null;
-let currentUserProfile = null; // users/{uid}
-let isAdmin = false;
-let inviteParam = null;
-
-// Firebase modules (loaded only if config exists)
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import {
-  getAuth, onAuthStateChanged,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import {
-  getFirestore, doc, getDoc, setDoc, updateDoc,
-  serverTimestamp, collection, runTransaction
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-function readInviteFromUrl(){
-  const params = new URLSearchParams(window.location.search);
-  inviteParam = params.get("invite");
-  if(inviteParam){
-    sessionStorage.setItem(APP_NAME + ":inviteParam", inviteParam);
-  } else {
-    inviteParam = sessionStorage.getItem(APP_NAME + ":inviteParam");
-  }
-}
-
-async function initFirebaseIfPossible(){
-  readInviteFromUrl();
-
-  if(!hasFirebaseConfig(FIREBASE_CONFIG)){
-    document.getElementById("modeText").textContent = "Local (sin Firebase)";
-    toast("Falta pegar firebaseConfig. Por ahora no hay login.", true);
-    renderAllLocalOnly();
-    return;
+  for(const k in state.progress){
+    if(state.progress[k]) done++;
+    if(state.progress[k]){
+      const m = k.match(/^d(\d+):/);
+      if(m){
+        const d = parseInt(m[1],10);
+        if(d>=weekStart && d<=weekEnd) weekDone++;
+      }
+    }
   }
 
-  const app = initializeApp(FIREBASE_CONFIG);
-  auth = getAuth(app);
-  db = getFirestore(app);
-  firebaseReady = true;
-  document.getElementById("modeText").textContent = "PRO (Firebase)";
+  const allPct = totalTasks ? Math.round((done/totalTasks)*100) : 0;
+  const weekPct = weekTotal ? Math.round((weekDone/weekTotal)*100) : 0;
 
-  onAuthStateChanged(auth, async (user) => {
-    currentUser = user || null;
-    isAdmin = false;
-    currentUserProfile = null;
-
-    if(!currentUser){
-      renderAuthGate();
-      return;
-    }
-
-    // Load user profile
-    const uref = doc(db, "users", currentUser.uid);
-    const usnap = await getDoc(uref);
-    if(usnap.exists()) currentUserProfile = usnap.data();
-
-    // Determine admin
-    const aref = doc(db, "config", "admins");
-    const asnap = await getDoc(aref);
-    const adminUids = (asnap.exists() && Array.isArray(asnap.data().uids)) ? asnap.data().uids : [];
-    isAdmin = adminUids.includes(currentUser.uid);
-
-    // If user has not activated invite, force invite gate
-    if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){
-      renderInviteGate();
-      return;
-    }
-
-    // Load progress from cloud (merge with local backup)
-    await loadCloudProgress();
-    renderPlan();
-  });
-
-  // initial render
-  renderAuthGate();
+  return {totalTasks, done, allPct, weekPct, weekStart, weekEnd};
 }
 
-/* ----------------- AUTH / INVITE GATES ---------------------- */
-function renderAuthGate(){
-  const left = document.getElementById("leftBody");
-  const right = document.getElementById("rightBody");
-  document.getElementById("rightHeader").textContent = "Acceso";
-  document.getElementById("rightSub").textContent = "";
-
-  left.innerHTML = `
-    <div class="note">
-      <div><strong>Acceso requerido</strong></div>
-      <div class="small">Para entrar al curso necesitas iniciar sesión (gratis) y un código de invitación.</div>
-      <div class="small">Tu sitio: <span class="good">${getBaseUrl()}</span></div>
-    </div>
-
-    <div class="hr"></div>
-
-    <div class="card">
-      <h3>Iniciar sesión</h3>
-      <div class="k">Correo</div>
-      <input class="input" id="loginEmail" type="email" placeholder="tuemail@gmail.com">
-      <div class="k">Contraseña</div>
-      <input class="input" id="loginPass" type="password" placeholder="••••••••">
-      <div class="row" style="margin-top:10px">
-        <button class="btn primary" id="btnLogin">Entrar</button>
-      </div>
-      <div class="small" style="margin-top:10px">Si es tu primera vez, usa “Crear cuenta”.</div>
-    </div>
-
-    <div class="card">
-      <h3>Crear cuenta</h3>
-      <div class="k">Correo</div>
-      <input class="input" id="regEmail" type="email" placeholder="tuemail@gmail.com">
-      <div class="k">Contraseña (mín. 6)</div>
-      <input class="input" id="regPass" type="password" placeholder="••••••••">
-      <div class="row" style="margin-top:10px">
-        <button class="btn ok" id="btnRegister">Crear cuenta</button>
-      </div>
-      <div class="small" style="margin-top:10px">Luego te pedirá tu código de invitación.</div>
-    </div>
-
-    <div class="hr"></div>
-    <div class="card">
-      <h3>Donaciones voluntarias</h3>
-      <div class="small">Si deseas apoyar el proyecto (no es obligatorio):</div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn" id="d10">Apoyar $10</button>
-        <button class="btn" id="d15">Apoyar $15</button>
-        <button class="btn" id="d20">Apoyar $20</button>
-      </div>
-      <div class="small" style="margin-top:10px">Si no has configurado Stripe aún, estos botones no harán nada.</div>
-    </div>
-  `;
-
-  right.innerHTML = `
-    <div class="card">
-      <h3>¿Por qué login?</h3>
-      <ul class="mini">
-        <li>Para que tu progreso se guarde en la nube.</li>
-        <li>Para que el acceso sea por invitación (1 uso).</li>
-        <li>Para que solo el admin cree invitaciones.</li>
-      </ul>
-      <div class="note" style="margin-top:10px">
-        <div class="warn"><strong>Importante:</strong> Si te dice “dominio no autorizado”, vuelve a Firebase → Authentication → Dominios autorizados y agrega <strong>ernesto2026pro.github.io</strong>.</div>
-      </div>
-    </div>
-  `;
-
-  // Bind
-  document.getElementById("btnLogin").onclick = async () => {
-    try{
-      const email = document.getElementById("loginEmail").value.trim();
-      const pass = document.getElementById("loginPass").value;
-      await signInWithEmailAndPassword(auth, email, pass);
-      toast("Sesión iniciada ✅");
-    }catch(e){
-      toast("No se pudo iniciar sesión", true);
-    }
-  };
-  document.getElementById("btnRegister").onclick = async () => {
-    try{
-      const email = document.getElementById("regEmail").value.trim();
-      const pass = document.getElementById("regPass").value;
-      await createUserWithEmailAndPassword(auth, email, pass);
-      toast("Cuenta creada ✅");
-    }catch(e){
-      toast("No se pudo crear cuenta", true);
-    }
-  };
-
-  // Donations
-  const go = (url) => {
-    if(!url){ toast("Aún no configuraste el link de Stripe", true); return; }
-    window.open(url, "_blank");
-  };
-  document.getElementById("d10").onclick = ()=>go(DONATE_10_URL);
-  document.getElementById("d15").onclick = ()=>go(DONATE_15_URL);
-  document.getElementById("d20").onclick = ()=>go(DONATE_20_URL);
-}
-
-function renderInviteGate(){
-  const left = document.getElementById("leftBody");
-  const right = document.getElementById("rightBody");
-  document.getElementById("rightHeader").textContent = "Activar invitación";
-  document.getElementById("rightSub").textContent = "Código requerido (1 uso)";
-
-  const prefill = (inviteParam || "").trim();
-
-  left.innerHTML = `
-    <div class="note">
-      <div><strong>Hola, ${currentUser?.email || ""}</strong></div>
-      <div class="small">Para entrar al curso, activa tu código de invitación (1 solo uso).</div>
-    </div>
-
-    <div class="hr"></div>
-
-    <div class="card">
-      <h3>Código de invitación</h3>
-      <div class="k">Pega el código (o abre el enlace de invitación)</div>
-      <input class="input" id="inviteCodeInput" placeholder="Ej: CPSZDKBU" value="${prefill}">
-      <div class="row" style="margin-top:10px">
-        <button class="btn primary" id="btnActivate">Activar</button>
-        <button class="btn" id="btnLogout">Salir</button>
-      </div>
-      <div class="small" style="margin-top:10px">Si el código ya fue usado, no funcionará.</div>
-    </div>
-  `;
-
-  right.innerHTML = `
-    <div class="card">
-      <h3>¿Qué hace esto?</h3>
-      <ul class="mini">
-        <li>Evita que el curso se divulgue sin control.</li>
-        <li>Cada invitación sirve una sola vez.</li>
-        <li>Tu progreso quedará asociado a tu cuenta.</li>
-      </ul>
-    </div>
-  `;
-
-  document.getElementById("btnLogout").onclick = async () => {
-    await signOut(auth);
-  };
-
-  document.getElementById("btnActivate").onclick = async () => {
-    const code = document.getElementById("inviteCodeInput").value.trim().toUpperCase();
-    if(!code){ toast("Escribe el código", true); return; }
-    try{
-      await consumeInviteCode(code);
-      toast("Invitación activada ✅");
-      // reload profile & progress
-      const uref = doc(db, "users", currentUser.uid);
-      const usnap = await getDoc(uref);
-      currentUserProfile = usnap.exists() ? usnap.data() : null;
-
-      await loadCloudProgress();
-      renderPlan();
-    }catch(e){
-      toast(e?.message || "No se pudo activar", true);
-    }
-  };
-}
-
-async function consumeInviteCode(code){
-  const inviteRef = doc(db, "invites", code);
-  const userRef = doc(db, "users", currentUser.uid);
-
-  await runTransaction(db, async (tx) => {
-    const invSnap = await tx.get(inviteRef);
-    if(!invSnap.exists()) throw new Error("Código inválido");
-    const inv = invSnap.data();
-
-    if(inv.active !== true) throw new Error("Invitación inactiva");
-    if((inv.usesLeft ?? 0) < 1) throw new Error("Invitación ya fue usada");
-
-    const uSnap = await tx.get(userRef);
-    if(uSnap.exists() && uSnap.data().inviteCodeUsed){
-      throw new Error("Tu cuenta ya tiene invitación activada");
-    }
-
-    // consume invite (1-use)
-    tx.update(inviteRef, {
-      usesLeft: (inv.usesLeft ?? 1) - 1,
-      usedBy: currentUser.uid,
-      usedAt: serverTimestamp(),
-      active: false,
-    });
-
-    // create/update user profile
-    tx.set(userRef, {
-      email: currentUser.email || "",
-      role: "student",
-      inviteCodeUsed: code,
-      createdAt: serverTimestamp(),
-      lastLoginAt: serverTimestamp(),
-    }, { merge: true });
-  });
-}
-
-/* ------------------ CLOUD PROGRESS -------------------------- */
-let cloudSaveTimer = null;
-
-async function loadCloudProgress(){
-  // read cloud state
-  const pref = doc(db, "progress", currentUser.uid);
-  const psnap = await getDoc(pref);
-
-  loadLocalBackup(); // merge in case cloud empty
-
-  if(psnap.exists()){
-    const data = psnap.data();
-    if(data && data.progress && typeof data.progress === "object"){
-      state.progress = {...state.progress, ...data.progress};
-    }
-    if(data.day) state.day = clamp(parseInt(data.day,10),1,PLAN_DAYS);
-  }
-
-  saveLocalBackup();
-}
-
-function scheduleCloudSave(){
-  if(!firebaseReady || !currentUser) return;
-  if(cloudSaveTimer) clearTimeout(cloudSaveTimer);
-  cloudSaveTimer = setTimeout(async () => {
-    try{
-      const pref = doc(db, "progress", currentUser.uid);
-      await setDoc(pref, {
-        schemaVersion: SCHEMA_VERSION,
-        day: state.day,
-        progress: state.progress,
-        updatedAt: serverTimestamp(),
-      }, { merge: true });
-      state.lastSavedAt = Date.now();
-      saveLocalBackup();
-    }catch(e){
-      // fallback: local only
-      saveLocalBackup();
-    }
-  }, 650); // debounce to reduce writes
-}
-
-/* ------------------------- PLAN UI -------------------------- */
-function prevDay(){ state.day = clamp(state.day-1,1,PLAN_DAYS); scheduleCloudSave(); renderPlan(); }
-function nextDay(){ state.day = clamp(state.day+1,1,PLAN_DAYS); scheduleCloudSave(); renderPlan(); }
-function goToDay(){
-  const v = parseInt(document.getElementById("gotoDay").value||"1",10);
-  state.day = clamp(v,1,PLAN_DAYS);
-  scheduleCloudSave();
-  renderPlan();
-}
-window.prevDay = prevDay;
-window.nextDay = nextDay;
-window.goToDay = goToDay;
-
-function toggleTask(i, checked){
-  state.progress[keyFor(state.day,i)] = checked;
-  scheduleCloudSave();
-  renderPlan();
-}
-window.toggleTask = toggleTask;
-
-function exportLocal(){
-  const blob = new Blob([JSON.stringify(state,null,2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "plan90_progreso_respaldo.json";
-  a.click();
-  URL.revokeObjectURL(a.href);
-  toast("Respaldo exportado ✅");
-}
-
-function renderLeftPanel(){
+function updateStats(){
+  const info = dayInfo(state.day);
   const s = computeStats();
 
-  const cloudInfo = firebaseReady && currentUser
-    ? `<span class="good">En nube ✅</span>`
-    : `<span class="warn">Local ⚠️</span>`;
+  document.getElementById("statWeek").textContent = info.week;
+  document.getElementById("statDay").textContent = info.day;
+  document.getElementById("statWeekPct").textContent = s.weekPct + "%";
+  document.getElementById("statAllPct").textContent = s.allPct + "%";
+  document.getElementById("barWeek").style.width = s.weekPct + "%";
+  document.getElementById("barAll").style.width = s.allPct + "%";
+  document.getElementById("statPoints").textContent = state.points;
+  document.getElementById("statCash").textContent = state.cash;
 
-  const adminInfo = isAdmin ? `<span class="good">Admin ✅</span>` : `<span class="small">Estudiante</span>`;
-
-  document.getElementById("leftBody").innerHTML = `
-    <div class="note">
-      <div><strong>${currentUser?.email || "Sin sesión"}</strong></div>
-      <div class="small">Estado: ${cloudInfo} · ${adminInfo}</div>
-      <div class="small">Sitio: <span class="good">${getBaseUrl()}</span></div>
-    </div>
-
-    <div class="hr"></div>
-
-    <div class="statgrid">
-      <div class="stat"><div class="k">Semana</div><div class="v">${s.w}</div></div>
-      <div class="stat"><div class="k">Día</div><div class="v">${state.day}</div></div>
-    </div>
-
-    <div class="statgrid" style="margin-top:10px">
-      <div class="stat"><div class="k">% Semana</div><div class="v">${Math.round(s.weekPct*100)}%</div></div>
-      <div class="stat"><div class="k">% General</div><div class="v">${Math.round(s.allPct*100)}%</div></div>
-    </div>
-
-    <div class="statgrid" style="margin-top:10px">
-      <div class="stat"><div class="k">Puntos</div><div class="v">${state.points}</div></div>
-      <div class="stat"><div class="k">Días completados</div><div class="v">${s.daysDone}</div></div>
-    </div>
-
-    <div class="hr"></div>
-
-    <div class="row">
-      <button class="btn" onclick="prevDay()">◀ Día anterior</button>
-      <button class="btn primary" onclick="nextDay()">Día siguiente ▶</button>
-    </div>
-
-    <div class="k" style="margin-top:12px">Ir a día (1–90)</div>
-    <div class="row">
-      <input class="input" id="gotoDay" type="number" min="1" max="90" value="${state.day}" style="max-width:130px">
-      <button class="btn" onclick="goToDay()">Ir</button>
-    </div>
-
-    <div class="hr"></div>
-    <div class="row">
-      <button class="btn" id="btnExport">Exportar respaldo</button>
-      <button class="btn" id="btnLogout">Cerrar sesión</button>
-    </div>
-
-    <div class="hr"></div>
-
-    <div class="card">
-      <h3>Donaciones (opcional)</h3>
-      <div class="small">Si deseas apoyar este proyecto:</div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn" id="d10">Apoyar $10</button>
-        <button class="btn" id="d15">Apoyar $15</button>
-        <button class="btn" id="d20">Apoyar $20</button>
-      </div>
-      <div class="small" style="margin-top:10px">No es obligatorio. Gracias 🙏</div>
-    </div>
-  `;
-
-  document.getElementById("btnExport").onclick = exportLocal;
-  document.getElementById("btnLogout").onclick = async ()=>{ await signOut(auth); };
-
-  const go = (url) => { if(!url){ toast("Aún no configuraste Stripe", true); return; } window.open(url, "_blank"); };
-  document.getElementById("d10").onclick = ()=>go(DONATE_10_URL);
-  document.getElementById("d15").onclick = ()=>go(DONATE_15_URL);
-  document.getElementById("d20").onclick = ()=>go(DONATE_20_URL);
+  document.getElementById("rightTitle").textContent = `Lección · Día ${info.day}`;
+  document.getElementById("rightSub").textContent = `Semana ${info.week} · ${info.weekTheme}`;
 }
 
 function renderPlan(){
-  if(!firebaseReady){ renderAllLocalOnly(); return; }
-  if(!currentUser){ renderAuthGate(); return; }
-  if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){ renderInviteGate(); return; }
+  updateStats();
 
-  renderLeftPanel();
-
-  const s = computeStats();
-  document.getElementById("rightHeader").textContent = `Lección · Día ${state.day}`;
-  document.getElementById("rightSub").textContent = `Semana ${s.w} · Guardado nube`;
-
+  const info = dayInfo(state.day);
   const body = document.getElementById("rightBody");
-  const c = getDayContent(state.day);
-  const tasksHtml = c.tasks.map((t,i)=>{
-    const k = keyFor(state.day,i);
-    const checked = !!state.progress[k];
-    return `
-      <label class="task">
-        <input type="checkbox" ${checked?"checked":""} onchange="toggleTask(${i}, this.checked)">
-        <div>
-          <div class="tt">${t.title}</div>
-          <div class="dd">${t.desc}</div>
-        </div>
-      </label>
-    `;
-  }).join("");
+  body.innerHTML = "";
 
-  body.innerHTML = `
-    <div class="pillrow">
-      <span class="pill">📌 ${c.theme.title}</span>
-      <span class="pill">🎯 ${c.theme.focus}</span>
-      <span class="pill">⏱️ 45–60 min</span>
-      <span class="pill">💾 Auto-guardado</span>
+  // Voice controls
+  const voiceWrap = document.createElement("div");
+  voiceWrap.className = "seg";
+  voiceWrap.innerHTML = `
+    <div class="label">Voz y velocidad</div>
+    <div class="row" style="width:100%">
+      <span class="badge"><b>Modo de voz:</b> <span class="muted">${state.voiceMode}</span></span>
+      <span class="badge"><b>Velocidad:</b> <span class="muted">${state.rateMode}</span></span>
     </div>
-
-    <div class="card mini">
-      <h3>Mini-lección</h3>
-      <ul>${c.mini.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <div class="row">
+      <button class="opt ${state.voiceMode==='female'?'active':''}" onclick="setVoiceMode('female')">Femenina</button>
+      <button class="opt ${state.voiceMode==='male'?'active':''}" onclick="setVoiceMode('male')">Masculina</button>
+      <button class="opt ${state.voiceMode==='auto'?'active':''}" onclick="setVoiceMode('auto')">Auto</button>
     </div>
-
-    <div class="card">
-      <h3>Checklist <span class="small">· marca al terminar</span></h3>
-      <div class="checklist">${tasksHtml}</div>
-    </div>
-
-    <div class="card">
-      <h3>Speaking prompts</h3>
-      <ul style="margin:8px 0 0 20px; color:var(--muted)">
-        ${c.prompts.map(x=>`<li>${x}</li>`).join("")}
-      </ul>
+    <div class="row">
+      <button class="opt ${state.rateMode==='lenta'?'active':''}" onclick="setRate('lenta')">Lenta</button>
+      <button class="opt ${state.rateMode==='normal'?'active':''}" onclick="setRate('normal')">Normal</button>
+      <button class="opt ${state.rateMode==='fluido'?'active':''}" onclick="setRate('fluido')">Fluido</button>
     </div>
   `;
-}
+  body.appendChild(voiceWrap);
 
-/* --------------------- INVITATIONS (ADMIN) ------------------ */
-function generateInviteCode(len=8){
-  const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-  let out=""; for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
-  return out;
-}
+  // Mini lesson
+  const mini = document.createElement("div");
+  mini.className = "card";
+  mini.innerHTML = `
+    <div class="row" style="justify-content:space-between">
+      <div class="rightTitle">Mini-lección</div>
+      <span class="badge"><b>Duración:</b> <span class="muted">60 min</span></span>
+    </div>
+    <div class="row" style="margin-top:10px; gap:8px; flex-wrap:wrap">
+      <span class="badge"><b>Pronunciación:</b> <span class="muted">${info.sound}</span></span>
+      <span class="badge"><b>Tema:</b> <span class="muted">${info.weekTheme}</span></span>
+      <span class="badge"><b>Gramática:</b> <span class="muted">${info.grammar}</span></span>
+    </div>
+    <div class="hr"></div>
+    <div class="small muted">Vocabulario del tema (12):</div>
+    <div class="mono" style="margin-top:6px; color:var(--text)">${info.vocab.join(" · ")}</div>
+  `;
+  body.appendChild(mini);
 
-async function createInviteOneUse(){
-  if(!isAdmin) throw new Error("Solo el admin puede crear invitaciones");
-  const code = generateInviteCode();
-  const ref = doc(db, "invites", code);
-  await setDoc(ref, {
-    active: true,
-    usesLeft: 1,
-    createdBy: currentUser.uid,
-    createdAt: serverTimestamp(),
-    usedBy: null,
-    usedAt: null,
+  // Checklist
+  const chk = document.createElement("div");
+  chk.className = "card";
+  chk.innerHTML = `<div class="rightTitle">Checklist <span class="muted" style="font-size:13px;font-weight:700">marca al terminar</span></div>`;
+  tasksTemplate.forEach(t=>{
+    const checked = !!state.progress[taskKey(info.day, t.id)];
+    const item = document.createElement("div");
+    item.className = "checkitem";
+    item.innerHTML = `
+      <input type="checkbox" ${checked?'checked':''} onchange="toggleTask(${info.day}, '${t.id}', this.checked)" />
+      <div>
+        <div class="t">${t.title}</div>
+        <div class="d">${t.desc}</div>
+      </div>
+    `;
+    chk.appendChild(item);
   });
-  return code;
+  body.appendChild(chk);
+
+  // Phrases + TTS
+  const ph = document.createElement("div");
+  ph.className = "card";
+  ph.innerHTML = `<div class="rightTitle">Frases del día (con voz)</div>
+                  <div class="sub">Haz shadowing: escucha → repite → imita ritmo y entonación.</div>`;
+  info.phrases.forEach(([en,es])=>{
+    const row = document.createElement("div");
+    row.className = "phrase";
+    row.innerHTML = `
+      <div>
+        <div class="en">${en}</div>
+        <div class="es">${es}</div>
+      </div>
+      <button class="btn primary" onclick="speak(${JSON.stringify(en)})">🔊</button>
+    `;
+    ph.appendChild(row);
+  });
+  body.appendChild(ph);
+
+  // Bottom day nav
+  const nav = document.createElement("div");
+  nav.className = "navDay";
+  nav.innerHTML = `
+    <button class="btn" onclick="goDay(-1)">◀ Día anterior</button>
+    <button class="btn primary" onclick="goDay(1)">Día siguiente ▶</button>
+  `;
+  body.appendChild(nav);
 }
 
 function renderInvitations(){
-  if(!firebaseReady){ renderAllLocalOnly(); return; }
-  if(!currentUser){ renderAuthGate(); return; }
-  if(!currentUserProfile || !currentUserProfile.inviteCodeUsed){ renderInviteGate(); return; }
-
-  renderLeftPanel();
-  document.getElementById("rightHeader").textContent = "Invitaciones";
-  document.getElementById("rightSub").textContent = isAdmin ? "Panel Admin" : "Solo Admin puede invitar";
-
+  updateStats();
   const body = document.getElementById("rightBody");
+  const base = getBaseUrl();
 
-  if(!isAdmin){
-    body.innerHTML = `
-      <div class="card">
-        <h3>No autorizado</h3>
-        <div class="note">Solo el administrador puede generar códigos de invitación.</div>
-      </div>
-    `;
-    return;
+  // ensure invite code exists for owner
+  if(!state.inviteCode){
+    state.inviteCode = generateInviteCode();
+    save();
   }
+  const link = `${base}/?invite=${state.inviteCode}`;
+  const msg = INVITE_MESSAGE_DEFAULT.replace("{LINK}", link);
 
   body.innerHTML = `
     <div class="card">
-      <h3>Crear invitación (1 uso)</h3>
-      <div class="small">Genera un enlace único. Cuando un usuario lo active, queda inutilizado.</div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn ok" id="btnNewInvite">Crear nueva invitación</button>
+      <div class="rightTitle">Invitaciones</div>
+      <div class="sub">En modo local no hay login. Simplemente comparte el link. Cada persona guarda su progreso en su dispositivo.</div>
+
+      <div class="hr"></div>
+
+      <div class="small muted">Código de invitación:</div>
+      <div class="row" style="margin-top:8px">
+        <span class="badge"><b class="mono">${state.inviteCode}</b></span>
+        <button class="btn" onclick="newInvite()">Generar nuevo</button>
       </div>
 
       <div class="hr"></div>
 
-      <div class="k">Código</div>
-      <input class="input" id="newCode" readonly placeholder="Aquí saldrá el código…">
+      <div class="small muted">Link:</div>
+      <div class="mono" style="margin-top:6px; word-break:break-all">${link}</div>
 
-      <div class="k">Enlace</div>
-      <input class="input" id="newLink" readonly placeholder="Aquí saldrá el enlace…">
+      <div class="hr"></div>
 
-      <div class="row" style="margin-top:10px">
-        <button class="btn" id="btnCopyLink">Copiar enlace</button>
-        <button class="btn primary" id="btnCopyMsg">Copiar mensaje</button>
+      <div class="small muted">Tu mensaje (se envía con el link):</div>
+      <textarea class="input" id="inviteMsg" style="min-height:150px; margin-top:8px">${escapeHtml(msg)}</textarea>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        ${shareButton("WhatsApp", iconWhatsApp(), "wa", msg)}
+        ${shareButton("Telegram", iconTelegram(), "tg", msg)}
+        ${shareButton("X", iconX(), "x", msg)}
+        ${shareButton("Email", iconMail(), "mail", msg)}
+        <button class="iconbtn" onclick="copyInvite()">${iconCopy()} Copiar</button>
       </div>
 
-      <div class="sharegrid">
-        <div class="sharebtn" id="wa">${svg("W")}<div>WhatsApp<br><span class="small">Enviar con tu mensaje</span></div></div>
-        <div class="sharebtn" id="tg">${svg("T")}<div>Telegram<br><span class="small">Enviar con tu mensaje</span></div></div>
-        <div class="sharebtn" id="xx">${svg("X")}<div>X (Twitter)<br><span class="small">Publicar</span></div></div>
-        <div class="sharebtn" id="em">${svg("@")}<div>Email<br><span class="small">Correo listo</span></div></div>
-      </div>
+      <div class="hr"></div>
 
-      <div class="note" style="margin-top:12px">
-        <div><strong>Tip:</strong> si el enlace llega “como texto”, igual funciona al tocarlo desde WhatsApp/Telegram. Aquí lo abrimos directo con los botones.</div>
-      </div>
-    </div>
-  `;
-
-  const btnNew = document.getElementById("btnNewInvite");
-  const codeEl = document.getElementById("newCode");
-  const linkEl = document.getElementById("newLink");
-
-  let lastLink = "";
-  let lastMsg = "";
-
-  function buildMsg(link){
-    return INVITE_MESSAGE_DEFAULT.replace("{LINK}", link);
-  }
-
-  btnNew.onclick = async () => {
-    btnNew.disabled = true;
-    try{
-      const code = await createInviteOneUse();
-      const link = `${getBaseUrl()}?invite=${encodeURIComponent(code)}`;
-      lastLink = link;
-      lastMsg = buildMsg(link);
-
-      codeEl.value = code;
-      linkEl.value = link;
-      toast("Invitación creada ✅");
-    }catch(e){
-      toast(e?.message || "No se pudo crear", true);
-    }finally{
-      btnNew.disabled = false;
-    }
-  };
-
-  document.getElementById("btnCopyLink").onclick = async () => {
-    if(!lastLink){ toast("Primero crea una invitación", true); return; }
-    await navigator.clipboard.writeText(lastLink);
-    toast("Enlace copiado ✅");
-  };
-
-  document.getElementById("btnCopyMsg").onclick = async () => {
-    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
-    await navigator.clipboard.writeText(lastMsg);
-    toast("Mensaje copiado ✅");
-  };
-
-  document.getElementById("wa").onclick = () => {
-    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
-    window.open("https://wa.me/?text=" + enc(lastMsg), "_blank");
-  };
-  document.getElementById("tg").onclick = () => {
-    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
-    window.open("https://t.me/share/url?url=&text=" + enc(lastMsg), "_blank");
-  };
-  document.getElementById("xx").onclick = () => {
-    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
-    window.open("https://twitter.com/intent/tweet?text=" + enc(lastMsg), "_blank");
-  };
-  document.getElementById("em").onclick = () => {
-    if(!lastMsg){ toast("Primero crea una invitación", true); return; }
-    const subject = "Invitación · Plan 90 Días de Inglés (A1→A2)";
-    window.location.href = "mailto:?subject=" + enc(subject) + "&body=" + enc(lastMsg);
-  };
-}
-
-/* ---------------------------- HELP -------------------------- */
-function renderHelp(){
-  const left = document.getElementById("leftBody");
-  const right = document.getElementById("rightBody");
-  document.getElementById("rightHeader").textContent = "Ayuda rápida";
-  document.getElementById("rightSub").textContent = "Soluciones comunes";
-
-  left.innerHTML = `
-    <div class="note">
-      <div><strong>Ayuda</strong></div>
-      <div class="small">Si algo no funciona, revisa estos puntos.</div>
-    </div>
-    <div class="hr"></div>
-    <div class="card">
-      <h3>Checklist</h3>
-      <ul class="mini">
-        <li>GitHub Pages activado (Settings → Pages).</li>
-        <li>El archivo se llama <strong>index.html</strong>.</li>
-        <li>En Firebase Auth agregaste: <strong>ernesto2026pro.github.io</strong> en Dominios autorizados.</li>
-        <li>Pegaste el <strong>firebaseConfig</strong> correcto.</li>
-        <li>Firestore creado.</li>
-      </ul>
-    </div>
-  `;
-
-  right.innerHTML = `
-    <div class="card">
-      <h3>Mensajes típicos</h3>
-      <ul class="mini">
-        <li><strong>“domain not authorized”</strong>: falta autorizar dominio en Firebase Auth.</li>
-        <li><strong>No crea invitaciones</strong>: tu cuenta no está marcada como Admin.</li>
-        <li><strong>Invitación inválida</strong>: el código no existe o ya se usó.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Cómo hacerte Admin</h3>
       <div class="note">
-        1) Inicia sesión con tu correo (admin).<br/>
-        2) En Firebase → Authentication → Users copia tu <strong>UID</strong>.<br/>
-        3) En Firestore crea: <strong>config/admins</strong> con campo <strong>uids</strong> (array) y pega tu UID allí.
+        <b>Tip:</b> abre el enlace una vez en tu teléfono, así verificas que funciona antes de enviarlo a mucha gente.
       </div>
     </div>
   `;
+
+  // put real text into textarea (escapeHtml used only to avoid breaking HTML)
+  const ta = document.getElementById("inviteMsg");
+  ta.value = msg;
 }
 
-/* ----------------------- LOCAL ONLY FALLBACK ----------------*
+function escapeHtml(s){
+  return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+
+/*** ========= INVITE / SHARE ========= ***/
+function generateInviteCode(){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let out = "";
+  for(let i=0;i<8;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  return out;
+}
+function newInvite(){
+  state.inviteCode = generateInviteCode();
+  save();
+  renderInvitations();
+  toast("Nuevo código creado: " + state.inviteCode);
+}
+
+function copyInvite(){
+  const ta = document.getElementById("inviteMsg");
+  const text = ta.value;
+  navigator.clipboard?.writeText(text).then(()=>{
+    toast("Mensaje copiado ✅");
+  }).catch(()=>{
+    // fallback
+    ta.select();
+    document.execCommand("copy");
+    toast("Mensaje copiado ✅");
+  });
+}
+
+function shareButton(label, svg, kind, msg){
+  return `<button class="iconbtn" onclick="share('${kind}')">${svg} ${label}</button>`;
+}
+function share(kind){
+  const ta = document.getElementById("inviteMsg");
+  const text = (ta && ta.value) ? ta.value : "";
+  const base = getBaseUrl();
+  const link = `${base}/?invite=${state.inviteCode}`;
+  const enc = encodeURIComponent(text.replace("{LINK}", link));
+
+  let url = "";
+  if(kind==="wa"){
+    url = "https://wa.me/?text=" + enc;
+  }else if(kind==="tg"){
+    // telegram comparte url + texto; mandamos todo como texto
+    url = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(text);
+  }else if(kind==="x"){
+    url = "https://twitter.com/intent/tweet?text=" + enc;
+  }else if(kind==="mail"){
+    const subject = encodeURIComponent("Invitación: Plan 90 Días de Inglés (A1→A2)");
+    url = "mailto:?subject=" + subject + "&body=" + enc;
+  }
+  window.open(url, "_blank");
+}
+
+/*** ========= ICONS (inline SVG) ========= ***/
+function iconWhatsApp(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M20.5 11.9c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.2-1l-3.2.9.9-3.1c-.7-1.3-1.1-2.8-1.1-4.4 0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6Z" stroke="currentColor" stroke-width="1.6"/><path d="M9.2 8.7c.2-.3.4-.3.6-.3h.5c.1 0 .3 0 .4.3l.7 1.6c.1.3.1.5 0 .7l-.4.5c-.1.2-.1.3 0 .5.3.6 1 1.3 1.6 1.6.2.1.3.1.5 0l.5-.4c.2-.1.4-.1.7 0l1.6.7c.2.1.3.3.3.4v.5c0 .2 0 .4-.3.6-.4.4-1 .8-1.7.8-1.5 0-3.3-1-4.6-2.3S7.8 10.3 7.8 8.8c0-.7.4-1.3.8-1.7Z" fill="currentColor"/></svg>`; }
+function iconTelegram(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M20.7 4.7 3.8 11.2c-.8.3-.8 1.4 0 1.7l4.2 1.4 1.6 4.9c.2.7 1.1.8 1.6.3l2.4-2.4 4.8 3.5c.6.4 1.4.1 1.6-.6l3-14.3c.2-.9-.7-1.6-1.5-1.3Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 14.3 18.2 7.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`; }
+function iconX(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 5h4l6 14h-4L7 5Z" stroke="currentColor" stroke-width="1.6"/><path d="M17 5h-3.5L7 19h3.5L17 5Z" fill="currentColor" opacity=".35"/></svg>`; }
+function iconMail(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4.5 7.2A2.2 2.2 0 0 1 6.7 5h10.6a2.2 2.2 0 0 1 2.2 2.2v9.6a2.2 2.2 0 0 1-2.2 2.2H6.7a2.2 2.2 0 0 1-2.2-2.2V7.2Z" stroke="currentColor" stroke-width="1.6"/><path d="m5.3 7.4 6.1 5c.4.3.9.3 1.3 0l6.1-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`; }
+function iconCopy(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 8h10v12H8V8Z" stroke="currentColor" stroke-width="1.6"/><path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.6"/></svg>`; }
+
+/*** ========= TTS (voz) ========= ***/
+function setVoiceMode(m){ state.voiceMode=m; save(); renderPlan(); }
+function setRate(m){ state.rateMode=m; save(); renderPlan(); }
+
+function pickRate(){
+  if(state.rateMode==="lenta") return 0.85;
+  if(state.rateMode==="fluido") return 1.05;
+  return 0.95;
+}
+
+function speak(text){
+  try{
+    if(!("speechSynthesis" in window)){
+      toast("Tu navegador no soporta voz (TTS).");
+      return;
+    }
+    window.speechSynthesis.cancel();
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = pickRate();
+
+    const voices = window.speechSynthesis.getVoices() || [];
+    // intenta elegir una voz de inglés
+    const enVoices = voices.filter(v => (v.lang||"").toLowerCase().startsWith("en"));
+    let chosen = null;
+
+    if(state.voiceMode==="female"){
+      chosen = enVoices.find(v => /female|zira|susan|aria|jenny/i.test(v.name)) || enVoices[0];
+    }else if(state.voiceMode==="male"){
+      chosen = enVoices.find(v => /male|david|mark|guy/i.test(v.name)) || enVoices[0];
+    }else{
+      chosen = enVoices[0] || voices[0];
+    }
+    if(chosen) u.voice = chosen;
+
+    window.speechSynthesis.speak(u);
+  }catch(e){
+    toast("No se pudo reproducir voz.");
+  }
+}
+// en algunos navegadores, getVoices carga tarde
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged = ()=>{};
+}
+
+/*** ========= BACKUP / RESET ========= ***/
+function exportProgress(){
+  const data = JSON.stringify(state, null, 2);
+  navigator.clipboard?.writeText(data).then(()=>{
+    toast("Progreso exportado (copiado) ✅");
+  }).catch(()=>{
+    prompt("Copia este texto:", data);
+  });
+}
+function importProgress(){
+  const txt = prompt("Pega aquí el texto exportado:");
+  if(!txt) return;
+  try{
+    const o = JSON.parse(txt);
+    if(!o || typeof o!=="object") throw new Error("bad");
+    Object.assign(state, o);
+    state.day = clamp(parseInt(state.day||1,10),1,PLAN_DAYS);
+    state.progress = state.progress || {};
+    state.points = state.points || 0;
+    state.cash = state.cash || 0;
+    state.inviteCode = state.inviteCode || "";
+    save();
+    toast("Importado ✅");
+    renderPlan();
+  }catch(e){
+    toast("Texto inválido.");
+  }
+}
+function resetProgress(){
+  if(!confirm("¿Seguro que quieres reiniciar TODO tu progreso local?")) return;
+  localStorage.removeItem(LS_KEY);
+  location.reload();
+}
+
+/*** ========= INIT ========= ***/
+function applyInviteFromUrl(){
+  const p = new URLSearchParams(location.search);
+  const inv = (p.get("invite")||"").trim().toUpperCase();
+  if(inv && /^[A-Z0-9]{6,12}$/.test(inv)){
+    // para el invitado, guardamos ese código (solo informativo)
+    state.inviteCode = inv;
+    save();
+  }
+}
+
+function init(){
+  load();
+  applyInviteFromUrl();
+
+  document.getElementById("name").value = state.name || "";
+  document.getElementById("name").addEventListener("input", (e)=>{
+    state.name = (e.target.value||"").trim();
+    save();
+  });
+
+  renderPlan();
+}
+init();
+</script>
+</body>
+</html>
