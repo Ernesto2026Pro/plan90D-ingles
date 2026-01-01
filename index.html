@@ -4,338 +4,244 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Plan 90 Días · Inglés (A1→A2)</title>
+  <meta name="description" content="Curso A1→A2 en 90 días. Progreso personal en este dispositivo. Invitación controlada por el administrador." />
   <style>
     :root{
-      --bg:#0b1020; --panel:#101a33; --panel2:#0f1730; --card:#121f3f;
-      --text:#e8edf8; --muted:#aab7d6; --muted2:#7f8db4;
-      --line:rgba(255,255,255,.08);
-      --accent:#64b5ff; --accent2:#7df7c8; --warn:#ffd166; --danger:#ff6b6b;
-      --shadow:0 18px 45px rgba(0,0,0,.35);
-      --radius:18px;
-      --btn:#1a2a55;
+      --bg:#0b1220; --panel:#0f1b33; --panel2:#0c172b;
+      --text:#e9eefb; --muted:#a8b3d6; --line:#22304d;
+      --acc:#4aa3ff; --ok:#4ade80; --warn:#fbbf24; --bad:#fb7185;
+      --btn:#122449; --btn2:#0c1c3a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     *{box-sizing:border-box}
     body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:radial-gradient(1100px 600px at 30% -10%, #1c2a64 0%, rgba(28,42,100,0) 60%),
-                 radial-gradient(800px 500px at 90% 0%, #0f6b6b 0%, rgba(15,107,107,0) 55%),
-                 linear-gradient(180deg,var(--bg),#070a14);
+      margin:0; font-family:var(--sans);
+      background: radial-gradient(1100px 600px at 20% 10%, rgba(74,163,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 80% 20%, rgba(74,222,128,.12), transparent 60%),
+                  radial-gradient(900px 500px at 40% 95%, rgba(251,191,36,.10), transparent 60%),
+                  var(--bg);
       color:var(--text);
     }
-    a{color:var(--accent); text-decoration:none}
-    .wrap{max-width:1180px;margin:22px auto;padding:0 14px}
+    a{color:var(--acc); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 14px 40px}
     .top{
-      display:flex; align-items:flex-start; gap:14px; justify-content:space-between; flex-wrap:wrap;
-      margin-bottom:14px;
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      padding:10px 12px; border:1px solid var(--line); border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      box-shadow: var(--shadow);
     }
-    .title{
-      display:flex; gap:12px; align-items:center;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      padding:14px 16px; border-radius:var(--radius); box-shadow:var(--shadow);
-      min-width:min(720px, 100%);
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(74,163,255,.8), rgba(74,222,128,.55));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
     }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px; border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .flag{font-size:16px}
-    .h1{font-weight:800; letter-spacing:.2px}
-    .sub{color:var(--muted); font-size:13px; margin-top:2px}
-    .nav{
-      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
-      padding:10px 12px; border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
-    }
+    .title{display:flex; flex-direction:column}
+    .title h1{margin:0; font-size:18px; letter-spacing:.2px}
+    .title .sub{color:var(--muted); font-size:12.5px}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
     .chip{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:650;
-      font-size:13px;
+      padding:7px 10px; border-radius:999px; border:1px solid var(--line);
+      background: rgba(255,255,255,.03); color:var(--muted); font-size:13px;
+      cursor:pointer; user-select:none;
     }
-    .chip.active{
-      background:rgba(100,181,255,.16);
-      color:var(--text);
-      border-color:rgba(100,181,255,.35);
-    }
-
-    .grid{display:grid; grid-template-columns:360px 1fr; gap:14px}
-    @media (max-width:980px){ .grid{grid-template-columns:1fr} .title{min-width:100%} }
-
+    .chip.active{background: rgba(74,163,255,.16); color:var(--text); border-color: rgba(74,163,255,.4)}
+    .chip.badge{cursor:default}
+    .grid{display:grid; grid-template-columns: 330px 1fr; gap:14px; margin-top:14px}
+    @media (max-width: 920px){ .grid{grid-template-columns:1fr} }
     .panel{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      box-shadow:var(--shadow);
+      border:1px solid var(--line); border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .hd{
-      padding:14px 14px 10px;
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-      border-bottom:1px solid var(--line);
-    }
-    .hd .h{font-weight:800}
-    .tag{
-      font-size:12px; color:var(--muted);
-      padding:6px 9px; border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-    }
-    .bd{padding:12px 14px 14px}
+    .ph{padding:12px 14px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:10px}
+    .ph .h{font-weight:650}
+    .ph .mini{color:var(--muted); font-size:12px}
+    .pb{padding:14px}
     .note{
-      padding:10px 12px; border-radius:14px;
-      background:rgba(125,247,200,.10);
-      border:1px solid rgba(125,247,200,.25);
-      color:var(--text);
-      font-size:13px;
+      padding:10px 12px; border:1px dashed rgba(74,163,255,.35);
+      background: rgba(74,163,255,.08); border-radius:12px; color:var(--text);
+      line-height:1.35;
     }
-    .note b{color:var(--accent2)}
-    .hr{height:1px;background:var(--line); margin:12px 0}
-    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .warn{
+      border-color: rgba(251,191,36,.4);
+      background: rgba(251,191,36,.10);
+    }
+    .ok{border-color: rgba(74,222,128,.35); background: rgba(74,222,128,.10)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .input{
-      width:100%;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      color:var(--text);
-      border-radius:14px;
-      padding:11px 12px;
+      width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(10,20,42,.65); color:var(--text);
       outline:none;
-      font-size:14px;
     }
+    .input:focus{border-color: rgba(74,163,255,.55); box-shadow:0 0 0 3px rgba(74,163,255,.12)}
     .btn{
-      cursor:pointer;
-      border-radius:14px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      background:var(--btn);
-      color:var(--text);
-      font-weight:750;
-      font-size:13px;
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      color:var(--text); cursor:pointer; user-select:none;
+      display:inline-flex; gap:8px; align-items:center; justify-content:center;
     }
-    .btn.primary{background:rgba(100,181,255,.18); border-color:rgba(100,181,255,.35)}
-    .btn.good{background:rgba(125,247,200,.18); border-color:rgba(125,247,200,.35)}
-    .btn.bad{background:rgba(255,107,107,.14); border-color:rgba(255,107,107,.30)}
-    .btn:active{transform:translateY(1px)}
+    .btn:hover{border-color: rgba(74,163,255,.5)}
+    .btn.primary{background: rgba(74,163,255,.18); border-color: rgba(74,163,255,.45)}
+    .btn.good{background: rgba(74,222,128,.15); border-color: rgba(74,222,128,.35)}
+    .btn.bad{background: rgba(251,113,133,.12); border-color: rgba(251,113,133,.35)}
+    .btn.small{padding:7px 10px; border-radius:10px; font-size:13px}
+    .hr{height:1px; background: var(--line); margin:12px 0}
     .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
     .stat{
-      padding:10px 12px; border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-    }
-    .stat .k{font-size:12px; color:var(--muted)}
-    .stat .v{font-size:18px; font-weight:900; margin-top:4px}
-    .bar{
-      height:10px; border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      overflow:hidden;
-    }
-    .bar>div{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); width:0%}
-    .small{font-size:12px;color:var(--muted)}
-    .rightTitle{font-weight:900;font-size:16px}
-    .card{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:12px 12px;
-      margin-top:10px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      font-size:12px; color:var(--muted);
-    }
-    .badge b{color:var(--text)}
-    .checkitem{
-      display:flex; align-items:flex-start; gap:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
-      margin-top:10px;
-    }
-    .checkitem input{margin-top:4px; transform:scale(1.1)}
-    .checkitem .t{font-weight:850}
-    .checkitem .d{color:var(--muted); font-size:13px; margin-top:2px}
-    .navDay{display:flex; gap:10px; justify-content:space-between; margin-top:12px}
-    .navDay .btn{flex:1}
-    .voiceBox{
-      display:flex; gap:8px; flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .seg{
-      display:flex; gap:8px; flex-wrap:wrap;
+      border:1px solid var(--line); border-radius:12px; background: rgba(255,255,255,.02);
       padding:10px 12px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
     }
-    .seg .label{font-size:12px;color:var(--muted); width:100%}
-    .seg .opt{
-      cursor:pointer;
-      border-radius:999px;
-      padding:8px 10px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      font-weight:750;
-      font-size:12px;
+    .stat .k{color:var(--muted); font-size:12px}
+    .stat .v{font-size:18px; font-weight:700; margin-top:2px}
+    .pill{
+      padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.14);
+      color:var(--muted); font-size:12px;
     }
-    .seg .opt.active{background:rgba(100,181,255,.18); border-color:rgba(100,181,255,.35); color:var(--text)}
-    .phrase{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
-      border-radius:14px;
-      margin-top:8px;
-    }
-    .phrase .en{font-weight:850}
-    .phrase .es{color:var(--muted); font-size:12px; margin-top:2px}
-    .iconbtn{
-      display:inline-flex; align-items:center; gap:8px;
-      border-radius:14px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font-weight:800;
-      font-size:13px;
-      cursor:pointer;
-    }
-    .icon{
-      width:18px;height:18px;display:inline-block;
+    .lesson h2{margin:0 0 8px; font-size:18px}
+    .lesson .meta{color:var(--muted); font-size:12.5px; margin-bottom:10px}
+    .section{margin:12px 0; padding:12px; border:1px solid var(--line); border-radius:12px; background: rgba(255,255,255,.02)}
+    .section .sh{font-weight:700; margin-bottom:8px; display:flex; justify-content:space-between; gap:10px; align-items:center}
+    .list{margin:0; padding-left:18px; line-height:1.45}
+    .chk{display:flex; gap:10px; align-items:flex-start; margin:8px 0}
+    .chk input{margin-top:3px; transform: scale(1.1)}
+    .muted{color:var(--muted)}
+    .kbd{font-family:var(--mono); font-size:12px; padding:2px 6px; border-radius:8px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12)}
+    .sharegrid{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px}
+    @media (max-width: 520px){ .sharegrid{grid-template-columns:1fr} }
+    .linkbox{
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(10,20,42,.65); font-family:var(--mono); font-size:12.5px; word-break:break-all;
     }
     .toast{
-      position:fixed; left:50%; transform:translateX(-50%);
-      bottom:20px; z-index:9999;
-      background:rgba(16,26,51,.95);
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      box-shadow:0 18px 55px rgba(0,0,0,.45);
-      max-width:min(560px, 92vw);
-      display:none;
-      font-weight:700;
+      position:fixed; left:50%; bottom:22px; transform:translateX(-50%);
+      background: rgba(12,23,43,.95); border:1px solid rgba(255,255,255,.14);
+      color:var(--text); padding:10px 12px; border-radius:12px;
+      box-shadow: var(--shadow); display:none; max-width:min(720px, calc(100% - 24px));
     }
-    .muted{color:var(--muted)}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .smallprint{font-size:12px; color:var(--muted); line-height:1.4}
+    .spinner{
+      width:14px; height:14px; border:2px solid rgba(255,255,255,.2);
+      border-top-color: rgba(74,163,255,.9); border-radius:50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
-
 <body>
   <div class="wrap">
     <div class="top">
-      <div class="title">
-        <div class="pill"><span class="flag">🇺🇸</span><span class="flag">🇻🇪</span> Venezuela + USA (amistad)</div>
-        <div>
-          <div class="h1">Plan 90 Días · Inglés (A1 → A2)</div>
-          <div class="sub">Checklist · % Semana · % General · Puntos · Voz (TTS) · Invitaciones</div>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">
+          <h1>Plan 90 Días · Inglés (A1 → A2)</h1>
+          <div class="sub">Modo Local (gratis) · Invitación controlada · Progreso guardado en tu dispositivo</div>
         </div>
       </div>
 
-      <div class="nav">
-        <button class="chip active" id="tabPlan" onclick="setTab('plan')">Plan</button>
-        <button class="chip" id="tabInv" onclick="setTab('inv')">Invitaciones</button>
+      <div class="chips">
+        <span class="chip badge" id="modeChip">Modo: <b id="modeText">Cargando...</b></span>
+        <span class="chip" id="tabPlan">Plan</span>
+        <span class="chip" id="tabInvite">Invitaciones</span>
+        <span class="chip" id="tabHelp">Ayuda</span>
       </div>
     </div>
 
     <div class="grid">
       <!-- LEFT -->
       <div class="panel">
-        <div class="hd">
-          <div class="h">Acceso y progreso</div>
-          <div class="tag"><b>Modo</b> <span id="modeText">Local</span></div>
+        <div class="ph">
+          <div>
+            <div class="h">Cuenta y progreso</div>
+            <div class="mini">Beta</div>
+          </div>
+          <span class="pill" id="unlockPill">🔒 Bloqueado</span>
         </div>
-        <div class="bd">
-          <div class="note" id="modeNote"><b>Modo local:</b> progreso guardado en este navegador (sin nube). No hay login.</div>
-
-          <div class="hr"></div>
-
-          <div class="small">Tu nombre (opcional, solo para mostrar en pantalla):</div>
-          <input class="input" id="name" placeholder="Ej: Ernesto" />
-
-          <div class="hr"></div>
-
-          <div class="statgrid">
-            <div class="stat">
-              <div class="k">Semana actual</div>
-              <div class="v" id="statWeek">1</div>
+        <div class="pb">
+          <div id="unlockBox" class="note warn">
+            <b>Necesitas una invitación</b><br/>
+            Pega tu código o abre un enlace que termine en <span class="kbd">?invite=XXXX</span>.
+            <div class="hr"></div>
+            <input class="input" id="inviteInput" placeholder="Pega aquí tu código de invitación" />
+            <div style="height:10px"></div>
+            <div class="row">
+              <button class="btn primary" id="btnUnlock">Desbloquear</button>
+              <button class="btn" id="btnClearInvite">Borrar</button>
             </div>
-            <div class="stat">
-              <div class="k">Día actual</div>
-              <div class="v" id="statDay">1</div>
-            </div>
-            <div class="stat">
-              <div class="k">% Semana</div>
-              <div class="v" id="statWeekPct">0%</div>
-              <div class="bar"><div id="barWeek"></div></div>
-            </div>
-            <div class="stat">
-              <div class="k">% General</div>
-              <div class="v" id="statAllPct">0%</div>
-              <div class="bar"><div id="barAll"></div></div>
-            </div>
-            <div class="stat">
-              <div class="k">Puntos</div>
-              <div class="v" id="statPoints">0</div>
-              <div class="small muted">+10 por tarea completada</div>
-            </div>
-            <div class="stat">
-              <div class="k">“Cash”</div>
-              <div class="v" id="statCash">0</div>
-              <div class="small muted">+1 por tarea completada</div>
-            </div>
+            <div style="height:8px"></div>
+            <div class="smallprint">Esto es para controlar la difusión. El progreso es personal (se guarda en tu navegador / iPhone).</div>
           </div>
 
-          <div class="hr"></div>
+          <div id="progressBox" style="display:none">
+            <div class="note ok" id="deviceNote">
+              ✅ <b>Acceso activo.</b> Tu progreso se guarda en este dispositivo.
+            </div>
 
-          <div class="row">
-            <button class="btn" onclick="goDay(-1)">◀ Día anterior</button>
-            <button class="btn primary" onclick="goDay(1)">Día siguiente ▶</button>
-          </div>
+            <div class="hr"></div>
 
-          <div class="hr"></div>
+            <div class="row" style="justify-content:space-between; gap:10px">
+              <div style="min-width:140px; flex:1">
+                <div class="muted" style="font-size:12px">Día actual</div>
+                <input class="input" id="dayInput" type="number" min="1" max="90" />
+              </div>
+              <div style="min-width:140px; flex:1">
+                <div class="muted" style="font-size:12px">Semana</div>
+                <div class="input" id="weekLabel" style="display:flex; align-items:center"></div>
+              </div>
+            </div>
 
-          <div class="row">
-            <button class="btn" onclick="exportProgress()">Exportar progreso</button>
-            <button class="btn" onclick="importProgress()">Importar</button>
-            <button class="btn bad" onclick="resetProgress()">Reiniciar</button>
-          </div>
+            <div style="height:10px"></div>
+            <div class="row">
+              <button class="btn small" id="btnPrev">◀ Día</button>
+              <button class="btn small" id="btnToday">Ir al día</button>
+              <button class="btn small" id="btnNext">Día ▶</button>
+              <span class="pill" id="savePill">Guardado</span>
+            </div>
 
-          <div class="small muted" style="margin-top:8px">
-            * En modo local, cada persona guarda su progreso en su propio dispositivo.
+            <div class="hr"></div>
+            <div class="statgrid">
+              <div class="stat">
+                <div class="k">Completadas</div>
+                <div class="v" id="doneCount">0</div>
+              </div>
+              <div class="stat">
+                <div class="k">Porcentaje</div>
+                <div class="v" id="donePct">0%</div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="row">
+              <button class="btn bad small" id="btnResetDay">Reiniciar día</button>
+              <button class="btn bad small" id="btnResetAll">Reiniciar TODO</button>
+            </div>
+
+            <div style="height:8px"></div>
+            <div class="smallprint">
+              Consejo: en iPhone, si no se guarda, abre en Safari (no dentro de WhatsApp) y permite almacenamiento.
+            </div>
           </div>
         </div>
       </div>
 
       <!-- RIGHT -->
       <div class="panel">
-        <div class="hd">
+        <div class="ph">
           <div>
-            <div class="rightTitle" id="rightTitle">Lección · Día 1</div>
-            <div class="sub" id="rightSub">Semana 1 · Presentación + Sonido TH</div>
+            <div class="h" id="rightTitle">Plan</div>
+            <div class="mini" id="rightMini">Cargando…</div>
           </div>
-          <div class="tag">v4 · local</div>
+          <div class="row">
+            <button class="btn small" id="btnSpeak" title="Leer en voz alta el objetivo del día">🔊 Voz</button>
+            <button class="btn small" id="btnHardRefresh" title="Recargar sin caché">↻ Recargar</button>
+          </div>
         </div>
-
-        <div class="bd" id="rightBody">
-          <!-- filled by JS -->
-        </div>
+        <div class="pb" id="rightBody"></div>
       </div>
     </div>
   </div>
@@ -343,579 +249,854 @@
   <div class="toast" id="toast"></div>
 
 <script>
-/*** ========= CONFIG (solo edita aquí 2 cosas) ========= ***/
-const OWNER_NAME = "Ernesto"; // <- cambia si quieres
+/* ============================================================
+   CONFIG FÁCIL (solo cambia aquí si lo deseas)
+   ============================================================ */
+const APP_NAME = "plan90_local_beta";
+const PLAN_DAYS = 90;
+
+// IMPORTANTE:
+// Para GitHub Pages, tu sitio NO es la raíz del usuario, sino del repositorio.
+// Ejemplo: https://ernesto2026pro.github.io/plan90D-ingles/
+// Puedes dejarlo vacío y el sistema lo detecta (recomendado).
+const PUBLIC_BASE_URL = ""; // ejemplo: "https://ernesto2026pro.github.io/plan90D-ingles/"
+
+// PIN ADMIN (para que solo TÚ puedas crear invitaciones).
+// Cámbialo por uno tuyo (4-8 dígitos). No lo compartas.
+const ADMIN_PIN = "2026";
+
+// Texto que va en el mensaje de invitación:
 const INVITE_MESSAGE_DEFAULT =
-`Hola 👋 Soy Ernesto 🇺🇸🇻🇪
+`Hola 👋 Soy Ernesto 🇻🇪🇺🇸
 Te invito a mi página “Plan 90 Días de Inglés (A1→A2)”.
 ✅ Es gratis y puedes avanzar a tu ritmo.
+
+Dame tu opinión, es importante para la mejora continua.
+Si gustas, puedes colaborar con una donación (opcional).
 
 Abre el enlace aquí:
 {LINK}
 
 (Sitio oficial)`;
 
-/*** ========= APP STATE ========= ***/
-const LS_KEY = "plan90_pro_local_v4";
-const PLAN_DAYS = 90;
-const TASK_POINTS = 10;
-const TASK_CASH = 1;
+// Donaciones (opcional). Si no tienes enlaces, déjalos vacíos.
+const DONATE_LINKS = [
+  // { label:"Patreon $10", url:"https://patreon.com/tu_usuario?..." },
+  // { label:"PayPal", url:"https://paypal.me/tu_usuario" }
+];
 
-const FALLBACK_BASE_URL = "https://proyecto-ernesto-ingles-2026.netlify.app"; // si estás offline (file://)
-function getBaseUrl(){
-  return (location.origin && location.origin.startsWith("http")) ? location.origin : FALLBACK_BASE_URL;
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+const LS_KEY = (k)=> `${APP_NAME}:${k}`;
+const $ = (id)=> document.getElementById(id);
+
+function toast(msg, ms=2600){
+  const t = $("toast");
+  t.textContent = msg;
+  t.style.display = "block";
+  clearTimeout(toast._tm);
+  toast._tm = setTimeout(()=> t.style.display="none", ms);
 }
 
-const state = {
-  day: 1,
-  name: OWNER_NAME,
-  voiceMode: "auto", // auto | female | male
-  rateMode: "normal", // lenta | normal | fluido
-  progress: {}, // key: "d{day}:{taskId}" -> true
-  points: 0,
-  cash: 0,
-  inviteCode: "",
+function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+
+function baseUrl(){
+  if(PUBLIC_BASE_URL && PUBLIC_BASE_URL.trim()){
+    let u = PUBLIC_BASE_URL.trim();
+    if(!u.endsWith("/")) u += "/";
+    return u;
+  }
+  // Auto-detect (incluye la ruta del repo en GitHub Pages)
+  let path = window.location.pathname || "/";
+  // si termina en index.html, quitar el archivo
+  path = path.replace(/\/[^\/]*\.(html?)$/i, "/");
+  if(!path.endsWith("/")) path += "/";
+  return window.location.origin + path;
+}
+
+function openExternal(url){
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+// Web Speech API (voz). Requiere interacción del usuario.
+function speak(text){
+  try{
+    if(!("speechSynthesis" in window)) { toast("Tu navegador no soporta voz."); return; }
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = 0.95;
+    u.pitch = 1.0;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }catch(e){
+    toast("No se pudo reproducir la voz.");
+  }
+}
+
+// hash simple para validar invitaciones (evita que otros inventen códigos fácilmente)
+function simpleHash(str){
+  let h = 2166136261;
+  for(let i=0;i<str.length;i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h>>>0).toString(36).toUpperCase();
+}
+
+function generateInviteCode(){
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sin 0/O/1/I
+  let payload = "";
+  for(let i=0;i<6;i++) payload += alphabet[Math.floor(Math.random()*alphabet.length)];
+  const sig = simpleHash(ADMIN_PIN + "|" + payload).slice(0,3);
+  return payload + sig; // 9 chars
+}
+
+function validateInviteCode(code){
+  const c = (code||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(c.length !== 9) return false;
+  const payload = c.slice(0,6);
+  const sig = c.slice(6,9);
+  const expected = simpleHash(ADMIN_PIN + "|" + payload).slice(0,3);
+  return sig === expected;
+}
+
+/* ============================================================
+   CURRÍCULO 90 DÍAS (generado)
+   ============================================================ */
+const WEEKS = [
+  { theme:"Saludos y presentaciones", focus:["Hola/Adiós","Nombre y país","Cortesía","Números 1–20","Deletreo","Días de la semana","Repaso"] },
+  { theme:"Familia y descripciones", focus:["Familia","Adjetivos","Colores","Edad","Objetos","Preguntas básicas","Repaso"] },
+  { theme:"Rutinas y tiempo", focus:["Rutina diaria","Horas","Frecuencia","Hobbies","Clima","Planes simples","Repaso"] },
+  { theme:"Comida y compras", focus:["Comidas","Restaurante","Supermercado","Precios","Preferencias","Cocina","Repaso"] },
+  { theme:"Ciudad y direcciones", focus:["Lugares","Direcciones","Transporte","Mapas","Emergencias","Servicios","Repaso"] },
+  { theme:"Trabajo y habilidades", focus:["Profesiones","Tareas","Herramientas","Correo/llamadas","Reuniones","Permisos","Repaso"] },
+  { theme:"Salud y bienestar", focus:["Síntomas","Farmacia","Citas","Ejercicio","Dieta","Consejos","Repaso"] },
+  { theme:"Pasado simple (A2)", focus:["Ayer","Viajes","Historias","Irregulars 1","Irregulars 2","Preguntas pasado","Repaso"] },
+  { theme:"Futuro y planes", focus:["Going to","Fechas","Objetivos","Invitaciones","Reservas","Promesas","Repaso"] },
+  { theme:"Opiniones y comparaciones", focus:["Me gusta","Comparativos","Recomendaciones","Problemas","Soluciones","Acuerdos","Repaso"] },
+  { theme:"Situaciones reales", focus:["Hotel","Restaurante avanzado","Trabajo avanzado","Compras online","Soporte técnico","Imprevistos","Repaso"] },
+  { theme:"Consolidación y proyecto", focus:["Proyecto 1","Proyecto 2","Presentación","Entrevista","Pitch","Examen","Repaso final"] },
+  { theme:"Cierre", focus:["Repaso A1","Repaso A2","Plan siguiente","Celebración","Feedback","Donación opcional","Fin"] }
+];
+
+const VOCAB_SETS = {
+  greetings:["hello","hi","good morning","good afternoon","good evening","goodbye","see you","please","thank you","you're welcome"],
+  family:["mother","father","sister","brother","wife","husband","son","daughter","family","friends"],
+  routine:["wake up","go to work","have breakfast","study","exercise","cook","watch TV","go to bed","every day","sometimes"],
+  food:["water","coffee","tea","bread","rice","chicken","fish","salad","fruit","vegetables"],
+  city:["street","avenue","corner","left","right","straight","near","far","bus","train"],
+  work:["job","team","meeting","deadline","tools","report","email","call","schedule","project"],
+  health:["headache","fever","cough","pain","medicine","pharmacy","doctor","appointment","healthy","tired"],
+  past:["yesterday","last week","ago","went","saw","did","had","came","took","made"],
+  future:["tomorrow","next week","plan","going to","will","maybe","soon","later","appointment","reservation"],
+  opinion:["I think","I prefer","better","worse","more","less","because","in my opinion","I agree","I disagree"]
 };
 
-function toast(msg){
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.style.display = "block";
-  clearTimeout(el._t);
-  el._t = setTimeout(()=> el.style.display="none", 2600);
+function pick(arr, n){
+  const a = arr.slice();
+  const out = [];
+  while(out.length<n && a.length){
+    out.push(a.splice(Math.floor(Math.random()*a.length),1)[0]);
+  }
+  return out;
 }
-
-/*** ========= CURRÍCULO (auto-generado, 90 días) ========= ***/
-const weeks = [
-  { theme:"Presentación + TH", sound:"TH (think/this)", grammar:"Pronombres + verbo 'to be' (I am / You are...)", vocab:["name","from","country","city","friend","nice","meet","today","English","Spanish","here","there"] },
-  { theme:"Números + horas", sound:"V/W (very / water)", grammar:"There is / There are", vocab:["one","two","three","four","five","six","seven","eight","nine","ten","time","clock"] },
-  { theme:"Rutina diaria", sound:"ED (worked)", grammar:"Presente simple (I work / I study)", vocab:["wake","work","study","eat","drink","drive","walk","sleep","morning","afternoon","night","always"] },
-  { theme:"Compras", sound:"SH/CH", grammar:"Can / Can't (habilidad)", vocab:["store","price","cheap","expensive","cash","card","receipt","bag","need","want","buy","sell"] },
-  { theme:"Direcciones", sound:"R/L", grammar:"Preposiciones (in/on/at)", vocab:["left","right","straight","near","far","street","road","corner","map","between","next","behind"] },
-  { theme:"Comida", sound:"B/P", grammar:"Contables e incontables (some/any)", vocab:["bread","milk","water","rice","chicken","fish","fruit","vegetables","salt","sugar","hungry","thirsty"] },
-  { theme:"Salud", sound:"S/Z", grammar:"Should (consejo)", vocab:["doctor","pain","headache","medicine","rest","sleep","exercise","healthy","sick","better","worse","strong"] },
-  { theme:"Trabajo", sound:"T/D", grammar:"Pasado simple (did / went)", vocab:["job","boss","team","schedule","tools","safety","quality","report","meeting","project","problem","solution"] },
-  { theme:"Viajes", sound:"Y/J", grammar:"Futuro con going to", vocab:["trip","airport","ticket","hotel","passport","luggage","plane","train","reservation","visit","tour","travel"] },
-  { theme:"Familia", sound:"N/NG", grammar:"Have/Has got", vocab:["family","mother","father","brother","sister","son","daughter","married","single","kids","home","love"] },
-  { theme:"Clima", sound:"K/G", grammar:"Comparativos (bigger, colder)", vocab:["weather","cold","hot","rain","snow","wind","cloudy","sunny","storm","forecast","coat","boots"] },
-  { theme:"Conversación real", sound:"F/H", grammar:"Preguntas WH (what/where/when/why/how)", vocab:["what","where","when","why","how","who","which","because","maybe","sure","again","repeat"] },
-  { theme:"Repaso + Fluidez", sound:"Mixed", grammar:"Repaso general A1→A2", vocab:["review","practice","improve","focus","repeat","shadowing","progress","goal","plan","daily","simple","solid"] },
-];
-
-const tasksTemplate = [
-  { id:"pron", title:"Pronunciación (10 repeticiones)", desc:"Practica el sonido foco del día. Haz 3 rondas: 1) lento 2) normal 3) shadowing." },
-  { id:"vocab", title:"Vocabulario (12 palabras)", desc:"Aprende 12 palabras del tema y úsalas en 4 frases." },
-  { id:"gram", title:"Gramática (10 min)", desc:"Regla del tema + 6 ejemplos (hablados y escritos)." },
-  { id:"speak", title:"Speaking (5 min)", desc:"Responde 10 preguntas cortas en voz alta (sin leer al final)." },
-  { id:"read", title:"Listening/Reading", desc:"Lee un texto corto y repite 6 frases como eco (shadowing)." },
-];
 
 function dayInfo(day){
-  const w = Math.floor((day-1)/7)+1;
-  const week = weeks[Math.min(w-1, weeks.length-1)];
-  const dayInWeek = ((day-1)%7)+1;
+  const week = Math.floor((day-1)/7) + 1;
+  const within = (day-1)%7; // 0..6
+  const w = WEEKS[clamp(week,1,WEEKS.length)-1];
+  const focus = w.focus[within] || "Práctica";
+  const theme = w.theme;
 
-  // mini-variación por día
-  const focus = (dayInWeek<=2) ? "básico" : (dayInWeek<=5 ? "práctica" : "repaso");
-  const phraseSet = makePhrases(week, dayInWeek);
+  // vocab base por tema
+  let base = VOCAB_SETS.greetings;
+  if(theme.includes("Familia")) base = VOCAB_SETS.family;
+  else if(theme.includes("Rutinas")) base = VOCAB_SETS.routine;
+  else if(theme.includes("Comida")) base = VOCAB_SETS.food;
+  else if(theme.includes("Ciudad")) base = VOCAB_SETS.city;
+  else if(theme.includes("Trabajo")) base = VOCAB_SETS.work;
+  else if(theme.includes("Salud")) base = VOCAB_SETS.health;
+  else if(theme.includes("Pasado")) base = VOCAB_SETS.past;
+  else if(theme.includes("Futuro")) base = VOCAB_SETS.future;
+  else if(theme.includes("Opiniones")) base = VOCAB_SETS.opinion;
 
-  return {
-    day, week: w,
-    title: `Día ${day} · Semana ${w}: ${week.theme}`,
-    sub: `Pronunciación: ${week.sound} · Gramática: ${week.grammar}`,
-    weekTheme: week.theme,
-    sound: week.sound,
-    grammar: week.grammar,
-    vocab: week.vocab,
-    focus,
-    phrases: phraseSet
-  };
+  const vocab = pick(base, 8);
+  const phrases = makePhrases(theme, focus);
+
+  return {day, week, theme, focus, vocab, phrases};
 }
 
-function makePhrases(week, dayInWeek){
-  // 6 frases por día (EN + ES)
-  const base = [
-    ["Hi, my name is Ernesto.", "Hola, mi nombre es Ernesto."],
-    ["I am from Venezuela and I live in the USA.", "Soy de Venezuela y vivo en EE.UU."],
-    ["Nice to meet you.", "Mucho gusto."],
-    ["I am learning English every day.", "Estoy aprendiendo inglés todos los días."],
-    ["Can you repeat, please?", "¿Puedes repetir, por favor?"],
-    ["Thank you! See you tomorrow.", "¡Gracias! Te veo mañana."],
+function makePhrases(theme, focus){
+  // 5 frases EN + traducción ES
+  const p = [];
+  function add(en, es){ p.push({en, es}); }
+  // Greetings
+  if(theme.includes("Saludos")){
+    add("Hi! My name is Ernesto.", "¡Hola! Mi nombre es Ernesto.");
+    add("Nice to meet you.", "Mucho gusto.");
+    add("Where are you from?", "¿De dónde eres?");
+    add("I’m from Venezuela.", "Soy de Venezuela.");
+    add("See you later!", "¡Nos vemos luego!");
+    return p;
+  }
+  if(theme.includes("Familia")){
+    add("This is my family.", "Esta es mi familia.");
+    add("My sister is very kind.", "Mi hermana es muy amable.");
+    add("How old are you?", "¿Cuántos años tienes?");
+    add("I’m sixty-six years old.", "Tengo sesenta y seis años.");
+    add("He is tall and friendly.", "Él es alto y amigable.");
+    return p;
+  }
+  if(theme.includes("Rutinas")){
+    add("I wake up at 6:30 a.m.", "Me despierto a las 6:30 a. m.");
+    add("I study English every day.", "Estudio inglés todos los días.");
+    add("I usually have coffee.", "Normalmente tomo café.");
+    add("What time is it?", "¿Qué hora es?");
+    add("Let’s practice for 10 minutes.", "Practiquemos 10 minutos.");
+    return p;
+  }
+  if(theme.includes("Comida")){
+    add("I’d like a chicken salad, please.", "Quisiera una ensalada de pollo, por favor.");
+    add("How much is this?", "¿Cuánto cuesta esto?");
+    add("Can I pay by card?", "¿Puedo pagar con tarjeta?");
+    add("I’m allergic to peanuts.", "Soy alérgico al maní.");
+    add("That’s delicious!", "¡Eso está delicioso!");
+    return p;
+  }
+  if(theme.includes("Ciudad")){
+    add("Excuse me, where is the bus stop?", "Disculpe, ¿dónde está la parada de autobús?");
+    add("Go straight and turn left.", "Siga recto y gire a la izquierda.");
+    add("It’s next to the bank.", "Está al lado del banco.");
+    add("How far is it?", "¿Qué tan lejos está?");
+    add("I need help, please.", "Necesito ayuda, por favor.");
+    return p;
+  }
+  if(theme.includes("Trabajo")){
+    add("I work as a tax preparer.", "Trabajo como preparador de impuestos.");
+    add("Let’s schedule a meeting.", "Agendemos una reunión.");
+    add("Please send me an email.", "Por favor envíame un correo.");
+    add("I’m working on a project.", "Estoy trabajando en un proyecto.");
+    add("We finished on time.", "Terminamos a tiempo.");
+    return p;
+  }
+  if(theme.includes("Salud")){
+    add("I have a headache.", "Me duele la cabeza.");
+    add("I need an appointment.", "Necesito una cita.");
+    add("Take this medicine once a day.", "Tome este medicamento una vez al día.");
+    add("Do you have any allergies?", "¿Tiene alergias?");
+    add("I feel better today.", "Me siento mejor hoy.");
+    return p;
+  }
+  if(theme.includes("Pasado")){
+    add("Yesterday I worked all day.", "Ayer trabajé todo el día.");
+    add("I went to the store.", "Fui a la tienda.");
+    add("I saw my friend.", "Vi a mi amigo.");
+    add("Did you study yesterday?", "¿Estudiaste ayer?");
+    add("Yes, I did.", "Sí, lo hice.");
+    return p;
+  }
+  if(theme.includes("Futuro")){
+    add("I’m going to study tonight.", "Voy a estudiar esta noche.");
+    add("We’re going to travel next month.", "Vamos a viajar el próximo mes.");
+    add("I will call you later.", "Te llamaré más tarde.");
+    add("Do you want to join us?", "¿Quieres unirte?");
+    add("Let’s meet tomorrow.", "Nos vemos mañana.");
+    return p;
+  }
+  if(theme.includes("Opiniones")){
+    add("I think this is better.", "Creo que esto es mejor.");
+    add("In my opinion, it’s important.", "En mi opinión, es importante.");
+    add("I prefer coffee to tea.", "Prefiero café a té.");
+    add("I agree with you.", "Estoy de acuerdo contigo.");
+    add("I disagree, but it’s okay.", "No estoy de acuerdo, pero está bien.");
+    return p;
+  }
+  // default
+  add("Today’s focus is: " + focus + ".", "El enfoque de hoy es: " + focus + ".");
+  add("Repeat after me.", "Repite después de mí.");
+  add("Let’s do a short practice.", "Hagamos una práctica corta.");
+  add("Great job!", "¡Buen trabajo!");
+  add("See you tomorrow!", "¡Nos vemos mañana!");
+  return p;
+}
+
+function tasksForDay(d){
+  // 6 tareas simples
+  return [
+    {id:"listen", label:"Escucha / lee las 5 frases y repite 2 veces."},
+    {id:"vocab", label:"Aprende 8 palabras (mira vocabulario)."},
+    {id:"speak", label:"Usa el botón 🔊 y repite con voz clara."},
+    {id:"write", label:"Escribe 3 oraciones con el tema de hoy."},
+    {id:"quiz", label:"Haz el mini-quiz (auto-evaluación)."},
+    {id:"review", label:"Repasa el día anterior 3 minutos."},
   ];
-
-  // Ajuste por tema (cambia algunas frases para que se sienta distinto)
-  const t = week.theme.toLowerCase();
-  if(t.includes("compras")){
-    return [
-      ["How much is this?", "¿Cuánto cuesta esto?"],
-      ["I want to buy this, please.", "Quiero comprar esto, por favor."],
-      ["Do you accept card?", "¿Aceptan tarjeta?"],
-      ["That is too expensive.", "Eso está muy caro."],
-      ["I need a receipt, please.", "Necesito un recibo, por favor."],
-      ["Thank you. Have a nice day!", "Gracias. ¡Que tengas buen día!"],
-    ];
-  }
-  if(t.includes("direcciones")){
-    return [
-      ["Excuse me, where is the street?", "Disculpa, ¿dónde está la calle?"],
-      ["Go straight and turn left.", "Sigue derecho y gira a la izquierda."],
-      ["It is next to the bank.", "Está al lado del banco."],
-      ["Is it far from here?", "¿Está lejos de aquí?"],
-      ["I am using the map.", "Estoy usando el mapa."],
-      ["Thank you for your help!", "¡Gracias por tu ayuda!"],
-    ];
-  }
-  if(t.includes("salud")){
-    return [
-      ["I have a headache.", "Tengo dolor de cabeza."],
-      ["I need some rest.", "Necesito descansar."],
-      ["You should drink water.", "Deberías tomar agua."],
-      ["I feel better today.", "Me siento mejor hoy."],
-      ["This medicine helps me.", "Esta medicina me ayuda."],
-      ["Thank you, doctor.", "Gracias, doctor."],
-    ];
-  }
-  if(t.includes("viajes")){
-    return [
-      ["I am going to travel next week.", "Voy a viajar la próxima semana."],
-      ["I have a ticket and a passport.", "Tengo un boleto y un pasaporte."],
-      ["Where is the airport?", "¿Dónde está el aeropuerto?"],
-      ["I need a hotel reservation.", "Necesito una reserva de hotel."],
-      ["My luggage is heavy.", "Mi equipaje está pesado."],
-      ["I am excited for the trip!", "¡Estoy emocionado por el viaje!"],
-    ];
-  }
-  // ligera rotación
-  if(dayInWeek>=6){
-    return base.slice().reverse();
-  }
-  return base;
 }
 
-/*** ========= STORAGE ========= ***/
-function save(){
-  localStorage.setItem(LS_KEY, JSON.stringify(state));
-}
-function load(){
-  const raw = localStorage.getItem(LS_KEY);
-  if(!raw) return;
+/* ============================================================
+   ESTADO Y ALMACENAMIENTO
+   ============================================================ */
+const state = {
+  unlocked:false,
+  day:1,
+  progress:{}, // progress[day] = { taskId:true, notes:"" }
+  adminSession:false
+};
+
+function loadState(){
   try{
-    const o = JSON.parse(raw);
-    if(o && typeof o === "object"){
-      Object.assign(state, o);
-      state.day = clamp(parseInt(state.day||1,10),1,PLAN_DAYS);
-      state.progress = state.progress || {};
-      state.points = state.points || 0;
-      state.cash = state.cash || 0;
-      state.voiceMode = state.voiceMode || "auto";
-      state.rateMode = state.rateMode || "normal";
-      state.inviteCode = state.inviteCode || "";
-      state.name = state.name || OWNER_NAME;
+    const raw = localStorage.getItem(LS_KEY("state"));
+    if(raw){
+      const o = JSON.parse(raw);
+      state.day = clamp(parseInt(o.day||1,10),1,PLAN_DAYS);
+      state.progress = o.progress || {};
+      state.unlocked = !!o.unlocked;
+      state.adminSession = !!o.adminSession;
     }
   }catch(e){}
 }
 
-function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
+function saveState(){
+  localStorage.setItem(LS_KEY("state"), JSON.stringify({
+    day: state.day,
+    progress: state.progress,
+    unlocked: state.unlocked,
+    adminSession: state.adminSession
+  }));
+  $("savePill").textContent = "Guardado";
+  clearTimeout(saveState._t);
+  saveState._t = setTimeout(()=> $("savePill").textContent="OK", 900);
+}
 
-/*** ========= UI ========= ***/
+function resetDay(){
+  delete state.progress[String(state.day)];
+  saveState();
+  render();
+  toast("Día reiniciado.");
+}
+
+function resetAll(){
+  if(!confirm("¿Seguro? Se borrará TODO tu progreso en este dispositivo.")) return;
+  localStorage.removeItem(LS_KEY("state"));
+  state.day = 1;
+  state.progress = {};
+  state.unlocked = false;
+  state.adminSession = false;
+  render();
+  toast("Todo reiniciado.");
+}
+
+/* ============================================================
+   DESBLOQUEO POR INVITACIÓN
+   ============================================================ */
+function unlockWithCode(code){
+  if(!validateInviteCode(code)){
+    toast("Código inválido. Revisa y vuelve a intentar.");
+    return false;
+  }
+  state.unlocked = true;
+  saveState();
+  setUnlockUI(true);
+  toast("¡Listo! Acceso activado.");
+  return true;
+}
+
+function setUnlockUI(unlocked){
+  $("unlockBox").style.display = unlocked ? "none" : "block";
+  $("progressBox").style.display = unlocked ? "block" : "none";
+  $("unlockPill").textContent = unlocked ? "🔓 Activo" : "🔒 Bloqueado";
+}
+
+/* ============================================================
+   UI: Tabs
+   ============================================================ */
+let activeTab = "plan";
 function setTab(tab){
-  document.getElementById("tabPlan").classList.toggle("active", tab==="plan");
-  document.getElementById("tabInv").classList.toggle("active", tab==="inv");
-  if(tab==="plan") renderPlan();
-  else renderInvitations();
+  activeTab = tab;
+  ["plan","invite","help"].forEach(t=>{
+    const el = t==="plan"?$("tabPlan") : t==="invite"?$("tabInvite") : $("tabHelp");
+    el.classList.toggle("active", tab===t);
+  });
+  renderRight();
 }
 
-function goDay(delta){
-  state.day = clamp(state.day + delta, 1, PLAN_DAYS);
-  save();
-  renderPlan();
-}
+function weekForDay(day){ return Math.floor((day-1)/7) + 1; }
 
-function taskKey(day, taskId){ return `d${day}:${taskId}`; }
-
-function toggleTask(day, taskId, checked){
-  const k = taskKey(day, taskId);
-  const prev = !!state.progress[k];
-  state.progress[k] = !!checked;
-
-  if(!prev && checked){
-    state.points += TASK_POINTS;
-    state.cash += TASK_CASH;
-  }
-  if(prev && !checked){
-    state.points = Math.max(0, state.points - TASK_POINTS);
-    state.cash = Math.max(0, state.cash - TASK_CASH);
-  }
-  save();
-  updateStats();
-}
-
-function computeStats(){
-  const totalTasks = PLAN_DAYS * tasksTemplate.length;
-  let done = 0;
-
-  const info = dayInfo(state.day);
-  const weekStart = (info.week-1)*7 + 1;
-  const weekEnd = Math.min(PLAN_DAYS, weekStart + 6);
-  let weekTotal = (weekEnd - weekStart + 1) * tasksTemplate.length;
-  let weekDone = 0;
-
-  for(const k in state.progress){
-    if(state.progress[k]) done++;
-    if(state.progress[k]){
-      const m = k.match(/^d(\d+):/);
-      if(m){
-        const d = parseInt(m[1],10);
-        if(d>=weekStart && d<=weekEnd) weekDone++;
-      }
+function computeCompletion(){
+  let done=0, total=0;
+  for(let d=1; d<=PLAN_DAYS; d++){
+    const t = tasksForDay(d);
+    total += t.length;
+    const p = state.progress[String(d)] || {};
+    for(const task of t){
+      if(p[task.id]) done++;
     }
   }
-
-  const allPct = totalTasks ? Math.round((done/totalTasks)*100) : 0;
-  const weekPct = weekTotal ? Math.round((weekDone/weekTotal)*100) : 0;
-
-  return {totalTasks, done, allPct, weekPct, weekStart, weekEnd};
+  const pct = total ? Math.round((done/total)*100) : 0;
+  return {done,total,pct};
 }
 
-function updateStats(){
-  const info = dayInfo(state.day);
-  const s = computeStats();
+/* ============================================================
+   RENDER
+   ============================================================ */
+function renderLeft(){
+  $("modeText").textContent = "Local";
+  $("rightMini").textContent = state.unlocked ? "Listo" : "Bloqueado";
+  setUnlockUI(state.unlocked);
 
-  document.getElementById("statWeek").textContent = info.week;
-  document.getElementById("statDay").textContent = info.day;
-  document.getElementById("statWeekPct").textContent = s.weekPct + "%";
-  document.getElementById("statAllPct").textContent = s.allPct + "%";
-  document.getElementById("barWeek").style.width = s.weekPct + "%";
-  document.getElementById("barAll").style.width = s.allPct + "%";
-  document.getElementById("statPoints").textContent = state.points;
-  document.getElementById("statCash").textContent = state.cash;
+  // Day input & stats
+  $("dayInput").value = state.day;
+  $("dayInput").disabled = !state.unlocked;
 
-  document.getElementById("rightTitle").textContent = `Lección · Día ${info.day}`;
-  document.getElementById("rightSub").textContent = `Semana ${info.week} · ${info.weekTheme}`;
+  const wk = weekForDay(state.day);
+  $("weekLabel").textContent = "Semana " + wk;
+  $("btnPrev").disabled = !state.unlocked;
+  $("btnNext").disabled = !state.unlocked;
+  $("btnToday").disabled = !state.unlocked;
+  $("btnResetDay").disabled = !state.unlocked;
+  $("btnResetAll").disabled = !state.unlocked;
+
+  const c = computeCompletion();
+  $("doneCount").textContent = `${c.done}/${c.total}`;
+  $("donePct").textContent = `${c.pct}%`;
 }
 
-function renderPlan(){
-  updateStats();
-
+function renderPlanTab(){
   const info = dayInfo(state.day);
-  const body = document.getElementById("rightBody");
-  body.innerHTML = "";
+  const tasks = tasksForDay(state.day);
+  const p = state.progress[String(state.day)] || {};
+  const lines = [];
 
-  // Voice controls
-  const voiceWrap = document.createElement("div");
-  voiceWrap.className = "seg";
-  voiceWrap.innerHTML = `
-    <div class="label">Voz y velocidad</div>
-    <div class="row" style="width:100%">
-      <span class="badge"><b>Modo de voz:</b> <span class="muted">${state.voiceMode}</span></span>
-      <span class="badge"><b>Velocidad:</b> <span class="muted">${state.rateMode}</span></span>
-    </div>
-    <div class="row">
-      <button class="opt ${state.voiceMode==='female'?'active':''}" onclick="setVoiceMode('female')">Femenina</button>
-      <button class="opt ${state.voiceMode==='male'?'active':''}" onclick="setVoiceMode('male')">Masculina</button>
-      <button class="opt ${state.voiceMode==='auto'?'active':''}" onclick="setVoiceMode('auto')">Auto</button>
-    </div>
-    <div class="row">
-      <button class="opt ${state.rateMode==='lenta'?'active':''}" onclick="setRate('lenta')">Lenta</button>
-      <button class="opt ${state.rateMode==='normal'?'active':''}" onclick="setRate('normal')">Normal</button>
-      <button class="opt ${state.rateMode==='fluido'?'active':''}" onclick="setRate('fluido')">Fluido</button>
-    </div>
-  `;
-  body.appendChild(voiceWrap);
+  lines.push(`<div class="lesson">
+    <h2>Día ${info.day} · ${info.theme}</h2>
+    <div class="meta">Semana ${info.week} · Enfoque: <b>${info.focus}</b></div>
+  </div>`);
 
-  // Mini lesson
-  const mini = document.createElement("div");
-  mini.className = "card";
-  mini.innerHTML = `
-    <div class="row" style="justify-content:space-between">
-      <div class="rightTitle">Mini-lección</div>
-      <span class="badge"><b>Duración:</b> <span class="muted">60 min</span></span>
-    </div>
-    <div class="row" style="margin-top:10px; gap:8px; flex-wrap:wrap">
-      <span class="badge"><b>Pronunciación:</b> <span class="muted">${info.sound}</span></span>
-      <span class="badge"><b>Tema:</b> <span class="muted">${info.weekTheme}</span></span>
-      <span class="badge"><b>Gramática:</b> <span class="muted">${info.grammar}</span></span>
-    </div>
+  // Objective
+  lines.push(`<div class="section">
+    <div class="sh">🎯 Objetivo del día <span class="pill">A1→A2</span></div>
+    <div class="muted">Entender y usar frases cortas relacionadas con <b>${info.theme}</b>, practicando <b>${info.focus}</b>.</div>
+  </div>`);
+
+  // Vocabulary
+  lines.push(`<div class="section">
+    <div class="sh">📚 Vocabulario (8)</div>
+    <ul class="list">${info.vocab.map(w=>`<li><b>${w}</b></li>`).join("")}</ul>
+  </div>`);
+
+  // Phrases with TTS buttons
+  lines.push(`<div class="section">
+    <div class="sh">🗣️ Frases clave (5) <span class="pill">Toca 🔊</span></div>
+    ${info.phrases.map((x,i)=>`
+      <div style="margin:8px 0; padding:10px 10px; border:1px solid var(--line); border-radius:12px; background: rgba(255,255,255,.02)">
+        <div class="row" style="justify-content:space-between">
+          <div style="flex:1">
+            <div><b>${i+1}. ${x.en}</b></div>
+            <div class="muted">${x.es}</div>
+          </div>
+          <button class="btn small" data-say="${encodeURIComponent(x.en)}">🔊</button>
+        </div>
+      </div>
+    `).join("")}
+  </div>`);
+
+  // Tasks checklist
+  lines.push(`<div class="section">
+    <div class="sh">✅ Tareas (marca al completar)</div>
+    ${tasks.map(t=>`
+      <label class="chk">
+        <input type="checkbox" data-task="${t.id}" ${p[t.id] ? "checked":""} />
+        <span>${t.label}</span>
+      </label>
+    `).join("")}
     <div class="hr"></div>
-    <div class="small muted">Vocabulario del tema (12):</div>
-    <div class="mono" style="margin-top:6px; color:var(--text)">${info.vocab.join(" · ")}</div>
-  `;
-  body.appendChild(mini);
+    <div class="muted">Notas del día (opcional)</div>
+    <textarea class="input" id="notes" rows="3" placeholder="Escribe aquí tus notas...">${(p.notes||"")}</textarea>
+  </div>`);
 
-  // Checklist
-  const chk = document.createElement("div");
-  chk.className = "card";
-  chk.innerHTML = `<div class="rightTitle">Checklist <span class="muted" style="font-size:13px;font-weight:700">marca al terminar</span></div>`;
-  tasksTemplate.forEach(t=>{
-    const checked = !!state.progress[taskKey(info.day, t.id)];
-    const item = document.createElement("div");
-    item.className = "checkitem";
-    item.innerHTML = `
-      <input type="checkbox" ${checked?'checked':''} onchange="toggleTask(${info.day}, '${t.id}', this.checked)" />
-      <div>
-        <div class="t">${t.title}</div>
-        <div class="d">${t.desc}</div>
-      </div>
-    `;
-    chk.appendChild(item);
-  });
-  body.appendChild(chk);
-
-  // Phrases + TTS
-  const ph = document.createElement("div");
-  ph.className = "card";
-  ph.innerHTML = `<div class="rightTitle">Frases del día (con voz)</div>
-                  <div class="sub">Haz shadowing: escucha → repite → imita ritmo y entonación.</div>`;
-  info.phrases.forEach(([en,es])=>{
-    const row = document.createElement("div");
-    row.className = "phrase";
-    row.innerHTML = `
-      <div>
-        <div class="en">${en}</div>
-        <div class="es">${es}</div>
-      </div>
-      <button class="btn primary" onclick="speak(${JSON.stringify(en)})">🔊</button>
-    `;
-    ph.appendChild(row);
-  });
-  body.appendChild(ph);
-
-  // Bottom day nav
-  const nav = document.createElement("div");
-  nav.className = "navDay";
-  nav.innerHTML = `
-    <button class="btn" onclick="goDay(-1)">◀ Día anterior</button>
-    <button class="btn primary" onclick="goDay(1)">Día siguiente ▶</button>
-  `;
-  body.appendChild(nav);
-}
-
-function renderInvitations(){
-  updateStats();
-  const body = document.getElementById("rightBody");
-  const base = getBaseUrl();
-
-  // ensure invite code exists for owner
-  if(!state.inviteCode){
-    state.inviteCode = generateInviteCode();
-    save();
-  }
-  const link = `${base}/?invite=${state.inviteCode}`;
-  const msg = INVITE_MESSAGE_DEFAULT.replace("{LINK}", link);
-
-  body.innerHTML = `
-    <div class="card">
-      <div class="rightTitle">Invitaciones</div>
-      <div class="sub">En modo local no hay login. Simplemente comparte el link. Cada persona guarda su progreso en su dispositivo.</div>
-
-      <div class="hr"></div>
-
-      <div class="small muted">Código de invitación:</div>
-      <div class="row" style="margin-top:8px">
-        <span class="badge"><b class="mono">${state.inviteCode}</b></span>
-        <button class="btn" onclick="newInvite()">Generar nuevo</button>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="small muted">Link:</div>
-      <div class="mono" style="margin-top:6px; word-break:break-all">${link}</div>
-
-      <div class="hr"></div>
-
-      <div class="small muted">Tu mensaje (se envía con el link):</div>
-      <textarea class="input" id="inviteMsg" style="min-height:150px; margin-top:8px">${escapeHtml(msg)}</textarea>
-
-      <div class="hr"></div>
-
-      <div class="row">
-        ${shareButton("WhatsApp", iconWhatsApp(), "wa", msg)}
-        ${shareButton("Telegram", iconTelegram(), "tg", msg)}
-        ${shareButton("X", iconX(), "x", msg)}
-        ${shareButton("Email", iconMail(), "mail", msg)}
-        <button class="iconbtn" onclick="copyInvite()">${iconCopy()} Copiar</button>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="note">
-        <b>Tip:</b> abre el enlace una vez en tu teléfono, así verificas que funciona antes de enviarlo a mucha gente.
-      </div>
+  // Mini quiz
+  const q = makeQuiz(info);
+  lines.push(`<div class="section">
+    <div class="sh">🧩 Mini-quiz (auto)</div>
+    <div class="muted">${q.prompt}</div>
+    <div style="height:10px"></div>
+    <div class="row">
+      ${q.options.map(opt=>`<button class="btn small" data-quiz="${encodeURIComponent(opt)}">${opt}</button>`).join("")}
     </div>
-  `;
+    <div style="height:10px"></div>
+    <div class="note" id="quizResult" style="display:none"></div>
+  </div>`);
 
-  // put real text into textarea (escapeHtml used only to avoid breaking HTML)
-  const ta = document.getElementById("inviteMsg");
-  ta.value = msg;
+  $("rightBody").innerHTML = lines.join("\n");
+
+  // Bind events inside plan tab
+  // TTS buttons
+  $("rightBody").querySelectorAll("button[data-say]").forEach(b=>{
+    b.addEventListener("click", ()=> speak(decodeURIComponent(b.dataset.say)));
+  });
+
+  // Task checkboxes
+  $("rightBody").querySelectorAll("input[data-task]").forEach(cb=>{
+    cb.addEventListener("change", ()=>{
+      const dkey = String(state.day);
+      state.progress[dkey] = state.progress[dkey] || {};
+      state.progress[dkey][cb.dataset.task] = cb.checked;
+      saveState();
+      renderLeft();
+    });
+  });
+
+  // Notes
+  const notes = $("notes");
+  notes.addEventListener("input", ()=>{
+    const dkey = String(state.day);
+    state.progress[dkey] = state.progress[dkey] || {};
+    state.progress[dkey].notes = notes.value;
+    saveState();
+  });
+
+  // Quiz
+  $("rightBody").querySelectorAll("button[data-quiz]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const ans = decodeURIComponent(btn.dataset.quiz);
+      const ok = ans === q.answer;
+      const box = $("quizResult");
+      box.style.display = "block";
+      box.className = "note " + (ok ? "ok" : "warn");
+      box.innerHTML = ok
+        ? `✅ Correcto. <b>${q.answer}</b>`
+        : `⚠️ Casi. La respuesta correcta es: <b>${q.answer}</b>`;
+      // marcar tarea quiz automáticamente si acierta
+      if(ok){
+        const dkey = String(state.day);
+        state.progress[dkey] = state.progress[dkey] || {};
+        state.progress[dkey].quiz = true;
+        saveState();
+        renderLeft();
+      }
+    });
+  });
 }
 
-function escapeHtml(s){
-  return (s||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+function makeQuiz(info){
+  // pregunta simple: traducción de una palabra del vocab
+  const word = info.vocab[0] || "hello";
+  const pairs = {
+    "hello":"hola","hi":"hola","good morning":"buenos días","goodbye":"adiós","please":"por favor","thank you":"gracias",
+    "mother":"madre","father":"padre","sister":"hermana","brother":"hermano","family":"familia","friends":"amigos",
+    "wake up":"despertarse","study":"estudiar","every day":"todos los días","sometimes":"a veces",
+    "water":"agua","coffee":"café","bread":"pan","rice":"arroz","chicken":"pollo",
+    "street":"calle","left":"izquierda","right":"derecha","near":"cerca","far":"lejos",
+    "job":"trabajo","meeting":"reunión","email":"correo","project":"proyecto",
+    "headache":"dolor de cabeza","fever":"fiebre","medicine":"medicina","doctor":"doctor",
+    "yesterday":"ayer","went":"fui","saw":"vi","did":"hice","had":"tuve",
+    "tomorrow":"mañana","plan":"plan","going to":"voy a",
+    "I think":"yo creo","better":"mejor","because":"porque"
+  };
+  const answer = pairs[word] || "traducción";
+  const options = pick([answer,"opción 2","opción 3","opción 4"].map(x=>x), 4);
+  // asegurar que answer esté incluido
+  if(!options.includes(answer)) options[Math.floor(Math.random()*options.length)] = answer;
+  // barajar
+  options.sort(()=>Math.random()-0.5);
+
+  return {
+    prompt:`¿Qué significa “${word}” en español?`,
+    options,
+    answer
+  };
 }
 
-/*** ========= INVITE / SHARE ========= ***/
-function generateInviteCode(){
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let out = "";
-  for(let i=0;i<8;i++) out += chars[Math.floor(Math.random()*chars.length)];
-  return out;
-}
-function newInvite(){
-  state.inviteCode = generateInviteCode();
-  save();
-  renderInvitations();
-  toast("Nuevo código creado: " + state.inviteCode);
+function renderInviteTab(){
+  // Admin gate
+  const lines = [];
+  lines.push(`<div class="lesson">
+    <h2>Invitaciones</h2>
+    <div class="meta">Solo el administrador (tú) puede crear invitaciones.</div>
+  </div>`);
+
+  lines.push(`<div class="section">
+    <div class="sh">🔐 Acceso Admin</div>
+    <div class="muted">Ingresa tu PIN para habilitar el panel de invitaciones en este dispositivo.</div>
+    <div style="height:10px"></div>
+    <div class="row">
+      <input class="input" id="adminPin" type="password" inputmode="numeric" placeholder="PIN admin" style="max-width:220px"/>
+      <button class="btn primary" id="btnAdmin">Entrar</button>
+      <button class="btn" id="btnAdminOut">Salir</button>
+    </div>
+    <div style="height:10px"></div>
+    <div class="smallprint">Tip: No compartas tu PIN. Esto es control local (sin servidor) para evitar difusión.</div>
+  </div>`);
+
+  if(state.adminSession){
+    const code = generateInviteCode();
+    const link = baseUrl() + "?invite=" + encodeURIComponent(code);
+    const msg = INVITE_MESSAGE_DEFAULT.replace("{LINK}", link);
+
+    lines.push(`<div class="section">
+      <div class="sh">➕ Crear invitación (1 uso)</div>
+      <div class="muted">Código generado:</div>
+      <div class="linkbox" id="inviteCodeBox">${code}</div>
+      <div style="height:10px"></div>
+      <div class="muted">Enlace:</div>
+      <div class="linkbox" id="inviteLinkBox">${link}</div>
+      <div style="height:10px"></div>
+      <div class="muted">Mensaje (puedes copiar y pegar):</div>
+      <div class="linkbox" id="inviteMsgBox">${escapeHtml(msg)}</div>
+
+      <div class="hr"></div>
+      <div class="sharegrid">
+        <button class="btn good" id="btnCopyLink">📋 Copiar enlace</button>
+        <button class="btn" id="btnCopyMsg">📋 Copiar mensaje</button>
+        <button class="btn" id="btnWA">🟢 WhatsApp</button>
+        <button class="btn" id="btnTG">✈️ Telegram</button>
+        <button class="btn" id="btnX">𝕏 X</button>
+        <button class="btn" id="btnEmail">✉️ Email</button>
+      </div>
+
+      <div style="height:10px"></div>
+      <button class="btn primary" id="btnNewCode">Generar otro código</button>
+    </div>`);
+
+    if(DONATE_LINKS.length){
+      lines.push(`<div class="section">
+        <div class="sh">💛 Donaciones (opcional)</div>
+        <div class="muted">Selecciona un monto o plataforma:</div>
+        <div style="height:10px"></div>
+        <div class="row">
+          ${DONATE_LINKS.map(x=>`<button class="btn" data-donate="${encodeURIComponent(x.url)}">${escapeHtml(x.label)}</button>`).join("")}
+        </div>
+      </div>`);
+    }
+  } else {
+    lines.push(`<div class="note warn">
+      🔒 Panel de invitaciones desactivado. Ingresa tu PIN arriba para crear invitaciones.
+    </div>`);
+  }
+
+  $("rightBody").innerHTML = lines.join("\n");
+
+  // Bind admin actions
+  const pin = $("adminPin");
+  const btnAdmin = $("btnAdmin");
+  const btnOut = $("btnAdminOut");
+  btnAdmin.addEventListener("click", ()=>{
+    if((pin.value||"").trim() === ADMIN_PIN){
+      state.adminSession = true;
+      saveState();
+      toast("Admin activado.");
+      renderRight();
+    }else{
+      toast("PIN incorrecto.");
+    }
+    pin.value = "";
+  });
+  btnOut.addEventListener("click", ()=>{
+    state.adminSession = false;
+    saveState();
+    toast("Admin desactivado.");
+    renderRight();
+  });
+
+  if(!state.adminSession) return;
+
+  // share / copy
+  const link = $("inviteLinkBox").textContent;
+  const msg = $("inviteMsgBox").textContent;
+
+  $("btnCopyLink").addEventListener("click", async ()=>{
+    await copyText(link);
+    toast("Enlace copiado.");
+  });
+  $("btnCopyMsg").addEventListener("click", async ()=>{
+    await copyText(msg);
+    toast("Mensaje copiado.");
+  });
+
+  $("btnWA").addEventListener("click", ()=>{
+    openExternal("https://wa.me/?text=" + encodeURIComponent(msg));
+  });
+  $("btnTG").addEventListener("click", ()=>{
+    openExternal("https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(msg));
+  });
+  $("btnX").addEventListener("click", ()=>{
+    openExternal("https://twitter.com/intent/tweet?text=" + encodeURIComponent(msg));
+  });
+  $("btnEmail").addEventListener("click", ()=>{
+    openExternal("mailto:?subject=" + encodeURIComponent("Invitación · Plan 90 Días Inglés") + "&body=" + encodeURIComponent(msg));
+  });
+
+  const btnNew = $("btnNewCode");
+  btnNew.addEventListener("click", ()=> renderRight());
+
+  // donate buttons
+  $("rightBody").querySelectorAll("button[data-donate]").forEach(b=>{
+    b.addEventListener("click", ()=> openExternal(decodeURIComponent(b.dataset.donate)));
+  });
 }
 
-function copyInvite(){
-  const ta = document.getElementById("inviteMsg");
-  const text = ta.value;
-  navigator.clipboard?.writeText(text).then(()=>{
-    toast("Mensaje copiado ✅");
-  }).catch(()=>{
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(e){
     // fallback
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
     ta.select();
     document.execCommand("copy");
-    toast("Mensaje copiado ✅");
+    ta.remove();
+  }
+}
+
+function escapeHtml(str){
+  return (str||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function renderHelpTab(){
+  const lines = [];
+  lines.push(`<div class="lesson">
+    <h2>Ayuda rápida</h2>
+    <div class="meta">Soluciones a los problemas más comunes.</div>
+  </div>`);
+
+  lines.push(`<div class="section">
+    <div class="sh">📱 iPhone abre y sale 404</div>
+    <div class="muted">
+      Eso pasa cuando el enlace NO incluye el nombre del repositorio.<br/>
+      ✅ El enlace correcto debe verse así:
+      <div class="linkbox">${escapeHtml(baseUrl())}?invite=CODIGO</div>
+      Si te sale algo como <span class="kbd">https://ernesto2026pro.github.io/?invite=...</span> está mal.
+    </div>
+  </div>`);
+
+  lines.push(`<div class="section">
+    <div class="sh">🎧 No suena el audio</div>
+    <div class="muted">
+      El botón 🔊 usa la voz del navegador. En iPhone necesitas tocar el botón (no reproduce solo).<br/>
+      Si estás dentro de WhatsApp, abre el enlace en Safari con “Abrir en navegador”.
+    </div>
+  </div>`);
+
+  lines.push(`<div class="section">
+    <div class="sh">🐢 La laptop se pone lenta</div>
+    <div class="muted">
+      Prueba: <b>Ctrl+Shift+R</b> para recargar sin caché, cierra pestañas, y reinicia Chrome.<br/>
+      Si sigue lento, desactiva extensiones o prueba otro navegador.
+    </div>
+  </div>`);
+
+  lines.push(`<div class="section">
+    <div class="sh">🔄 ¿Puedo agregar contenido sin perder progreso?</div>
+    <div class="muted">
+      Sí. El progreso se guarda por día y por tarea en el dispositivo. Si agregas más contenido, no borra lo ya marcado.
+      (Solo se perdería si cambias el nombre de la app <span class="kbd">APP_NAME</span> o si el usuario borra el historial del navegador).
+    </div>
+  </div>`);
+
+  lines.push(`<div class="note">
+    <b>Ruta del sitio (GitHub Pages)</b><br/>
+    Tu URL de proyecto es: <span class="kbd">https://TUUSUARIO.github.io/NOMBRE_REPO/</span><br/>
+    Si cambias el nombre del repo, cambia la URL.
+  </div>`);
+
+  $("rightBody").innerHTML = lines.join("\n");
+}
+
+function renderRight(){
+  $("rightTitle").textContent = activeTab === "plan" ? "Plan" : (activeTab === "invite" ? "Invitaciones" : "Ayuda");
+  if(!state.unlocked && activeTab === "plan"){
+    $("rightBody").innerHTML = `<div class="note warn">
+      🔒 El plan está bloqueado. Ve a <b>Cuenta y progreso</b> y pega tu código de invitación.
+    </div>`;
+    return;
+  }
+  if(activeTab === "plan") renderPlanTab();
+  if(activeTab === "invite") renderInviteTab();
+  if(activeTab === "help") renderHelpTab();
+}
+
+function render(){
+  renderLeft();
+  renderRight();
+}
+
+/* ============================================================
+   EVENTOS
+   ============================================================ */
+function bindStaticEvents(){
+  $("tabPlan").addEventListener("click", ()=> setTab("plan"));
+  $("tabInvite").addEventListener("click", ()=> setTab("invite"));
+  $("tabHelp").addEventListener("click", ()=> setTab("help"));
+
+  $("btnUnlock").addEventListener("click", ()=>{
+    unlockWithCode($("inviteInput").value);
+  });
+  $("btnClearInvite").addEventListener("click", ()=>{
+    $("inviteInput").value = "";
+    toast("Campo borrado.");
+  });
+
+  $("dayInput").addEventListener("change", ()=>{
+    state.day = clamp(parseInt($("dayInput").value||"1",10),1,PLAN_DAYS);
+    saveState();
+    render();
+  });
+
+  $("btnPrev").addEventListener("click", ()=>{
+    state.day = clamp(state.day-1,1,PLAN_DAYS);
+    saveState(); render();
+  });
+  $("btnNext").addEventListener("click", ()=>{
+    state.day = clamp(state.day+1,1,PLAN_DAYS);
+    saveState(); render();
+  });
+  $("btnToday").addEventListener("click", ()=>{
+    // aquí "Ir al día" solo refresca el render
+    render();
+    toast("Listo.");
+  });
+
+  $("btnResetDay").addEventListener("click", resetDay);
+  $("btnResetAll").addEventListener("click", resetAll);
+
+  $("btnHardRefresh").addEventListener("click", ()=>{
+    toast("Recargando…");
+    window.location.reload(true);
+  });
+
+  $("btnSpeak").addEventListener("click", ()=>{
+    const info = dayInfo(state.day);
+    speak(`Day ${info.day}. ${info.theme}. Focus: ${info.focus}.`);
   });
 }
 
-function shareButton(label, svg, kind, msg){
-  return `<button class="iconbtn" onclick="share('${kind}')">${svg} ${label}</button>`;
-}
-function share(kind){
-  const ta = document.getElementById("inviteMsg");
-  const text = (ta && ta.value) ? ta.value : "";
-  const base = getBaseUrl();
-  const link = `${base}/?invite=${state.inviteCode}`;
-  const enc = encodeURIComponent(text.replace("{LINK}", link));
-
-  let url = "";
-  if(kind==="wa"){
-    url = "https://wa.me/?text=" + enc;
-  }else if(kind==="tg"){
-    // telegram comparte url + texto; mandamos todo como texto
-    url = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(text);
-  }else if(kind==="x"){
-    url = "https://twitter.com/intent/tweet?text=" + enc;
-  }else if(kind==="mail"){
-    const subject = encodeURIComponent("Invitación: Plan 90 Días de Inglés (A1→A2)");
-    url = "mailto:?subject=" + subject + "&body=" + enc;
-  }
-  window.open(url, "_blank");
-}
-
-/*** ========= ICONS (inline SVG) ========= ***/
-function iconWhatsApp(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M20.5 11.9c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.2-1l-3.2.9.9-3.1c-.7-1.3-1.1-2.8-1.1-4.4 0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6Z" stroke="currentColor" stroke-width="1.6"/><path d="M9.2 8.7c.2-.3.4-.3.6-.3h.5c.1 0 .3 0 .4.3l.7 1.6c.1.3.1.5 0 .7l-.4.5c-.1.2-.1.3 0 .5.3.6 1 1.3 1.6 1.6.2.1.3.1.5 0l.5-.4c.2-.1.4-.1.7 0l1.6.7c.2.1.3.3.3.4v.5c0 .2 0 .4-.3.6-.4.4-1 .8-1.7.8-1.5 0-3.3-1-4.6-2.3S7.8 10.3 7.8 8.8c0-.7.4-1.3.8-1.7Z" fill="currentColor"/></svg>`; }
-function iconTelegram(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M20.7 4.7 3.8 11.2c-.8.3-.8 1.4 0 1.7l4.2 1.4 1.6 4.9c.2.7 1.1.8 1.6.3l2.4-2.4 4.8 3.5c.6.4 1.4.1 1.6-.6l3-14.3c.2-.9-.7-1.6-1.5-1.3Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 14.3 18.2 7.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`; }
-function iconX(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M7 5h4l6 14h-4L7 5Z" stroke="currentColor" stroke-width="1.6"/><path d="M17 5h-3.5L7 19h3.5L17 5Z" fill="currentColor" opacity=".35"/></svg>`; }
-function iconMail(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4.5 7.2A2.2 2.2 0 0 1 6.7 5h10.6a2.2 2.2 0 0 1 2.2 2.2v9.6a2.2 2.2 0 0 1-2.2 2.2H6.7a2.2 2.2 0 0 1-2.2-2.2V7.2Z" stroke="currentColor" stroke-width="1.6"/><path d="m5.3 7.4 6.1 5c.4.3.9.3 1.3 0l6.1-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`; }
-function iconCopy(){ return `<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 8h10v12H8V8Z" stroke="currentColor" stroke-width="1.6"/><path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.6"/></svg>`; }
-
-/*** ========= TTS (voz) ========= ***/
-function setVoiceMode(m){ state.voiceMode=m; save(); renderPlan(); }
-function setRate(m){ state.rateMode=m; save(); renderPlan(); }
-
-function pickRate(){
-  if(state.rateMode==="lenta") return 0.85;
-  if(state.rateMode==="fluido") return 1.05;
-  return 0.95;
-}
-
-function speak(text){
-  try{
-    if(!("speechSynthesis" in window)){
-      toast("Tu navegador no soporta voz (TTS).");
-      return;
-    }
-    window.speechSynthesis.cancel();
-
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-US";
-    u.rate = pickRate();
-
-    const voices = window.speechSynthesis.getVoices() || [];
-    // intenta elegir una voz de inglés
-    const enVoices = voices.filter(v => (v.lang||"").toLowerCase().startsWith("en"));
-    let chosen = null;
-
-    if(state.voiceMode==="female"){
-      chosen = enVoices.find(v => /female|zira|susan|aria|jenny/i.test(v.name)) || enVoices[0];
-    }else if(state.voiceMode==="male"){
-      chosen = enVoices.find(v => /male|david|mark|guy/i.test(v.name)) || enVoices[0];
-    }else{
-      chosen = enVoices[0] || voices[0];
-    }
-    if(chosen) u.voice = chosen;
-
-    window.speechSynthesis.speak(u);
-  }catch(e){
-    toast("No se pudo reproducir voz.");
-  }
-}
-// en algunos navegadores, getVoices carga tarde
-if("speechSynthesis" in window){
-  window.speechSynthesis.onvoiceschanged = ()=>{};
-}
-
-/*** ========= BACKUP / RESET ========= ***/
-function exportProgress(){
-  const data = JSON.stringify(state, null, 2);
-  navigator.clipboard?.writeText(data).then(()=>{
-    toast("Progreso exportado (copiado) ✅");
-  }).catch(()=>{
-    prompt("Copia este texto:", data);
-  });
-}
-function importProgress(){
-  const txt = prompt("Pega aquí el texto exportado:");
-  if(!txt) return;
-  try{
-    const o = JSON.parse(txt);
-    if(!o || typeof o!=="object") throw new Error("bad");
-    Object.assign(state, o);
-    state.day = clamp(parseInt(state.day||1,10),1,PLAN_DAYS);
-    state.progress = state.progress || {};
-    state.points = state.points || 0;
-    state.cash = state.cash || 0;
-    state.inviteCode = state.inviteCode || "";
-    save();
-    toast("Importado ✅");
-    renderPlan();
-  }catch(e){
-    toast("Texto inválido.");
-  }
-}
-function resetProgress(){
-  if(!confirm("¿Seguro que quieres reiniciar TODO tu progreso local?")) return;
-  localStorage.removeItem(LS_KEY);
-  location.reload();
-}
-
-/*** ========= INIT ========= ***/
 function applyInviteFromUrl(){
-  const p = new URLSearchParams(location.search);
-  const inv = (p.get("invite")||"").trim().toUpperCase();
-  if(inv && /^[A-Z0-9]{6,12}$/.test(inv)){
-    // para el invitado, guardamos ese código (solo informativo)
-    state.inviteCode = inv;
-    save();
+  const params = new URLSearchParams(window.location.search);
+  const invite = params.get("invite");
+  if(invite){
+    // limpiar URL (sin recargar)
+    try{
+      const clean = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, "", clean);
+    }catch(e){}
+    if(unlockWithCode(invite)){
+      setTab("plan");
+    }
   }
 }
 
-function init(){
-  load();
+/* ============================================================
+   INIT
+   ============================================================ */
+(function init(){
+  bindStaticEvents();
+  loadState();
   applyInviteFromUrl();
-
-  document.getElementById("name").value = state.name || "";
-  document.getElementById("name").addEventListener("input", (e)=>{
-    state.name = (e.target.value||"").trim();
-    save();
-  });
-
-  renderPlan();
-}
-init();
+  setUnlockUI(state.unlocked);
+  setTab("plan");
+  render();
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 · Plan 90 Días</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#0b1220;color:#e9eefb;display:flex;min-height:100vh;align-items:center;justify-content:center}
+    .box{max-width:720px;padding:24px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.04)}
+    a{color:#4aa3ff}
+    .muted{color:#a8b3d6}
+    .btn{display:inline-block;margin-top:14px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(74,163,255,.18);color:#e9eefb;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>404</h1>
+    <p class="muted">Esta ruta no existe en GitHub Pages. Te regreso al inicio del curso.</p>
+    <a class="btn" id="go" href="#">Ir al inicio</a>
+    <p class="muted" style="margin-top:14px">Si llegaste aquí por un enlace de invitación, asegúrate de que incluya el nombre del repositorio, por ejemplo:<br/>
+      <code>https://TUUSUARIO.github.io/NOMBRE_REPO/?invite=CODIGO</code>
+    </p>
+  </div>
+
+<script>
+(function(){
+  // Redirigir al root del repo (mismo directorio donde está el 404.html)
+  // En GitHub Pages de proyecto, esto suele ser /repo/
+  var path = location.pathname || "/";
+  // quitar cualquier cosa después del último /
+  path = path.replace(/\/[^\/]*$/, "/");
+  var target = location.origin + path;
+  document.getElementById("go").href = target;
+  // auto-redirect en 2 segundos
+  setTimeout(function(){ location.replace(target); }, 2000);
+})();
+</script>
+</body>
+</html>
